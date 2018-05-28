@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="《机器学习实战》第8章 预测数值型数据：回归不知道算是第几次接触、学习回归，如果没记错的话：大一的建模课、熊熊的数据采集处理、在弃坑Andraw Ng的网课前……一直到本次的自学。对于一些问题理解的不深刻是我一直以来的问题，这个问题主要源于我对线性代数内容的不熟悉，对理论的推导过程不熟悉等等因素。本学期机器学习课程又一次接触回归问题，希望这一次可以做一个比较完整的梳理，以备以后学习结束后及时复习、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习之线性回归与局部加权线性回归">
+<meta property="og:url" content="http://yoursite.com/2018/05/28/ML-regression/index.html">
+<meta property="og:site_name" content="Find Qianni">
+<meta property="og:description" content="《机器学习实战》第8章 预测数值型数据：回归不知道算是第几次接触、学习回归，如果没记错的话：大一的建模课、熊熊的数据采集处理、在弃坑Andraw Ng的网课前……一直到本次的自学。对于一些问题理解的不深刻是我一直以来的问题，这个问题主要源于我对线性代数内容的不熟悉，对理论的推导过程不熟悉等等因素。本学期机器学习课程又一次接触回归问题，希望这一次可以做一个比较完整的梳理，以备以后学习结束后及时复习、">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/regression_Figure_1.png">
+<meta property="og:updated_time" content="2018-05-28T16:00:26.562Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习之线性回归与局部加权线性回归">
+<meta name="twitter:description" content="《机器学习实战》第8章 预测数值型数据：回归不知道算是第几次接触、学习回归，如果没记错的话：大一的建模课、熊熊的数据采集处理、在弃坑Andraw Ng的网课前……一直到本次的自学。对于一些问题理解的不深刻是我一直以来的问题，这个问题主要源于我对线性代数内容的不熟悉，对理论的推导过程不熟悉等等因素。本学期机器学习课程又一次接触回归问题，希望这一次可以做一个比较完整的梳理，以备以后学习结束后及时复习、">
+<meta name="twitter:image" content="http://yoursite.com/images/regression_Figure_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/28/ML-regression/"/>
+
+
+
+
+
+  <title>机器学习之线性回归与局部加权线性回归 | Find Qianni</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Find Qianni</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Always be Brave and Enthusiastic</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/28/ML-regression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang Qianni">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/portrait.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Find Qianni">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习之线性回归与局部加权线性回归</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-28T12:14:47+08:00">
+                2018-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="《机器学习实战》第8章-预测数值型数据：回归"><a href="#《机器学习实战》第8章-预测数值型数据：回归" class="headerlink" title="《机器学习实战》第8章 预测数值型数据：回归"></a>《机器学习实战》第8章 预测数值型数据：回归</h1><p>不知道算是第几次接触、学习回归，如果没记错的话：大一的建模课、熊熊的数据采集处理、在弃坑Andraw Ng的网课前……一直到本次的自学。对于一些问题理解的不深刻是我一直以来的问题，这个问题主要源于我对线性代数内容的不熟悉，对理论的推导过程不熟悉等等因素。本学期机器学习课程又一次接触回归问题，希望这一次可以做一个比较完整的梳理，以备以后学习结束后及时复习、查看~</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#本部分需要调用的库</span></span><br><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>内容提要：<br>线性回归<br>局部加权线性回归<br>预测鲍鱼年龄的实例</p>
+</blockquote>
+<h2 id="一、线性回归-LR"><a href="#一、线性回归-LR" class="headerlink" title="一、线性回归(LR)"></a>一、线性回归(LR)</h2><h3 id="1-线性回归含义解释"><a href="#1-线性回归含义解释" class="headerlink" title="1.线性回归含义解释"></a>1.线性回归含义解释</h3><p>线性回归是给定一系列点数据点，建立“<strong>最佳</strong>“”<strong>近似</strong>“”<strong>线性</strong>“关系。回归的<strong>目的</strong>是<u>预测数值型的目标值</u>，回归的过程就是求回归方程的回归系数。</p>
+<ul>
+<li>最佳：有不同的定义；如：找出使<strong>误差（预测y值与真实y值之间的差值）最小</strong>的回归系数，这里的误差一般采用<strong>平方误差</strong></li>
+<li>近似：由于模型误差与测量误差的存在，不能完美地描述数据</li>
+<li>线性：与线性代数存在一定关系</li>
+</ul>
+<a id="more"></a> 
+<h3 id="2-线性回归回归系数最优估计推导"><a href="#2-线性回归回归系数最优估计推导" class="headerlink" title="2.线性回归回归系数最优估计推导"></a>2.线性回归回归系数最优估计推导</h3><p>线性回归估计w最优解的公式推导过程：</p>
+<p>假定有线性方程：$Y=Xw$，找到最佳近似解$\hat{w}$，使平方误差$E(\hat{w})=(Y-Xw) ^ \mathrm{ T }(Y-Xw) $最小。</p>
+<p>方法一：</p>
+<p>展开该式：<script type="math/tex">E(\hat{w})=Y^\mathrm{T}Y-Y^\mathrm{T}Xw-w^\mathrm{T}X^\mathrm{T}Y+w^\mathrm{T}X^\mathrm{T}Xw</script></p>
+<blockquote>
+<p>此处补充线性代数转置常用的几个公式，因为真的每次都会忘：$(A^T)^T=A$; $(AB)^T=B^T A^T$; $(A\pm B)^T=A^T \pm B^T$ 。</p>
+</blockquote>
+<p>由于$Y^\mathrm{T}Xw = w^\mathrm{T}X^\mathrm{T}Y$ 所以以上公式可以转换为：</p>
+<script type="math/tex; mode=display">E(\hat{w})=w^\mathrm{T}X^\mathrm{T}Xw - 2w^\mathrm{T}X^\mathrm{T}Y + Y^\mathrm{T}Y</script><p>令$K=X^TX$，$f=X^TY$，则以上变为：$E(\hat{w})=w^\mathrm{T}Kw - 2w^\mathrm{T}f + Y^\mathrm{T}Y$，此公式是一个二次型，因此由二次型的性质值当$K\hat{w}=f$时，$E(w)$取得最小值，将$K$与$f$带入，得到$X^T X \hat{w} = X^T Y$，若$(X^TX)^{-1}$存在，则有:</p>
+<script type="math/tex; mode=display">\hat{w} = (X^TX)^{-1}(X^TY)</script><p>方法二：</p>
+<p>直接将平方误差公式对w求导，得到$x^T(Y -X w)$，令其等于0，解得$\hat{w} = (X^TX)^{-1}(X^TY) $</p>
+<p>使用以上两种方法的过程中都需要<strong>确定$X^T X$的逆矩阵是否存在</strong>。</p>
+<p>在进行线性回归时通常有m个样本n个特征，则$Y=Xw$可以表示为下矩阵乘法。在这使用numpy计算的过程中需要注意数据的维度问题。</p>
+<script type="math/tex; mode=display">\begin{bmatrix}y_1 \\ y_2 \\\vdots \\y_m \end{bmatrix} =  \begin{bmatrix} 1 & x_{11} & x_{12} \cdots &x_{1n} \\ 1 & x_{21} & x_{22} \cdots &x_{2n} \\\vdots &\vdots  &\vdots &\vdots\\1 & x_{m1} & x_{m2}  \cdots &x_{mn}\end{bmatrix} \begin{bmatrix}w_0 \\w_1 \\ w_2 \\\vdots \\w_n \end{bmatrix}</script><h3 id="3-线性回归效果检验"><a href="#3-线性回归效果检验" class="headerlink" title="3.线性回归效果检验"></a>3.线性回归效果检验</h3><p>计算预测值yHat与真实值y序列的匹配程度，匹配程度这一个量是通过两个序列的<strong>相关系数</strong>来体现出的。利用Python中的numpy模块，可以使用来进行计算：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.corrcoef(yEstimate,yActual) <span class="comment">#保证两个向量均为行向量，注意是否需要转置等操作</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-线性回归的程序实现"><a href="#4-线性回归的程序实现" class="headerlink" title="4.线性回归的程序实现"></a>4.线性回归的程序实现</h3><p>原始数据由三列组成，第一列为全1，第二列为x值，第三列为y值。<strong>数据读入</strong>过程为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loadDataSet</span><span class="params">(fileName)</span>:</span>      <span class="comment">#读入Tab键分隔数据的一般函数</span></span><br><span class="line">    numFeat = len(open(fileName).readline().split(<span class="string">'\t'</span>)) - <span class="number">1</span> <span class="comment">#get number of fields </span></span><br><span class="line">    dataMat = []; labelMat = []</span><br><span class="line">    fr = open(fileName)</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> fr.readlines():</span><br><span class="line">        lineArr =[]</span><br><span class="line">        curLine = line.strip().split(<span class="string">'\t'</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(numFeat):</span><br><span class="line">            lineArr.append(float(curLine[i]))</span><br><span class="line">        dataMat.append(lineArr)</span><br><span class="line">        labelMat.append(float(curLine[<span class="number">-1</span>]))</span><br><span class="line">    <span class="keyword">return</span> dataMat,labelMat<span class="comment">#此处读的y标签为行向量，后来部分场景需要转置操作</span></span><br></pre></td></tr></table></figure>
+<p>接下来为<strong>构建线性回归的函数</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">standRegres</span><span class="params">(xArr,yArr)</span>:</span></span><br><span class="line">    xMat = mat(xArr); yMat = mat(yArr).T</span><br><span class="line">    xTx = xMat.T*xMat</span><br><span class="line">    <span class="keyword">if</span> linalg.det(xTx) == <span class="number">0.0</span>:</span><br><span class="line">        <span class="keyword">print</span> (<span class="string">"This matrix is singular, cannot do inverse"</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    ws = xTx.I * (xMat.T*yMat) <span class="comment">#也可以写成ws=np.linalg.solve(xTx,xMat.T*yMatT)</span></span><br><span class="line">    <span class="keyword">return</span> ws</span><br></pre></td></tr></table></figure>
+<p><strong>调用函数</strong>时即可采用以下步骤，并可以进一步<strong>绘图</strong>显示线性回归的效果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>xArr,yArr = loadDataSet(<span class="string">'文件名.txt'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ws = standRegres(xArr, yArr)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>xMat = mat(xArr)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>yMat = mat(yArr)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>yHat = xMat*ws</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#运行完以上参数后定义该函数，而后调用即可绘制回归曲线</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">draw_picture</span><span class="params">(x,y,w)</span>:</span></span><br><span class="line">    fig=plt.figure()</span><br><span class="line">    ax=fig.add_subplot(<span class="number">111</span>)</span><br><span class="line">    ax.scatter(x[:,<span class="number">1</span>].flatten().A[<span class="number">0</span>],y.T[:,<span class="number">0</span>].flatten().A[<span class="number">0</span>])</span><br><span class="line">    xCopy = x.copy()</span><br><span class="line">    xCopy.sort(<span class="number">0</span>)</span><br><span class="line">    yHat=xCopy*w</span><br><span class="line">    ax.plot(xCopy[:,<span class="number">1</span>],yHat,c=<span class="string">'k'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>draw_picture(xMat,yMat,ws)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/regression_Figure_1.png" alt="回归图像示例"></p>
+<h2 id="二、局部加权线性回归-LWLR"><a href="#二、局部加权线性回归-LWLR" class="headerlink" title="二、局部加权线性回归(LWLR)"></a>二、局部加权线性回归(LWLR)</h2><h3 id="1-局部加权线性回归的含义解释及推导"><a href="#1-局部加权线性回归的含义解释及推导" class="headerlink" title="1.局部加权线性回归的含义解释及推导"></a>1.局部加权线性回归的含义解释及推导</h3><p>在局部加权线性回归中，我们给待预测点附近的每一个点赋予一定的权重，对于赋予权重后计算最小均方差来找到较好的$\hat{w}$，从而进行进一步回归。即对于<strong>普通的线性回归</strong>来讲是找到$w$使$\sum_i(y^{(i)} - x^{(i)}w)^2$最小，但<strong>加权线性回归</strong>则是找到$w$使$\sum_ic^{(i)}(y^{(i)} - x^{(i)}w)^2$最小。</p>
+<p>对比以上线性回归过程，引入权重矩阵$C$（用于给每个点赋予权重），则有$X^T C X \hat{w} = X^T C Y$，可得回归系数:</p>
+<script type="math/tex; mode=display">\hat{w} = (X^T C X)^{-1}(X^T C Y)</script><p>$C$即涉及到LWLR使用到的所谓“核”的概念，可以针对附近的点赋予更高的权重，核的类型有多重选择，比如选择<strong>高斯核</strong>权重为：$c^{(i)}=\exp\left( \frac{\left|x^{(i)}- x \right|}{-2k^2}\right)$</p>
+<p>其中$c^{(i)}$仅为对角元素，点x与$x^{(i)}$相距越近，该权重越大；相距越远，该权重较小。</p>
+<h3 id="2-局部加权线性回归的特点分析"><a href="#2-局部加权线性回归的特点分析" class="headerlink" title="2.局部加权线性回归的特点分析"></a>2.局部加权线性回归的特点分析</h3><ul>
+<li>优点：在一定程度上避免了欠拟合的问题、过拟合问题，但并不能完全避免</li>
+<li>缺点：算法的代价大，因为在对每个点做预测时，都使用了整个数据集</li>
+</ul>
+<h3 id="3-局部加权线性回归的程序实现"><a href="#3-局部加权线性回归的程序实现" class="headerlink" title="3.局部加权线性回归的程序实现"></a>3.局部加权线性回归的程序实现</h3><p>局部加权线性回归只要依靠<code>lwlr()</code>与<code>lwlrTest()</code>两个函数进行实现,<code>lwlr()</code>函数是<strong>取某一点利用局部加权线性回归</strong>，得到y的预估值。<code>lwlrTest()</code>函数是通过<strong>循环遍历数据集每一点</strong>，得到在局部加权线性回归的条件下每个点的预估值。将<code>lwlrTest()</code>的结果连成折线即是局部加权线性回归的结果。两个函数中可以对$k$值进行调节，将得到不同的效果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lwlr</span><span class="params">(testPoint,xArr,yArr,k=<span class="number">1.0</span>)</span>:</span></span><br><span class="line">    xMat = mat(xArr); yMat = mat(yArr).T</span><br><span class="line">    m = shape(xMat)[<span class="number">0</span>]</span><br><span class="line">    weights = mat(eye((m)))</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(m):                      <span class="comment">#next 2 lines create weights matrix</span></span><br><span class="line">        diffMat = testPoint - xMat[j,:]     <span class="comment">#</span></span><br><span class="line">        weights[j,j] = exp(diffMat*diffMat.T/(<span class="number">-2.0</span>*k**<span class="number">2</span>))</span><br><span class="line">    xTx = xMat.T * (weights * xMat)</span><br><span class="line">    <span class="keyword">if</span> linalg.det(xTx) == <span class="number">0.0</span>:</span><br><span class="line">        <span class="keyword">print</span> (<span class="string">"This matrix is singular, cannot do inverse"</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    ws = xTx.I * (xMat.T * (weights * yMat))</span><br><span class="line">    <span class="keyword">return</span> testPoint * ws</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lwlrTest</span><span class="params">(testArr,xArr,yArr,k=<span class="number">1.0</span>)</span>:</span>  <span class="comment">#loops over all the data points and applies lwlr to each one</span></span><br><span class="line">    m = shape(testArr)[<span class="number">0</span>]</span><br><span class="line">    yHat = zeros(m)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</span><br><span class="line">        yHat[i] = lwlr(testArr[i],xArr,yArr,k)</span><br><span class="line">    <span class="keyword">return</span> yHat</span><br></pre></td></tr></table></figure>
+<p>局部加权线性回归算法可以通过比较估计值yHat与真实值y之间的误差，求算测试样本平方差之和，来比较不同k值下的性能。计算误差函数定义如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rssError</span><span class="params">(yArr,yHatArr)</span>:</span> <span class="comment">#yArr(测试数据testArr) and yHatArr both need to be arrays</span></span><br><span class="line">    <span class="keyword">return</span> ((yArr-yHatArr)**<span class="number">2</span>).sum()</span><br></pre></td></tr></table></figure>
+<p>在实际运用中，需将数据集进行划分，划分为训练集、测试集，分别用于训练和测试。</p>
+<h2 id="三、预测鲍鱼的年龄"><a href="#三、预测鲍鱼的年龄" class="headerlink" title="三、预测鲍鱼的年龄"></a>三、预测鲍鱼的年龄</h2><p>使用了UCI数据集[abalone]<a href="http://archive.ics.uci.edu/ml/datasets/Abalone" target="_blank" rel="noopener">http://archive.ics.uci.edu/ml/datasets/Abalone</a>的200条数据，并做一定数据预处理，原始数据见《机器学习实战》原始代码包。数据集记录了鲍鱼的年龄，鲍鱼的年龄可以从鲍鱼壳的层数推算得到。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>abX, abY = loadDataSet(<span class="string">'abalone.txt'</span>)</span><br><span class="line"><span class="comment">#局部加权线性回归</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>yHat10 = lwlrTest(abX[<span class="number">100</span>:<span class="number">199</span>], abX[<span class="number">0</span>:<span class="number">99</span>], abY[<span class="number">0</span>:<span class="number">99</span>],<span class="number">10</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>rssError(abY[<span class="number">100</span>:<span class="number">199</span>], yHat10.T)</span><br><span class="line"><span class="comment">#线性回归</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ws = standRegres(abX[<span class="number">0</span>:<span class="number">99</span>], abY[<span class="number">0</span>:<span class="number">99</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>yHat = mat(abX[<span class="number">100</span>:<span class="number">199</span>]) * ws</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>rssError(abY[<span class="number">100</span>:<span class="number">199</span>], yHat.T.A)</span><br></pre></td></tr></table></figure>
+<p>改变局部加权线性函数的k值，能够比较局部加权线性回归与线性回归的效果。</p>
+<h2 id="参考内容"><a href="#参考内容" class="headerlink" title="参考内容"></a>参考内容</h2><p>Peter Harrington《机器学习实战》第八章<br>Andraw Ng CS229课程讲义Note1</p>
+<p>本章内容还涉及岭回归、lasso与逐步线性回归，之前都在不同的地方听说过这些方法，但还没有深入学习了解，但我对这一部分内容我还是很感兴趣的，希望接下来有时间补充这部分内容。</p>
+<p>此外：我一直认为自己在自学过程中，对于理论的理解不够深入，特别是通过这学期的课程见识了很多茅数、茅信的大佬们，深感自己仍有很大差距，但不知道这种深度应该如何训练、提高。如果大家有什么好办法，欢迎大家与我交流~</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/21/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjY5NC8xMzIyOQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/portrait.jpg"
+                alt="Wang Qianni" />
+            
+              <p class="site-author-name" itemprop="name">Wang Qianni</p>
+              <p class="site-description motion-element" itemprop="description">It is a place for Qianni to record and learn.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#《机器学习实战》第8章-预测数值型数据：回归"><span class="nav-number">1.</span> <span class="nav-text">《机器学习实战》第8章 预测数值型数据：回归</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、线性回归-LR"><span class="nav-number">1.1.</span> <span class="nav-text">一、线性回归(LR)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-线性回归含义解释"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.线性回归含义解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-线性回归回归系数最优估计推导"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.线性回归回归系数最优估计推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-线性回归效果检验"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.线性回归效果检验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-线性回归的程序实现"><span class="nav-number">1.1.4.</span> <span class="nav-text">4.线性回归的程序实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、局部加权线性回归-LWLR"><span class="nav-number">1.2.</span> <span class="nav-text">二、局部加权线性回归(LWLR)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-局部加权线性回归的含义解释及推导"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.局部加权线性回归的含义解释及推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-局部加权线性回归的特点分析"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.局部加权线性回归的特点分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-局部加权线性回归的程序实现"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.局部加权线性回归的程序实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、预测鲍鱼的年龄"><span class="nav-number">1.3.</span> <span class="nav-text">三、预测鲍鱼的年龄</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考内容"><span class="nav-number">1.4.</span> <span class="nav-text">参考内容</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wang Qianni</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
