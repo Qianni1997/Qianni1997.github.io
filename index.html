@@ -232,6 +232,151 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/29/ML-1to6task/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang Qianni">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/portrait.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Find Qianni">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/29/ML-1to6task/" itemprop="url">机器学习报告补齐（包括KNN、决策树、朴素贝叶斯、logistic回归、TensorFlow、SVM）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-29T15:39:48+08:00">
+                2018-05-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="机器学习课程报告发布（分类部分）"><a href="#机器学习课程报告发布（分类部分）" class="headerlink" title="机器学习课程报告发布（分类部分）"></a>机器学习课程报告发布（分类部分）</h1><p>学期初，在自己的“对于知识的向往”和高中校友茅信的杜铭枢同学的鼓动下，报名了学校为茅院辅修大数据专业同学们开设的课程——机器学习与模式识别。课程鼓励对成果进行分享，因此在初期阶段我们进行了多次报告、课堂展示，而在课程中期，这一展示形式推广到了博客的方式。作为一个初学者，对于一些概念的掌握还十分浅显，再加之初期的doc格式报告不易转换成markdown文件，因此，此处选择转为pdf文件的形式对课程的前6次报告进行上传。过程中还有很多需要改进的地方，我也找到了进一步努力的方向。愿通过这门“戏很多”的课程，能够在数据分析、算法理解、报告撰写、课堂展示等方面有所收获。</p>
+<p>下面按照课程要求，发布学习报告。</p>
+<h2 id="2018-03-20-KNN算法"><a href="#2018-03-20-KNN算法" class="headerlink" title="2018-03-20 KNN算法"></a>2018-03-20 KNN算法</h2><p><strong>KNN算法工作原理</strong>：存在一个样本数据集合，也被称作训练样本集，并且样本集中每个数据都存在标签，即我们知道样本集中每一数据与所属分类的对应关系。输入没有标签的新数据后，将新数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本集中特征最相似数据（最邻近）的分类标签。一般来说选取样本数据集中前k个最相似的数据，最后，选择k个最相似数据中出现次数最多的分类。</p>
+<p><a href="/MLdownload/1KNN.pdf">点击下载KNN报告</a> </p>
+<h2 id="2018-03-27-Decision-Tree决策树"><a href="#2018-03-27-Decision-Tree决策树" class="headerlink" title="2018-03-27 Decision Tree决策树"></a>2018-03-27 Decision Tree决策树</h2><p><strong>决策树</strong>算法是一种<code>逼近离散函数值</code>的方法。它是一种典型的分类方法，首先对<u>数据进行处理</u>，利用归纳算法生成可读的<u>规则</u>和<u>决策树</u>，然后使用决策树对新<u>数据进行分析</u>。本质上决策树是通过一系列规则对数据进行分类的过程。 </p>
+<p><strong>决策树ID3算法原理</strong>：ID3算法是以<code>信息熵的下降速度</code>为选取测试属性的标准，即在每个节点选取<u>还尚未被用来划分</u>的<u>具有最高信息增益的属性</u>作为划分标准，然后继续这个过程，直到生成的决策树能完美分类训练样例。ID3算法是决策树算法中较为简单的一项，此外还有C4.5、CART等决策树算法。</p>
+<p><a href="/MLdownload/2Decisiontree.pdf">点击下载决策树报告</a> </p>
+<h2 id="2018-04-17-Naive-Bayes朴素贝叶斯"><a href="#2018-04-17-Naive-Bayes朴素贝叶斯" class="headerlink" title="2018-04-17 Naive Bayes朴素贝叶斯"></a>2018-04-17 Naive Bayes朴素贝叶斯</h2><p><strong>朴素贝叶斯法原理</strong>：朴素贝叶斯法是基于<u>贝叶斯定理</u>与<u>特征条件独立假设</u>的分类方法。 </p>
+<p>其中贝叶斯定理可写作：</p>
+<script type="math/tex; mode=display">
+P(类别|特征)=\frac{P(特征|类别)P(类别)}{P(特征)}</script><script type="math/tex; mode=display">
+P(B|A)=\frac{P(A|B)P(B)}{P(A)}</script><p>以上公式依照特征条件独立假设，可以进一步拆分为乘法，从而求算相关数据值进行分类。</p>
+<p><a href="/MLdownload/3NaiveBayes.pdf">点击下载朴素贝叶斯报告</a> </p>
+<h2 id="2018-04-24-Logistic回归"><a href="#2018-04-24-Logistic回归" class="headerlink" title="2018-04-24 Logistic回归"></a>2018-04-24 Logistic回归</h2><p><strong>利用Logistic回归进行分类的思想</strong>：根据现有数据对分类边界线建立回归公式，以此进行分类。回归的工作即为通过最优化方法(如梯度下降)找到最佳回归系数。</p>
+<p><strong>具体操作步骤</strong>：在一系列数据中，对样本的每个数据特征乘某一个回归系数（某些时候加入一个sigmoid转换）并做累和，得到样本的分类函数$h(x)=h_\theta (x)=\theta_0+\theta_1 x_1+\cdots+\theta_n x_n$。将不同样本间分类函数与真实值间的误差的平方和进行累加，得到错误估计函数$J(\theta)=\frac{1}{2}\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})^2$ 。应用最优化方法求解错误估计函数最小时的回归系数$\theta_j:=\theta_j+\alpha(y^{(i)}-h_\theta(x^{(i)}))x_j^{(i)}$。此处的回归系数梯度下降是一个样本的状况，多个样本则需要进行如求和等处理。再依照此最佳回归系数建立Logistic回归，输出分类。</p>
+<p>以上回归系数的确定步骤还可以依据<strong>梯度上升</strong>法，这种方法<strong>求最大值</strong>的核心思想是将自变量沿着目标函数的梯度方向移动，一直移动到指定的次数或者说某个允许的误差范围。 这一过程的伪代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">每个回归系数初始化为1</span><br><span class="line">重复R次:</span><br><span class="line">     计算整个数据集的梯度</span><br><span class="line">     使用 alpha * gradient 更新回归系数向量</span><br><span class="line">返回回归系数</span><br></pre></td></tr></table></figure>
+<p><a href="/MLdownload/4LogisticRegression.pdf">点击下载Logistic回归报告</a> </p>
+<h2 id="2018-04-24-TensorFlow使用方法自主学习及实现Logistic回归"><a href="#2018-04-24-TensorFlow使用方法自主学习及实现Logistic回归" class="headerlink" title="2018-04-24 TensorFlow使用方法自主学习及实现Logistic回归"></a>2018-04-24 TensorFlow使用方法自主学习及实现Logistic回归</h2><p>TensorFlow是谷歌研发的第二代人工智能学习系统，可以用于进行机器学习、深度学习等工作。</p>
+<p><a href="/MLdownload/5TensorFlow.pdf">点击下载报告</a> </p>
+<h2 id="2018-05-08-SVM支持向量机"><a href="#2018-05-08-SVM支持向量机" class="headerlink" title="2018-05-08 SVM支持向量机"></a>2018-05-08 SVM支持向量机</h2><p><strong>SVM基本思想：</strong></p>
+<p><strong>输入：</strong>两组带标签的数据。</p>
+<p><strong>输出：</strong>一条<u>最优</u>的将两组数据分开的直线。</p>
+<p>此过程也可以扩展到高维空间，即N维空间中，使用N-1维的最优超平面将不同标签的数据分开。SVM的数学证明过程较为严格，可以参考MIT的人工智能课程<a href="http://open.163.com/movie/2017/9/Q/2/MCTMNN3UI_MCTMP1NQ2.html" target="_blank" rel="noopener">http://open.163.com/movie/2017/9/Q/2/MCTMNN3UI_MCTMP1NQ2.html</a>，我也还需要进一步学习。</p>
+<p><a href="/MLdownload/6SVM.pdf">点击下载SVM报告</a> </p>
+<h2 id="2018-05-22-adaboost元算法"><a href="#2018-05-22-adaboost元算法" class="headerlink" title="2018-05-22 adaboost元算法"></a>2018-05-22 adaboost元算法</h2><p>[adaboost元算法博客地址]<a href="https://qianni1997.github.io/2018/05/26/ML-Adaboost/" target="_blank" rel="noopener">https://qianni1997.github.io/2018/05/26/ML-Adaboost/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/28/ML-regression/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -302,7 +447,7 @@
 
       
         
-          <h1 id="《机器学习实战》第8章-预测数值型数据：回归"><a href="#《机器学习实战》第8章-预测数值型数据：回归" class="headerlink" title="《机器学习实战》第8章 预测数值型数据：回归"></a>《机器学习实战》第8章 预测数值型数据：回归</h1><p>不知道算是第几次接触、学习回归，如果没记错的话：大一的建模课、熊熊的数据采集处理、在弃坑Andraw Ng的网课前……一直到本次的自学。对于一些问题理解的不深刻是我一直以来的问题，这个问题主要源于我对线性代数内容的不熟悉，对理论的推导过程不熟悉等等因素。本学期机器学习课程又一次接触回归问题，希望这一次可以做一个比较完整的梳理，以备以后学习结束后及时复习、查看~</p>
+          <h1 id="《机器学习实战》第8章-预测数值型数据：回归"><a href="#《机器学习实战》第8章-预测数值型数据：回归" class="headerlink" title="《机器学习实战》第8章 预测数值型数据：回归"></a>《机器学习实战》第8章 预测数值型数据：回归</h1><p>不知道算是第几次接触、学习回归，如果没记错的话：大一的建模课、熊熊的数据采集处理、在弃坑Andrew Ng的网课前……一直到本次的自学。对于一些问题理解的不深刻是我一直以来的问题，这个问题主要源于我对线性代数内容的不熟悉，对理论的推导过程不熟悉等等因素。本学期机器学习课程又一次接触回归问题，希望这一次可以做一个比较完整的梳理，以备以后学习结束后及时复习、查看~</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#本部分需要调用的库</span></span><br><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>内容提要：<br>线性回归<br>局部加权线性回归<br>预测鲍鱼年龄的实例</p>
@@ -794,7 +939,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

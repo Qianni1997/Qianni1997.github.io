@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="《机器学习实战》第8章 预测数值型数据：回归不知道算是第几次接触、学习回归，如果没记错的话：大一的建模课、熊熊的数据采集处理、在弃坑Andraw Ng的网课前……一直到本次的自学。对于一些问题理解的不深刻是我一直以来的问题，这个问题主要源于我对线性代数内容的不熟悉，对理论的推导过程不熟悉等等因素。本学期机器学习课程又一次接触回归问题，希望这一次可以做一个比较完整的梳理，以备以后学习结束后及时复习、">
+<meta name="description" content="《机器学习实战》第8章 预测数值型数据：回归不知道算是第几次接触、学习回归，如果没记错的话：大一的建模课、熊熊的数据采集处理、在弃坑Andrew Ng的网课前……一直到本次的自学。对于一些问题理解的不深刻是我一直以来的问题，这个问题主要源于我对线性代数内容的不熟悉，对理论的推导过程不熟悉等等因素。本学期机器学习课程又一次接触回归问题，希望这一次可以做一个比较完整的梳理，以备以后学习结束后及时复习、">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习之线性回归与局部加权线性回归">
 <meta property="og:url" content="http://yoursite.com/2018/05/28/ML-regression/index.html">
 <meta property="og:site_name" content="Find Qianni">
-<meta property="og:description" content="《机器学习实战》第8章 预测数值型数据：回归不知道算是第几次接触、学习回归，如果没记错的话：大一的建模课、熊熊的数据采集处理、在弃坑Andraw Ng的网课前……一直到本次的自学。对于一些问题理解的不深刻是我一直以来的问题，这个问题主要源于我对线性代数内容的不熟悉，对理论的推导过程不熟悉等等因素。本学期机器学习课程又一次接触回归问题，希望这一次可以做一个比较完整的梳理，以备以后学习结束后及时复习、">
+<meta property="og:description" content="《机器学习实战》第8章 预测数值型数据：回归不知道算是第几次接触、学习回归，如果没记错的话：大一的建模课、熊熊的数据采集处理、在弃坑Andrew Ng的网课前……一直到本次的自学。对于一些问题理解的不深刻是我一直以来的问题，这个问题主要源于我对线性代数内容的不熟悉，对理论的推导过程不熟悉等等因素。本学期机器学习课程又一次接触回归问题，希望这一次可以做一个比较完整的梳理，以备以后学习结束后及时复习、">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/regression_Figure_1.png">
-<meta property="og:updated_time" content="2018-05-28T16:00:26.562Z">
+<meta property="og:updated_time" content="2018-05-29T07:37:35.233Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习之线性回归与局部加权线性回归">
-<meta name="twitter:description" content="《机器学习实战》第8章 预测数值型数据：回归不知道算是第几次接触、学习回归，如果没记错的话：大一的建模课、熊熊的数据采集处理、在弃坑Andraw Ng的网课前……一直到本次的自学。对于一些问题理解的不深刻是我一直以来的问题，这个问题主要源于我对线性代数内容的不熟悉，对理论的推导过程不熟悉等等因素。本学期机器学习课程又一次接触回归问题，希望这一次可以做一个比较完整的梳理，以备以后学习结束后及时复习、">
+<meta name="twitter:description" content="《机器学习实战》第8章 预测数值型数据：回归不知道算是第几次接触、学习回归，如果没记错的话：大一的建模课、熊熊的数据采集处理、在弃坑Andrew Ng的网课前……一直到本次的自学。对于一些问题理解的不深刻是我一直以来的问题，这个问题主要源于我对线性代数内容的不熟悉，对理论的推导过程不熟悉等等因素。本学期机器学习课程又一次接触回归问题，希望这一次可以做一个比较完整的梳理，以备以后学习结束后及时复习、">
 <meta name="twitter:image" content="http://yoursite.com/images/regression_Figure_1.png">
 
 
@@ -306,7 +306,7 @@
       
 
       
-        <h1 id="《机器学习实战》第8章-预测数值型数据：回归"><a href="#《机器学习实战》第8章-预测数值型数据：回归" class="headerlink" title="《机器学习实战》第8章 预测数值型数据：回归"></a>《机器学习实战》第8章 预测数值型数据：回归</h1><p>不知道算是第几次接触、学习回归，如果没记错的话：大一的建模课、熊熊的数据采集处理、在弃坑Andraw Ng的网课前……一直到本次的自学。对于一些问题理解的不深刻是我一直以来的问题，这个问题主要源于我对线性代数内容的不熟悉，对理论的推导过程不熟悉等等因素。本学期机器学习课程又一次接触回归问题，希望这一次可以做一个比较完整的梳理，以备以后学习结束后及时复习、查看~</p>
+        <h1 id="《机器学习实战》第8章-预测数值型数据：回归"><a href="#《机器学习实战》第8章-预测数值型数据：回归" class="headerlink" title="《机器学习实战》第8章 预测数值型数据：回归"></a>《机器学习实战》第8章 预测数值型数据：回归</h1><p>不知道算是第几次接触、学习回归，如果没记错的话：大一的建模课、熊熊的数据采集处理、在弃坑Andrew Ng的网课前……一直到本次的自学。对于一些问题理解的不深刻是我一直以来的问题，这个问题主要源于我对线性代数内容的不熟悉，对理论的推导过程不熟悉等等因素。本学期机器学习课程又一次接触回归问题，希望这一次可以做一个比较完整的梳理，以备以后学习结束后及时复习、查看~</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#本部分需要调用的库</span></span><br><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>内容提要：<br>线性回归<br>局部加权线性回归<br>预测鲍鱼年龄的实例</p>
@@ -358,7 +358,7 @@
 <h2 id="三、预测鲍鱼的年龄"><a href="#三、预测鲍鱼的年龄" class="headerlink" title="三、预测鲍鱼的年龄"></a>三、预测鲍鱼的年龄</h2><p>使用了UCI数据集[abalone]<a href="http://archive.ics.uci.edu/ml/datasets/Abalone" target="_blank" rel="noopener">http://archive.ics.uci.edu/ml/datasets/Abalone</a>的200条数据，并做一定数据预处理，原始数据见《机器学习实战》原始代码包。数据集记录了鲍鱼的年龄，鲍鱼的年龄可以从鲍鱼壳的层数推算得到。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>abX, abY = loadDataSet(<span class="string">'abalone.txt'</span>)</span><br><span class="line"><span class="comment">#局部加权线性回归</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>yHat10 = lwlrTest(abX[<span class="number">100</span>:<span class="number">199</span>], abX[<span class="number">0</span>:<span class="number">99</span>], abY[<span class="number">0</span>:<span class="number">99</span>],<span class="number">10</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>rssError(abY[<span class="number">100</span>:<span class="number">199</span>], yHat10.T)</span><br><span class="line"><span class="comment">#线性回归</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ws = standRegres(abX[<span class="number">0</span>:<span class="number">99</span>], abY[<span class="number">0</span>:<span class="number">99</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>yHat = mat(abX[<span class="number">100</span>:<span class="number">199</span>]) * ws</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>rssError(abY[<span class="number">100</span>:<span class="number">199</span>], yHat.T.A)</span><br></pre></td></tr></table></figure>
 <p>改变局部加权线性函数的k值，能够比较局部加权线性回归与线性回归的效果。</p>
-<h2 id="参考内容"><a href="#参考内容" class="headerlink" title="参考内容"></a>参考内容</h2><p>Peter Harrington《机器学习实战》第八章<br>Andraw Ng CS229课程讲义Note1</p>
+<h2 id="参考内容"><a href="#参考内容" class="headerlink" title="参考内容"></a>参考内容</h2><p>Peter Harrington《机器学习实战》第八章<br>Andrew Ng CS229课程讲义Note1</p>
 <p>本章内容还涉及岭回归、lasso与逐步线性回归，之前都在不同的地方听说过这些方法，但还没有深入学习了解，但我对这一部分内容我还是很感兴趣的，希望接下来有时间补充这部分内容。</p>
 <p>此外：我一直认为自己在自学过程中，对于理论的理解不够深入，特别是通过这学期的课程见识了很多茅数、茅信的大佬们，深感自己仍有很大差距，但不知道这种深度应该如何训练、提高。如果大家有什么好办法，欢迎大家与我交流~</p>
 
@@ -394,6 +394,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/29/ML-1to6task/" rel="prev" title="机器学习报告补齐（包括KNN、决策树、朴素贝叶斯、logistic回归、TensorFlow、SVM）">
+                机器学习报告补齐（包括KNN、决策树、朴素贝叶斯、logistic回归、TensorFlow、SVM） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -517,7 +521,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
