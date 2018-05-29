@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Find Qianni">
 <meta property="og:description" content="《机器学习实战》第7章 利用AdaBoost元算法提高分类性能最近的机器学习课程要求博客分享学习报告，因此借助博客进行分享，希望大家提出宝贵意见。此外由于还没有搞清楚hexo如何分栏目，所以暂未进行分栏，接下来熟悉后会对文章进行分栏等处理，保持博客的“清爽”。 7.1 基于数据集多重抽样的分类器集成方法(ensemble method)又称为元算法(meta-algorithm)是对其他算法进行组">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-29T00:09:16.443Z">
+<meta property="og:updated_time" content="2018-05-29T00:11:42.013Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习之Adaboost元算法">
 <meta name="twitter:description" content="《机器学习实战》第7章 利用AdaBoost元算法提高分类性能最近的机器学习课程要求博客分享学习报告，因此借助博客进行分享，希望大家提出宝贵意见。此外由于还没有搞清楚hexo如何分栏目，所以暂未进行分栏，接下来熟悉后会对文章进行分栏等处理，保持博客的“清爽”。 7.1 基于数据集多重抽样的分类器集成方法(ensemble method)又称为元算法(meta-algorithm)是对其他算法进行组">
@@ -303,6 +303,7 @@
 <h2 id="7-1-基于数据集多重抽样的分类器"><a href="#7-1-基于数据集多重抽样的分类器" class="headerlink" title="7.1 基于数据集多重抽样的分类器"></a>7.1 基于数据集多重抽样的分类器</h2><p>集成方法(<code>ensemble method</code>)又称为元算法(<code>meta-algorithm</code>)是对其他算法进行组合的一种方式，组合的方式主要有：</p>
 <p>①不同的分类算法集成（KNN、决策树、朴素贝叶斯、Logistics、SVM等分类算法进行集成）<br>②同一算法在不同设置下集成（算法参数不同）<br>③数据集不同部分分配给不同分类器之后的集成</p>
 <p>通常来讲一个集成分类器的分类性能将优于单个的分类器，单个分类器如果是一个决策者，集成学习的方法则为多决策者共同决策一个问题。 </p>
+<a id="more"></a> 
 <h3 id="7-1-1-bagging-基于数据随机重抽样的分类器构建方法"><a href="#7-1-1-bagging-基于数据随机重抽样的分类器构建方法" class="headerlink" title="7.1.1 bagging 基于数据随机重抽样的分类器构建方法"></a>7.1.1 bagging 基于数据随机重抽样的分类器构建方法</h3><p>bagging方法是在从原始数据集选择S次后得到S个新数据集的一种技术。每个数据集都是通过在原始数据集中随机选择一个样本来进行替换得到的。新数据集中可能有重复的值，也原始数据集中有新集合中没有的值。bagging又叫做bootstrap aggregating，是一种根据均匀概率分布从数据中重复抽样即有放回的技术。 </p>
 <p><strong>bagging方法的过程：</strong></p>
 <p>某个学习算法至每个数据集至S个分类器至投票结果的最多类别<br>先进的bagging方法：随机森林<br>因此：<br>Bagging方法的性能依赖于及分类器的稳定性，若基分类器稳定，该方法误差主要源于基分类器的偏差，若该方法不稳定，则该方法有助于降低训练数据随机波动造成的误差。此外由于基于均匀分布，每个样本被选中的概率相同，因此该方法不侧重于某一实例。</p>
