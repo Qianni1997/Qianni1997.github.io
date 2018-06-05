@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://yoursite.com/images/ML_clustering/7.png">
 <meta property="og:image" content="http://yoursite.com/images/ML_clustering/8.png">
 <meta property="og:image" content="http://yoursite.com/images/ML_clustering/9.png">
-<meta property="og:updated_time" content="2018-06-05T09:26:37.827Z">
+<meta property="og:updated_time" content="2018-06-05T09:38:47.144Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习之聚类算法">
 <meta name="twitter:description" content="机器学习之聚类算法(1)1. 聚类的概念(Clustering)1.1 聚类的概念机器学习按照学习形式可以分为“监督学习”与“无监督学习”，在无监督学习中，训练样本的标记信息未知，即没有“标签”，需要通过对无标记训练样本的学习来揭示数据的内在性质与规律，无监督学习任务中研究最多、应用最广的是聚类。 聚类将数据集中相似的样本归到同一个簇中，将不相似的地样本归到不同的簇中，每个簇可能对应于一些潜在的概">
@@ -318,9 +318,9 @@
         <h1 id="机器学习之聚类算法-1"><a href="#机器学习之聚类算法-1" class="headerlink" title="机器学习之聚类算法(1)"></a>机器学习之聚类算法(1)</h1><h2 id="1-聚类的概念-Clustering"><a href="#1-聚类的概念-Clustering" class="headerlink" title="1. 聚类的概念(Clustering)"></a>1. 聚类的概念(Clustering)</h2><h3 id="1-1-聚类的概念"><a href="#1-1-聚类的概念" class="headerlink" title="1.1 聚类的概念"></a>1.1 聚类的概念</h3><p>机器学习按照学习形式可以分为“监督学习”与“无监督学习”，在无监督学习中，训练样本的标记信息未知，即<strong>没有“标签”</strong>，需要通过对无标记训练样本的学习来揭示数据的内在性质与规律，无监督学习任务中研究最多、应用最广的是聚类。</p>
 <p>聚类将数据集中相似的样本归到同一个簇中，将不相似的地样本归到不同的簇中，每个簇可能对应于一些潜在的概念（类别），但这些概念对聚类算法而言事先是未知的。这其中的一系列概念可以表示为：</p>
 <p>假定样本集$D=\left\{x_1,x_2,\cdots,x_m \right\}$包含$m$个无标记样本，每个样本$x_i=\left\{x_{i1};x_{i2};\cdots;x_{in} \right\}$是一个$n$维特征向量，则聚类算法将样本集$D$划分为$k$个不相交的簇$\left\{C_l | l=1,2,\cdots,k \right\}$,其中，$C_{l’}\cap_{l’\neq l}C_l=\varnothing $且$D=\cup_{l=1}^kC_l$，相应地，我们用$\lambda_j\in\left\{1,2,\cdots,k\right\}$表示样本$x_j$的簇标记，即$x_j\in C_{\lambda_j}$于是，聚类的结果可用包含$m$个元素的簇标记向量$\lambda=\left(\lambda_1;\lambda_2; \cdots;\lambda_m\right)$表示。</p>
+<a id="more"></a> 
 <h3 id="1-2-聚类中的性能度量"><a href="#1-2-聚类中的性能度量" class="headerlink" title="1.2 聚类中的性能度量"></a>1.2 聚类中的性能度量</h3><p>聚类分析试图将相似对象划为同一簇，不相似的对象归到不同簇，而“相似”主要依靠性能度量。</p>
 <p>聚类的性能度量（有效性指标）是用于评估聚类效果的好坏的或作为聚类过程的优化目标的。聚类性能度量大致可以分为两类，一类是将聚类结果与某个“参考模型”进行比较，称为“外部指标”；另一类是直接考察聚类结果而不利用任何参考模型，称为“内部指标”。</p>
-<p>&lt; !—more—&gt; </p>
 <h4 id="1-2-1-外部指标"><a href="#1-2-1-外部指标" class="headerlink" title="1.2.1 外部指标"></a>1.2.1 外部指标</h4><p>对数据集$D=\left\{x_1,x_2,\cdots,x_m \right\}$，假定通过聚类给出的簇划分为$C=\left\{C_1,C_2,\cdots,C_k \right\}$参考模型给出的簇划分为$C^<em>=\left\{C_1^</em>,C_2^<em>,\cdots,C_s ^</em>\right\}$。相应地，令$\lambda$与$\lambda^<em>$分别表示$C$与$C^</em>$对应的簇标记向量，将样本两两配对考虑，则可定义：</p>
 <script type="math/tex; mode=display">
 a=\left|SS\right|, SS=\left\{(x_i,x_j)|\lambda_i=\lambda_j,\lambda_i^*=\lambda_j^*,i<j\right\}</script><script type="math/tex; mode=display">
