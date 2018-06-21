@@ -87,7 +87,7 @@
 <meta property="og:description" content="《机器学习实战》第8章 预测数值型数据：回归不知道算是第几次接触、学习回归，如果没记错的话：大一的建模课、熊熊的数据采集处理、在弃坑Andrew Ng的网课前……一直到本次的自学。对于一些问题理解的不深刻是我一直以来的问题，这个问题主要源于我对线性代数内容的不熟悉，对理论的推导过程不熟悉等等因素。本学期机器学习课程又一次接触回归问题，希望这一次可以做一个比较完整的梳理，以备以后学习结束后及时复习、">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/regression_Figure_1.png">
-<meta property="og:updated_time" content="2018-05-29T07:37:35.233Z">
+<meta property="og:updated_time" content="2018-06-21T11:58:24.336Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习之线性回归与局部加权线性回归">
 <meta name="twitter:description" content="《机器学习实战》第8章 预测数值型数据：回归不知道算是第几次接触、学习回归，如果没记错的话：大一的建模课、熊熊的数据采集处理、在弃坑Andrew Ng的网课前……一直到本次的自学。对于一些问题理解的不深刻是我一直以来的问题，这个问题主要源于我对线性代数内容的不熟悉，对理论的推导过程不熟悉等等因素。本学期机器学习课程又一次接触回归问题，希望这一次可以做一个比较完整的梳理，以备以后学习结束后及时复习、">
@@ -307,6 +307,7 @@
 
       
         <h1 id="《机器学习实战》第8章-预测数值型数据：回归"><a href="#《机器学习实战》第8章-预测数值型数据：回归" class="headerlink" title="《机器学习实战》第8章 预测数值型数据：回归"></a>《机器学习实战》第8章 预测数值型数据：回归</h1><p>不知道算是第几次接触、学习回归，如果没记错的话：大一的建模课、熊熊的数据采集处理、在弃坑Andrew Ng的网课前……一直到本次的自学。对于一些问题理解的不深刻是我一直以来的问题，这个问题主要源于我对线性代数内容的不熟悉，对理论的推导过程不熟悉等等因素。本学期机器学习课程又一次接触回归问题，希望这一次可以做一个比较完整的梳理，以备以后学习结束后及时复习、查看~</p>
+<a id="more"></a> 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#本部分需要调用的库</span></span><br><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>内容提要：<br>线性回归<br>局部加权线性回归<br>预测鲍鱼年龄的实例</p>
@@ -317,7 +318,6 @@
 <li>近似：由于模型误差与测量误差的存在，不能完美地描述数据</li>
 <li>线性：与线性代数存在一定关系</li>
 </ul>
-<a id="more"></a> 
 <h3 id="2-线性回归回归系数最优估计推导"><a href="#2-线性回归回归系数最优估计推导" class="headerlink" title="2.线性回归回归系数最优估计推导"></a>2.线性回归回归系数最优估计推导</h3><p>线性回归估计w最优解的公式推导过程：</p>
 <p>假定有线性方程：$Y=Xw$，找到最佳近似解$\hat{w}$，使平方误差$E(\hat{w})=(Y-Xw) ^ \mathrm{ T }(Y-Xw) $最小。</p>
 <p>方法一：</p>
