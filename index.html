@@ -232,6 +232,232 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/21/exerciseofregressionandKF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang Qianni">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/portrait.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Find Qianni">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/21/exerciseofregressionandKF/" itemprop="url">一道应用回归与卡尔曼滤波进行预测的小题目</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-21T19:52:47+08:00">
+                2018-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一道应用回归与卡尔曼滤波进行预测的小题目"><a href="#一道应用回归与卡尔曼滤波进行预测的小题目" class="headerlink" title="一道应用回归与卡尔曼滤波进行预测的小题目"></a>一道应用回归与卡尔曼滤波进行预测的小题目</h1><p>今天Po一道题目的解决方法，是月同小仙女问的我关于熊老师《交通数据采集与处理》课程的内容，感觉一言两语说不清楚，于是决定写下来手动帮助一下快要期末考的小伙伴。</p>
+<h1 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h1><p><strong>题1</strong>：假设某地统计过去五个月的气温与出行量之间的关系如下：</p>
+<blockquote>
+<p>月份：         1    2    3    4    5<br>气温(℃)：      10   15   14   20   22<br>出行量(千人次)：  21   32   34   41   60</p>
+</blockquote>
+<p>同时预计6月气温为24度，请用<strong>一次线性回归</strong>预测6月出行量。</p>
+<p><strong>题2</strong>：请用<strong>二次线性</strong>回归预测6月出行量</p>
+<p><strong>题3</strong>：请用<strong>卡尔曼滤波</strong>预测6月出行量(提示：不足的条件自行合理假设)</p>
+<p><strong>题4</strong>：上述那个预测结果比较好？“好”的定义是什么？</p>
+<p><strong>题5</strong>：开放性问题，是否能设想比上述模型更好的模型？</p>
+<h1 id="问题一：线性回归"><a href="#问题一：线性回归" class="headerlink" title="问题一：线性回归"></a>问题一：线性回归</h1><p>关于线性回归的部分解释和推导，可以参考我的博客：[线性回归的解释]<a href="https://qianni1997.github.io/2018/05/28/ML-regression/" target="_blank" rel="noopener">https://qianni1997.github.io/2018/05/28/ML-regression/</a></p>
+<p>其实在线性回归$Y=X\omega$中我们的目的就是最小化误差平方和即：</p>
+<script type="math/tex; mode=display">
+\min (Y-X\omega)^T(Y-X\omega)</script><p>经过一起系列推导，我们可以得知，实现上式最小化时，线性回归的系数估计结果为：</p>
+<script type="math/tex; mode=display">
+\hat{\omega} = (X^TX)^{-1}(X^TY)</script><p>因此我们在此问中的工作就是构造$X​$,$Y​$，并利用上式求解得到$\hat\omega​$</p>
+<h2 id="提前阐述的概念"><a href="#提前阐述的概念" class="headerlink" title="提前阐述的概念"></a>提前阐述的概念</h2><ul>
+<li>本问题中，输入：气温数据；输出：出行量。</li>
+<li>我们将数据集中的样本个数记为m，特征个数记为n（本问题中我们有5个月份的气温数据，因此m=5;因为用于输入的特征仅有气温，所以此处记n=1）</li>
+</ul>
+<h2 id="构造Y"><a href="#构造Y" class="headerlink" title="构造Y"></a>构造Y</h2><p>Y是线性回归的结果，即输出（出行量），我们将Y构造为$m*1$阶矩阵</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">Y = np.array([[<span class="number">21</span>],[<span class="number">32</span>],[<span class="number">34</span>],[<span class="number">41</span>],[<span class="number">60</span>]])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Y</span><br></pre></td></tr></table></figure>
+<pre><code>array([[21],
+       [32],
+       [34],
+       [41],
+       [60]])
+</code></pre><h2 id="构造X"><a href="#构造X" class="headerlink" title="构造X"></a>构造X</h2><p>X是线性回归的输入，因为回归中存在常数项，因此我们除了气温这一列以外，在前面补充一列全1的列。因此此时我们的输入X是一个$5*2$阶的矩阵</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X_1d = np.array([[<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>],[<span class="number">10</span>,<span class="number">15</span>,<span class="number">14</span>,<span class="number">20</span>,<span class="number">22</span>]])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">X_1d = X_1d.T</span><br><span class="line">X_1d</span><br></pre></td></tr></table></figure>
+<pre><code>array([[ 1, 10],
+       [ 1, 15],
+       [ 1, 14],
+       [ 1, 20],
+       [ 1, 22]])
+</code></pre><h2 id="hat-omega-的计算"><a href="#hat-omega-的计算" class="headerlink" title="$\hat\omega$的计算"></a>$\hat\omega$的计算</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">w_hat = np.dot(np.linalg.inv(np.dot(X_1d.T,X_1d)),np.dot(X_1d.T,Y))<span class="comment">#执行w的估计公式</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">w_hat</span><br></pre></td></tr></table></figure>
+<pre><code>array([[-7.85775862],
+       [ 2.80603448]])
+</code></pre><h2 id="6月出行量的预测与误差平方和计算"><a href="#6月出行量的预测与误差平方和计算" class="headerlink" title="6月出行量的预测与误差平方和计算"></a>6月出行量的预测与误差平方和计算</h2><p>以上就是我们计算得到的线性回归的系数$\hat\omega$</p>
+<p>接下来，我们用这个回归系数，预测6月份的出行量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x_1d_6 = np.array([[<span class="number">1</span>,<span class="number">24</span>]])</span><br><span class="line">np.dot(x_1d_6,w_hat)<span class="comment">#一次线性回归预测得到的6月的出行量</span></span><br></pre></td></tr></table></figure>
+<pre><code>array([[ 59.48706897]])
+</code></pre><p>我们也可以计算一下，一次线性回归的误差平方和是多少：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">error_1d = np.dot((Y-np.dot(X_1d,w_hat)).T,(Y-np.dot(X_1d,w_hat)))</span><br><span class="line">error_1d</span><br></pre></td></tr></table></figure>
+<pre><code>array([[ 102.50862069]])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line">plt.plot(X_1d[:,<span class="number">1</span>],Y, <span class="string">"."</span>)</span><br><span class="line">plt.plot(X_1d[:,<span class="number">1</span>],np.dot(X_1d,w_hat))</span><br><span class="line">plt.xlabel(<span class="string">'temperature'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'flow'</span>)</span><br><span class="line">plt.title(<span class="string">'The result of Linear Regression'</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/images/anexerciseofregressionandKF/output_23_0.png" alt="png"></p>
+<h1 id="问题二：二次回归"><a href="#问题二：二次回归" class="headerlink" title="问题二：二次回归"></a>问题二：二次回归</h1><p>二次回归与以上线性回归的<strong>理论相同</strong>，只是在<strong>X的构造</strong>方面有所区别</p>
+<h2 id="构造X-1"><a href="#构造X-1" class="headerlink" title="构造X"></a>构造X</h2><p>在二次回归中，我们不仅仅需要输入常数项（之前提及的全1列）、气温，还需要输入气温的平方。这样做相当于把一个二次的问题转化为了线性的问题，从而可以用之前的理论进行求解,现在，我们的X为一个$5*3$阶的输入</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">X_2d = np.array([[<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>],[<span class="number">10</span>,<span class="number">15</span>,<span class="number">14</span>,<span class="number">20</span>,<span class="number">22</span>],[<span class="number">10</span>*<span class="number">10</span>,<span class="number">15</span>*<span class="number">15</span>,<span class="number">14</span>*<span class="number">14</span>,<span class="number">20</span>*<span class="number">20</span>,<span class="number">22</span>*<span class="number">22</span>]])</span><br><span class="line">X_2d = X_2d.T</span><br><span class="line">X_2d</span><br></pre></td></tr></table></figure>
+<pre><code>array([[  1,  10, 100],
+       [  1,  15, 225],
+       [  1,  14, 196],
+       [  1,  20, 400],
+       [  1,  22, 484]])
+</code></pre><h2 id="接下来的求解、预测、计算步骤"><a href="#接下来的求解、预测、计算步骤" class="headerlink" title="接下来的求解、预测、计算步骤"></a>接下来的求解、预测、计算步骤</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">w_hat_2d = np.dot(np.linalg.inv(np.dot(X_2d.T,X_2d)),np.dot(X_2d.T,Y))<span class="comment">#执行w的估计公式</span></span><br><span class="line">w_hat_2d</span><br></pre></td></tr></table></figure>
+<pre><code>array([[ 22.817038  ],
+       [ -1.2703054 ],
+       [  0.12584309]])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x_2d_6 = np.array([[<span class="number">1</span>,<span class="number">24</span>,<span class="number">24</span>*<span class="number">24</span>]])</span><br><span class="line">np.dot(x_2d_6,w_hat_2d)<span class="comment">#二次回归预测得到的6月的出行量</span></span><br></pre></td></tr></table></figure>
+<pre><code>array([[ 64.81533066]])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">error_2d = np.dot((Y-np.dot(X_2d,w_hat_2d)).T,(Y-np.dot(X_2d,w_hat_2d)))</span><br><span class="line">error_2d</span><br></pre></td></tr></table></figure>
+<pre><code>array([[ 84.75715044]])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(X_2d[:,<span class="number">1</span>],Y, <span class="string">"."</span>)</span><br><span class="line">plt.plot(X_2d[:,<span class="number">1</span>],np.dot(X_2d,w_hat_2d))</span><br><span class="line">plt.xlabel(<span class="string">'temperature'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'flow'</span>)</span><br><span class="line">plt.title(<span class="string">'The result of quadratic regression'</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/images/anexerciseofregressionandKF/output_33_0.png" alt="png"></p>
+<h1 id="问题三：Kalman-Filter"><a href="#问题三：Kalman-Filter" class="headerlink" title="问题三：Kalman Filter"></a>问题三：Kalman Filter</h1><p>卡尔曼滤波是用于<strong>状态估计、预测</strong>的较为经典的理论，我们在不同的课上已经接触过N多遍，只是由于一直没有去手动实现一下，所以理解的并不太清晰。以及由于公式中涉及到高斯分布均值呀方差呀的参数，每个老师都会用不同的符号去表示，有时也会省略一部分参数，导致每一次学都感觉像是一个全新的理论。。</p>
+<ul>
+<li>由于我们在日常生活中会用<strong>模型</strong>与<strong>实测数据</strong>两种方式去刻画某一个量，但这两种方式都不准确，因此卡尔曼滤波能够融合这两种方式，以更好地估计某一个量。</li>
+<li>Kalman Filter核心是：<strong>预测</strong>与<strong>更新</strong>两个步骤；预测步骤基于模型(状态演化过程计算式)，更新步骤基于实测数据</li>
+</ul>
+<p>理论部分我就不再具体阐述了，可以参考以下链接文章：</p>
+<p>[推荐一个较为生动形象的理论讲解文章]<a href="http://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/" target="_blank" rel="noopener">http://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/</a></p>
+<p>文章中的结论为：<br><strong>预测过程</strong></p>
+<script type="math/tex; mode=display">\mathbf{\hat{x}}_k=\mathbf{F}_k\mathbf{\hat{x}}_{k-1}</script><script type="math/tex; mode=display">\mathbf{P}_k = \mathbf{F}_k\mathbf{P}_{k-1}\mathbf{F}_k^T</script><p><strong>更新过程</strong></p>
+<script type="math/tex; mode=display">
+\mathbf{H}_k\mathbf{\hat{x}}_k'= \mathbf{H}_k\mathbf{\hat{x}}_k+\mathbf{K}(\vec{\mathbf{z}}_k-\mathbf{H}_k\mathbf{\hat {x}})</script><script type="math/tex; mode=display">
+\mathbf{H}_k{\mathbf{P}_k’}\mathbf{H}_k^T ={\mathbf{H}_k \mathbf{P}_k \mathbf{H}_k^T} –{\mathbf{K}}{\mathbf{H}_k \mathbf{P}_k \mathbf{H}_k^T}</script><p>其中：</p>
+<script type="math/tex; mode=display">
+{\mathbf{K}} ={\mathbf{H}_k \mathbf{P}_k \mathbf{H}_k^T} ({\mathbf{H}_k \mathbf{P}_k \mathbf{H}_k^T} + {\mathbf{R}_k})^{-1}</script><p><strong>更新过程</strong>修正一下</p>
+<script type="math/tex; mode=display">
+{\mathbf{\hat{x}}_k’} = {\mathbf{\hat{x}}_k}+{\mathbf{K}’} ({\vec{\mathbf{z}_k}} –{\mathbf{H}_k \mathbf{\hat{x}}_k} )</script><script type="math/tex; mode=display">
+{\mathbf{P}_k’} = {\mathbf{P}_k}–{\mathbf{K}’}{\mathbf{H}_k \mathbf{P}_k}</script><p>其中：</p>
+<script type="math/tex; mode=display">
+{\mathbf{K}’} = {\mathbf{P}_k \mathbf{H}_k^T} ({\mathbf{H}_k \mathbf{P}_k \mathbf{H}_k^T} +{\mathbf{R}_k})^{-1}</script><h2 id="Kalman-filter函数的定义"><a href="#Kalman-filter函数的定义" class="headerlink" title="Kalman filter函数的定义"></a>Kalman filter函数的定义</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(posterior,movement)</span>:</span></span><br><span class="line">    x,P = posterior</span><br><span class="line">    dx,Q = movement</span><br><span class="line">    x = x + dx</span><br><span class="line">    P = P + Q</span><br><span class="line">    <span class="keyword">return</span> x,P</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(prior,measurement)</span>:</span></span><br><span class="line">    x,P = prior</span><br><span class="line">    z,R = measurement</span><br><span class="line">    K = P / (P + R)</span><br><span class="line">    y = z - x</span><br><span class="line">    x = x + K*y</span><br><span class="line">    P = (<span class="number">1</span> - K)*P</span><br><span class="line">    <span class="keyword">return</span> x,P</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">kalman_filter</span><span class="params">(Y, x0=<span class="number">10</span>, P=<span class="number">1</span>, dx=<span class="number">3</span>, Q=<span class="number">1</span>, R=<span class="number">1</span>)</span>:</span></span><br><span class="line">    result = []</span><br><span class="line">    posterior = (x0, P)</span><br><span class="line">    movement = (dx, Q)</span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> Y:</span><br><span class="line">        measurement = (y, R)</span><br><span class="line">        aprior = predict(posterior, movement)</span><br><span class="line">        print(aprior)</span><br><span class="line">        posterior =  update(aprior, measurement)</span><br><span class="line">        print(posterior, <span class="string">"--"</span>)</span><br><span class="line">        result.append(posterior)</span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+<h2 id="使用Kalman滤波"><a href="#使用Kalman滤波" class="headerlink" title="使用Kalman滤波"></a>使用Kalman滤波</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r1 = kalman_filter(Y, Q=<span class="number">0.5</span>, R=<span class="number">0.5</span>);</span><br></pre></td></tr></table></figure>
+<pre><code>(13, 1.5)
+(array([ 19.]), 0.375) --
+(array([ 22.]), 0.875)
+(array([ 28.36363636]), 0.3181818181818182) --
+(array([ 31.36363636]), 0.8181818181818181)
+(array([ 33.]), 0.31034482758620685) --
+(array([ 36.]), 0.8103448275862069)
+(array([ 39.09210526]), 0.30921052631578944) --
+(array([ 42.09210526]), 0.8092105263157894)
+(array([ 53.16080402]), 0.3090452261306532) --
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line">plt.plot(X_1d[:,<span class="number">1</span>],Y, <span class="string">"."</span>)</span><br><span class="line">plt.plot(X_1d[:,<span class="number">1</span>],[r[<span class="number">0</span>] <span class="keyword">for</span> r <span class="keyword">in</span> r1], <span class="string">"--"</span>)</span><br><span class="line">plt.xlabel(<span class="string">'temperature'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'flow'</span>)</span><br><span class="line">plt.title(<span class="string">'The result of Kalman Filter'</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/images/anexerciseofregressionandKF/output_46_0.png" alt="png"></p>
+<h2 id="进行预测"><a href="#进行预测" class="headerlink" title="进行预测"></a>进行预测</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">dx=<span class="number">3</span></span><br><span class="line">q=<span class="number">0.5</span></span><br><span class="line">r=<span class="number">0.5</span></span><br><span class="line">x_6=r1[<span class="number">-1</span>][<span class="number">0</span>][<span class="number">0</span>]+dx<span class="comment">#x = x + dx</span></span><br><span class="line">print(<span class="string">'predict June:'</span>,x_6)</span><br><span class="line">p_6=r1[<span class="number">-1</span>][<span class="number">1</span>]+q<span class="comment">#P = P + Q</span></span><br><span class="line">k_6=p_6/(p_6+r) </span><br><span class="line">z=<span class="number">62</span><span class="comment">#估计六月观测为62</span></span><br><span class="line">y=z-x_6<span class="comment">#z</span></span><br><span class="line">x_6=x_6+k_6*y</span><br><span class="line">print(<span class="string">'update June:'</span>,x_6)</span><br></pre></td></tr></table></figure>
+<pre><code>predict June: 56.1608040201
+update June: 59.7696737044
+</code></pre><p><strong>PS:感觉用Kalman Filter做这个题有点儿迷，我其实并不太确定是不是这样，因为我并没有使用温度数据，且很多参数都是我假设的</strong></p>
+<p>剩下的4.5两题比较开放，“好”个人理解需要选择评判指标，比如很多都是在最小化误差平方和，当然也可以选择一些其他的。</p>
+<p>至于其他的预测方法，我想到的譬如《预测与决策方法》课上的滑动平均、指数平滑，建模里面的ARIMA横型等等吧。</p>
+<p><strong>希望能给大家一点点小启发~</strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/05/ML-Cluster/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -834,134 +1060,6 @@
             </a>
           </div>
           <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/21/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang Qianni">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/portrait.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Find Qianni">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/21/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-21T12:20:56+08:00">
-                2018-05-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
         
       
     </div>
