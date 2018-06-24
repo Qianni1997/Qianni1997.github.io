@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="使用机器学习分析出租车订单数据内容提要：  出租车轨迹、订单数据特点  使用回归方法补全缺失量较大的数据  利用DBSCAN方法对出租车订单数据进行聚类  使用Python进行地理信息分析与可视化  小记geopandas、osmnx、networkx、folium等gis模块问题描述">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习个人作业——使用机器学习方法分析出租车订单数据">
+<meta property="og:url" content="http://yoursite.com/2018/06/24/ML_personalproject/index.html">
+<meta property="og:site_name" content="Find Qianni">
+<meta property="og:description" content="使用机器学习分析出租车订单数据内容提要：  出租车轨迹、订单数据特点  使用回归方法补全缺失量较大的数据  利用DBSCAN方法对出租车订单数据进行聚类  使用Python进行地理信息分析与可视化  小记geopandas、osmnx、networkx、folium等gis模块问题描述">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/ML_project_part1/output_9_0.png">
+<meta property="og:image" content="http://yoursite.com/images/ML_project_part1/output_10_0.png">
+<meta property="og:image" content="http://yoursite.com/images/ML_project_part1/output_11_0.png">
+<meta property="og:image" content="http://yoursite.com/images/ML_project_part1/output_12_0.png">
+<meta property="og:image" content="http://yoursite.com/images/ML_project_part1/output_15_0.png">
+<meta property="og:image" content="http://yoursite.com/images/ML_project_part1/output_16_0.png">
+<meta property="og:image" content="http://yoursite.com/images/ML_project_part1/output_17_0.png">
+<meta property="og:image" content="http://yoursite.com/images/ML_project_part1/output_20_0.png">
+<meta property="og:image" content="http://yoursite.com/images/ML_project_part1/output_21_1.png">
+<meta property="og:image" content="http://yoursite.com/images/ML_project_part1/output_31_0.png">
+<meta property="og:image" content="http://yoursite.com/images/ML_project_part1/output_37_1.png">
+<meta property="og:image" content="http://yoursite.com/images/ML_project_part1/DBSCAN.png">
+<meta property="og:image" content="http://yoursite.com/images/ML_project_part1/output_22_0.png">
+<meta property="og:image" content="http://yoursite.com/images/ML_project_part1/output_23_0.png">
+<meta property="og:image" content="http://yoursite.com/images/ML_project_part1/foliumDBSCAN.jpg">
+<meta property="og:image" content="http://yoursite.com/images/ML_project_part1/OD_morning.png">
+<meta property="og:image" content="http://yoursite.com/images/ML_project_part1/OD_night.png">
+<meta property="og:updated_time" content="2018-06-24T14:35:48.752Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习个人作业——使用机器学习方法分析出租车订单数据">
+<meta name="twitter:description" content="使用机器学习分析出租车订单数据内容提要：  出租车轨迹、订单数据特点  使用回归方法补全缺失量较大的数据  利用DBSCAN方法对出租车订单数据进行聚类  使用Python进行地理信息分析与可视化  小记geopandas、osmnx、networkx、folium等gis模块问题描述">
+<meta name="twitter:image" content="http://yoursite.com/images/ML_project_part1/output_9_0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/24/ML_personalproject/"/>
+
+
+
+
+
+  <title>机器学习个人作业——使用机器学习方法分析出租车订单数据 | Find Qianni</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Find Qianni</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Always be Brave and Enthusiastic</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/ML_personalproject/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang Qianni">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/portrait.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Find Qianni">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习个人作业——使用机器学习方法分析出租车订单数据</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-24T22:35:02+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="使用机器学习分析出租车订单数据"><a href="#使用机器学习分析出租车订单数据" class="headerlink" title="使用机器学习分析出租车订单数据"></a>使用机器学习分析出租车订单数据</h1><p>内容提要：</p>
+<ul>
+<li><p>出租车轨迹、订单数据特点</p>
+</li>
+<li><p>使用回归方法<strong>补全</strong>缺失量较大的数据</p>
+</li>
+<li><p>利用DBSCAN方法对出租车订单数据进行<strong>聚类</strong></p>
+</li>
+<li><p>使用Python进行地理信息分析与可视化</p>
+</li>
+<li><p>小记geopandas、osmnx、networkx、folium等gis模块问题描述 </p>
+</li>
+</ul>
+  <a id="more"></a> 
+<h2 id="1-问题背景"><a href="#1-问题背景" class="headerlink" title="1. 问题背景"></a>1. 问题背景</h2><p>交通研究中，基础数据的获取尤为重要。数据获取方式近年来也有着天翻地覆的变化。</p>
+<p>以获取出行者OD(origin, destination)的OD调查为例，获取OD能够定位城市各区域的交通发生与吸引情况，从而进行交通规划、城市管理等工作。传统OD获取方法如问卷调查法面向范围小、耗费人力物力、结果准确性差。随着含有GPS等传感器的智能手机的不断普及，与互联网经济的快速发展，滴滴、摩拜、高德等企业在运营中获取到了大量数据，这些数据获取难度小，覆盖范围广，采用“众包”的思路即获取到大量可以用于交通研究并指导实践，从而达到缓解城市交通拥堵的目的。</p>
+<p>本次，我将利用订单数据(反映OD)进行空间聚类，从而利用出租车上下车点的数量、密度，识别城市的热点地区，进行交通生成的时空分析。 </p>
+<h2 id="2-出租车轨迹与订单数据"><a href="#2-出租车轨迹与订单数据" class="headerlink" title="2. 出租车轨迹与订单数据"></a>2. 出租车轨迹与订单数据</h2><p>目前部分公司通过申请途径开放的数据主要有<strong>轨迹数据</strong>与<strong>订单数据</strong>两类。轨迹数据每隔一定的时间(约6-10s)记录一次，订单数据则每完成一个订单为一条记录。</p>
+<p>本次选用<strong>2016.12.22周四上海市</strong>一天的<strong>订单数据</strong>进行分析，由于未能获取到能多数据，本案例旨在抛砖引玉，并记录与地理信息相关数据的处理方法。</p>
+<h3 id="2-1-订单数据"><a href="#2-1-订单数据" class="headerlink" title="2.1 订单数据"></a>2.1 订单数据</h3><p>以下是本次使用的<strong>订单数据</strong>的字段：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">字段描述</th>
+<th style="text-align:center">字段名称</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">订单ID</td>
+<td style="text-align:center">order_id</td>
+<td style="text-align:center">随机生成，已加密</td>
+</tr>
+<tr>
+<td style="text-align:center">司机ID</td>
+<td style="text-align:center">driver_id</td>
+<td style="text-align:center">随机生成，已加密</td>
+</tr>
+<tr>
+<td style="text-align:center">车辆ID</td>
+<td style="text-align:center">car_id</td>
+<td style="text-align:center">已加密</td>
+</tr>
+<tr>
+<td style="text-align:center">城市名称</td>
+<td style="text-align:center">Shanghai</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">订单起点经度</td>
+<td style="text-align:center">s_long</td>
+<td style="text-align:center">保留5-6位小数</td>
+</tr>
+<tr>
+<td style="text-align:center">订单起点纬度</td>
+<td style="text-align:center">s_la</td>
+<td style="text-align:center">保留5-6位小数</td>
+</tr>
+<tr>
+<td style="text-align:center">订单终点经度</td>
+<td style="text-align:center">e_long</td>
+<td style="text-align:center">保留5-6位小数</td>
+</tr>
+<tr>
+<td style="text-align:center">订单终点纬度</td>
+<td style="text-align:center">e_la</td>
+<td style="text-align:center">保留5-6位小数</td>
+</tr>
+<tr>
+<td style="text-align:center">开始计费时间</td>
+<td style="text-align:center">s_time</td>
+<td style="text-align:center">%m%d%Y %H%M</td>
+</tr>
+<tr>
+<td style="text-align:center">订单完成时间</td>
+<td style="text-align:center">e_time</td>
+<td style="text-align:center">%m%d%Y %H%M</td>
+</tr>
+<tr>
+<td style="text-align:center">产品线</td>
+<td style="text-align:center">product</td>
+<td style="text-align:center">taxi</td>
+</tr>
+<tr>
+<td style="text-align:center">行程ID</td>
+<td style="text-align:center">route</td>
+<td style="text-align:center">taxi此字段默认0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>订单数据可以用于分析但不限于：</p>
+<ul>
+<li>订单时空数据分析（分不同的时段、区域，分析OD数据特征）但由于订单数据可能会被手动提前停止，因此并非全完准确。</li>
+<li>车辆运营状况分析（追踪加密后的车辆id）</li>
+<li>结合其他信息进行分析……</li>
+</ul>
+<h3 id="2-2-轨迹数据"><a href="#2-2-轨迹数据" class="headerlink" title="2.2 轨迹数据"></a>2.2 轨迹数据</h3><p>轨迹数据相比订单数据，数据量大，包含更多有价值信息，可以进行更多的分析。</p>
+<p>以下是轨迹数据通常提供的数据字段，也可能采集如加速度、陀螺仪角度等其他数据：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">字段描述</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">订单id</td>
+<td style="text-align:center">已加密</td>
+</tr>
+<tr>
+<td style="text-align:center">轨迹点对应的时间戳</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">相应坐标经度</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">相应坐标纬度</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">相应瞬时速度</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">乘客状态</td>
+<td style="text-align:center">1/0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>轨迹数据可以用于分析但不限于：</p>
+<ul>
+<li>通过抽取起终点，能够分析订单数据所得到的信息</li>
+<li>分析不同类型车辆（出租车、快车）的行驶特点</li>
+<li>分析不同行驶状态（空驶、载人）时的行驶特点</li>
+<li>估计道路交通状况<h2 id="3-数据预处理"><a href="#3-数据预处理" class="headerlink" title="3. 数据预处理"></a>3. 数据预处理</h2></li>
+</ul>
+<p>针对原始数据，首先需要进行数据预处理工作：</p>
+<p>可以使用<strong>绘图</strong>、<strong>统计量分析</strong>、<strong>相关性分析</strong>等的手段，其中绘图可以借助Python的matplotlib库，统计量分析可以使用pandas自带的分析功能，相关性分析可以借助scikit-learn库的相关功能。</p>
+<ul>
+<li><a href="http://www.cnblogs.com/jasonfreak/p/5448385.html?utm_source=wechat_session&amp;utm_medium=social&amp;utm_member=NGJiYzEyOTRkZDRiZjZmN2FmOGI2MzRjNmNjOGM2ODk%3D%0A" target="_blank" rel="noopener">使用sklearn进行特征工程</a></li>
+<li><a href="https://blog.csdn.net/A632189007/article/details/76176985" target="_blank" rel="noopener">Pandas统计分析</a></li>
+<li><a href="https://matplotlib.org/tutorials/index.html" target="_blank" rel="noopener">Matplotlib tutorial</a><h3 id="3-1-导入模块、数据、查看异常数据"><a href="#3-1-导入模块、数据、查看异常数据" class="headerlink" title="3.1 导入模块、数据、查看异常数据"></a>3.1 导入模块、数据、查看异常数据</h3></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#导入所需要的模块</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> geopandas <span class="keyword">as</span> gpd</span><br><span class="line"><span class="keyword">import</span> osmnx <span class="keyword">as</span> ox</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> geopandas.tools <span class="keyword">import</span> sjoin</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> radians, cos, sin, asin, sqrt</span><br><span class="line">plt.style.use(<span class="string">'ggplot'</span>)</span><br></pre></td></tr></table></figure>
+<p>由于数据不存在缺失（空缺），未记录的“订单结束时间e_time”被记录为’0000-00-00 00:00:00’，因此在此查看未正确记录的数据量。以下结果表明，问题数据量达近30%，需采用一定手段进行处理。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Thurdata=pd.read_csv(<span class="string">'THURSDAY.csv'</span>)</span><br><span class="line"><span class="comment">#判断是否是问题数据，并添加属性列</span></span><br><span class="line">Thurdata[<span class="string">'judge'</span>] = Thurdata.e_time.apply(<span class="keyword">lambda</span> x: <span class="number">1</span> <span class="keyword">if</span> x==<span class="string">'0000-00-00 00:00:00'</span> <span class="keyword">else</span> <span class="number">0</span>) </span><br><span class="line"><span class="comment">#查看问题数据量</span></span><br><span class="line">Thurdata[<span class="string">'judge'</span>].value_counts()</span><br></pre></td></tr></table></figure>
+<pre><code>0    18568
+1     7072
+Name: judge, dtype: int64
+</code></pre><p>目前缺失值、异常值的主要处理手段有：</p>
+<ul>
+<li>删除异常值——此处由于异常值量较多，直接删除会造成结果偏差</li>
+<li>采用前、后值填补——由于订单数据间不存在关联性，此方法不合适</li>
+<li>采用均值填充——可以采用‘开始时间+平均时间间隔’的方式来填充</li>
+<li>采用其他关系填充</li>
+</ul>
+<h3 id="3-2-异常数据的筛选与结束时间的回归补全"><a href="#3-2-异常数据的筛选与结束时间的回归补全" class="headerlink" title="3.2 异常数据的筛选与结束时间的回归补全"></a>3.2 异常数据的筛选与结束时间的回归补全</h3><p>在本步骤中：</p>
+<p><strong>Step1</strong>：对于结束时间e_time正常的数据，计算通行时间 $time_interval=e_time-s_time$；结束时间e_time异常的数据，采用np.nan填充</p>
+<p><strong>Step2</strong>：查看通行时间数据特点，删除通行时间异常的数据（time_intervel<180s或time_interval>14400s）</180s或time_interval></p>
+<p><strong>Step3</strong>：计算起终点间直线距离（经纬度距离计算公式）</p>
+<p><strong>Step4</strong>：查看起终点间直线距离的特点，删除直线距离异常的数据（LineDistance<10m或linedistance>100km）</10m或linedistance></p>
+<p><strong>Step5</strong>：回归分析直线距离与通行时间的关系，并利用回归公式填充结束时间e_time异常的数据</p>
+<p><strong>Step6</strong>：借助地理信息计算路网中起终点间的最短路，并记录。</p>
+<p><strong>Step7</strong>：回归分析路网最短距离与通行时间的关系，并利用回归公式重新填充结束时间e_time异常的数据，整合正常数据与填充异常结束时间值的数据</p>
+<h4 id="Step1-计算通行时间"><a href="#Step1-计算通行时间" class="headerlink" title="Step1 计算通行时间"></a>Step1 计算通行时间</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dataInterval</span><span class="params">(data1,data2)</span>:</span></span><br><span class="line">    d1 = datetime.datetime.strptime(data1,<span class="string">'%m/%d/%Y %H:%M'</span>)<span class="comment">#字符串形式转化为DateTime形式</span></span><br><span class="line">    d2 = datetime.datetime.strptime(data2,<span class="string">'%m/%d/%Y %H:%M'</span>)</span><br><span class="line">    delta = d2 - d1</span><br><span class="line">    <span class="keyword">return</span> delta.seconds<span class="comment">#将timedelta转化为秒计数</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getInterval</span><span class="params">(arrLike)</span>:</span>  <span class="comment">#用来计算通行时间调用的函数</span></span><br><span class="line">    s_time = arrLike[<span class="string">'s_time'</span>]</span><br><span class="line">    e_time = arrLike[<span class="string">'e_time'</span>]</span><br><span class="line">    error = arrLike[<span class="string">'judge'</span>]</span><br><span class="line">    <span class="keyword">if</span> error==<span class="number">0</span>:<span class="comment">#正常数据</span></span><br><span class="line">        interval = dataInterval(s_time.strip(),e_time.strip())  <span class="comment">#去掉两端空白</span></span><br><span class="line">    <span class="keyword">else</span>:<span class="comment">#问题数据</span></span><br><span class="line">        interval = np.nan</span><br><span class="line">    <span class="keyword">return</span> interval</span><br><span class="line">Thurdata[<span class="string">'TimeInterval'</span>] = Thurdata.apply(getInterval,axis=<span class="number">1</span>)<span class="comment">#时间差计算</span></span><br></pre></td></tr></table></figure>
+<h4 id="Step2-查看通行时间特点，删除异常数据"><a href="#Step2-查看通行时间特点，删除异常数据" class="headerlink" title="Step2 查看通行时间特点，删除异常数据"></a>Step2 查看通行时间特点，删除异常数据</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">timeinterval=np.array(Thurdata[<span class="string">'TimeInterval'</span>])</span><br><span class="line">timeinterval = np.sort(timeinterval[~np.isnan(timeinterval)])<span class="comment">#将非空数据找出并进行排序</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(timeinterval,<span class="string">'.'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'timeinterval(s)'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'sample'</span>)</span><br><span class="line">plt.title(<span class="string">'Timeinterval of all the samples'</span>);<span class="comment">#时间间隔</span></span><br></pre></td></tr></table></figure>
+<p><img src="/images/ML_project_part1/output_9_0.png" alt="png"></p>
+<p>将通行时间排序后绘图，不难发现随着样本数量的变化，时间间隔增加先处于平稳状态而后激增。绘制未排序的时间间隔散点图也可以发现，大部分记录通行时间均在8000s以内，考虑上海市地理状况与采取出租出行的实际状况，同时考虑样本数量，我们去除[0,180s]与14400s及以上的数据。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">项目</th>
+<th style="text-align:center">通行时间t<180或t>14400s</180或t></th>
+<th style="text-align:center">通行时间180≤t≤14400s</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">样本数</td>
+<td style="text-align:center">1610</td>
+<td style="text-align:center">16958</td>
+</tr>
+<tr>
+<td style="text-align:center">占比</td>
+<td style="text-align:center">8.67%</td>
+<td style="text-align:center">91.33%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">timeinterval=np.array(Thurdata[<span class="string">'TimeInterval'</span>])</span><br><span class="line">timeinterval = timeinterval[~np.isnan(timeinterval)]</span><br><span class="line">plt.plot(timeinterval,<span class="string">'.'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'timeinterval(s)'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'sample'</span>)</span><br><span class="line">plt.title(<span class="string">'Timeinterval of all the samples(no sort)'</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/images/ML_project_part1/output_10_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">timeinterval=np.array(Thurdata[<span class="string">'TimeInterval'</span>])</span><br><span class="line">timeinterval = timeinterval[~np.isnan(timeinterval)]</span><br><span class="line">c_ti=timeinterval[(timeinterval&gt;<span class="number">180</span>)&amp;(timeinterval&lt;<span class="number">14400</span>)]<span class="comment">#考虑可能的乘车时间（大于3min小于4小时）</span></span><br><span class="line">plt.hist(c_ti,bins=<span class="number">50</span>,edgecolor=<span class="string">'black'</span>)<span class="comment">#滤除时间间隔</span></span><br><span class="line">plt.xlabel(<span class="string">'timeinterval'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'numberofsample(s)'</span>)</span><br><span class="line">plt.title(<span class="string">'The histogram of the normal Timeinterval(180s,14400s)'</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/images/ML_project_part1/output_11_0.png" alt="png"></p>
+<p>分别绘制通行时间在(180s,14400s)与(180s,5400s)区间范围内的分布直方图，从图中我们可以进一步看到，通行[500s,900s]区间内的样本数较多，随着通行时间的增加，总体样本数呈现由较高水平先增加后减小的趋势。(bins=100效果更明显)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">timeinterval=np.array(Thurdata[<span class="string">'TimeInterval'</span>])</span><br><span class="line">timeinterval = timeinterval[~np.isnan(timeinterval)]</span><br><span class="line">c_ti=timeinterval[(timeinterval&gt;<span class="number">180</span>)&amp;(timeinterval&lt;<span class="number">5400</span>)]<span class="comment">#考虑可能的乘车时间（大于3min小于4小时）</span></span><br><span class="line">plt.hist(c_ti,bins=<span class="number">50</span>,edgecolor=<span class="string">'black'</span>)<span class="comment">#滤除时间间隔</span></span><br><span class="line">plt.xlabel(<span class="string">'timeinterval(s)'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'numberofsample'</span>)</span><br><span class="line">plt.title(<span class="string">'The histogram of the normal Timeinterval(180s,5400s)'</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/images/ML_project_part1/output_12_0.png" alt="png"></p>
+<h4 id="Step3-直线距离计算"><a href="#Step3-直线距离计算" class="headerlink" title="Step3 直线距离计算"></a>Step3 直线距离计算</h4><p>采用<a href="https://en.wikipedia.org/wiki/Haversine_formula" target="_blank" rel="noopener">Haversine formula</a>公式，利用两点经纬度坐标，计算距离。并将直线距离写入数据表的‘LD’列。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countdistance</span><span class="params">(long1,la1,long2,la2)</span>:</span><span class="comment">#地球上直线距离的计算</span></span><br><span class="line">    <span class="comment">#deltasigma=np.arctan(np.sqrt((np.cos(la2)*np.sin(long2-long1))**2+(np.cos(la1)*np.sin(la2)-np.sin(la1)*np.cos(la2)*np.cos(long2-long1))**2)/(np.sin(la1)*np.sin(la2)+np.cos(la1)*np.cos(la2)*np.cos(long2-long1)))</span></span><br><span class="line">    <span class="comment">#lineardistance=6372.795*deltasigma </span></span><br><span class="line">    long1, la1, long2, la2 = map(radians, [long1, la1, long2, la2])  </span><br><span class="line">    dlong = long2 - long1   </span><br><span class="line">    dla = la2 - la1   </span><br><span class="line">    a = sin(dla/<span class="number">2</span>)**<span class="number">2</span> + cos(la1) * cos(la2) * sin(dlong/<span class="number">2</span>)**<span class="number">2</span>  </span><br><span class="line">    c = <span class="number">2</span> * asin(sqrt(a))   </span><br><span class="line">    r = <span class="number">6371.0088</span> <span class="comment"># 地球平均半径，单位为公里 </span></span><br><span class="line">    lineardistance=c * r * <span class="number">1000</span> <span class="comment">#精度为m</span></span><br><span class="line">    <span class="keyword">return</span> lineardistance</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getLD</span><span class="params">(arrLike)</span>:</span>  <span class="comment">#指定df调用距离计算函数</span></span><br><span class="line">    long1 = arrLike[<span class="string">'s_long'</span>]</span><br><span class="line">    la1 = arrLike[<span class="string">'s_la'</span>]</span><br><span class="line">    long2 = arrLike[<span class="string">'e_long'</span>]</span><br><span class="line">    la2 = arrLike[<span class="string">'e_la'</span>]</span><br><span class="line">    LD = countdistance(long1,la1,long2,la2)  </span><br><span class="line">    <span class="keyword">return</span> LD</span><br><span class="line">Thurdata[<span class="string">'LD'</span>] = Thurdata.apply(getLD,axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="Step4-查看直线距离特点，删除异常数据"><a href="#Step4-查看直线距离特点，删除异常数据" class="headerlink" title="Step4 查看直线距离特点，删除异常数据"></a>Step4 查看直线距离特点，删除异常数据</h4><p>采用与通行时间相同的分析方式，对于订单数据每条的起终点间距离进行分析，数据变化趋势与通行时间大致相同。指定直线距离(10m,100km)范围内的为正常数据。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">项目</th>
+<th style="text-align:center">直线距离l<10m或l>100km</10m或l></th>
+<th style="text-align:center">直线距离10m≤l≤100km</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">样本数</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">25635</td>
+</tr>
+<tr>
+<td style="text-align:center">占比</td>
+<td style="text-align:center">0.02%</td>
+<td style="text-align:center">99.98%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(Thurdata[<span class="string">'LD'</span>],<span class="string">'.'</span>,c=<span class="string">'royalblue'</span>,alpha=<span class="number">0.6</span>)</span><br><span class="line">plt.ylim(<span class="number">10</span>,<span class="number">100000</span>)</span><br><span class="line">plt.xlabel(<span class="string">'sample'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'LineDistance(m)'</span>)</span><br><span class="line">plt.title(<span class="string">'LineDistance of all normal(10m,100km) samples(no sort)'</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/images/ML_project_part1/output_15_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">LineDistance=np.array(Thurdata.LD)</span><br><span class="line">distance =np.sort(LineDistance[(LineDistance&lt;<span class="number">100000</span>)&amp;(LineDistance&gt;<span class="number">10</span>)])</span><br><span class="line">plt.plot(distance,<span class="string">'.'</span>,c=<span class="string">'royalblue'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'sample'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'LineDistance(m)'</span>)</span><br><span class="line">plt.title(<span class="string">'LineDistance of all normal(10m,100km) samples'</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/images/ML_project_part1/output_16_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">plt.hist(distance,bins=<span class="number">50</span>,facecolor=<span class="string">'royalblue'</span>,edgecolor=<span class="string">'k'</span>)<span class="comment">#滤除时间间隔</span></span><br><span class="line">plt.ylabel(<span class="string">'numberofsample'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'LineDistance(m)'</span>)</span><br><span class="line">plt.title(<span class="string">'The histogram of the normal LineDistance(10m,100km)'</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/images/ML_project_part1/output_17_0.png" alt="png"></p>
+<h4 id="Step5-回归分析直线距离与通行时间之间的关系"><a href="#Step5-回归分析直线距离与通行时间之间的关系" class="headerlink" title="Step5 回归分析直线距离与通行时间之间的关系"></a>Step5 回归分析直线距离与通行时间之间的关系</h4><p>在以上分析中，我们不难推测<strong>距离与通行时间</strong>可能存在一定线性关系。这一推测在实际运用中不难解释，在不考虑拥堵等外部因素影响及圈运行的情况下，距离约远，通行时间越长。</p>
+<p><strong>筛选正常数据用于回归</strong>(正常的含义：timeinterval、LineDistance、endtime正常)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Regdata=Thurdata.loc[(Thurdata.LD&lt;<span class="number">100000</span>)&amp;(Thurdata.LD&gt;<span class="number">10</span>)&amp;(Thurdata.TimeInterval&lt;<span class="number">14400</span>)&amp;(Thurdata.TimeInterval&gt;<span class="number">180</span>)]</span><br></pre></td></tr></table></figure>
+<p>计算各个变量间的相关系数，通行时间与直线距离间的相关系数达0.708670，可见二者相关性强。因此，选取<strong>直线距离</strong>与<strong>通行时间</strong>进行线性回归，并通过此线性回归关系填补异常的结束时间数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#正常数据的直线距离与通行时间散点分布图</span></span><br><span class="line">plt.plot(Regdata.LD,Regdata.TimeInterval,<span class="string">'.'</span>,c=<span class="string">'k'</span>,alpha=<span class="number">0.6</span>)</span><br><span class="line">plt.xlabel(<span class="string">'LineDistance'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'timeinterval'</span>)</span><br><span class="line">plt.title(<span class="string">'The relationship between LineDistance and Timeinterval'</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/images/ML_project_part1/output_20_0.png" alt="png"></p>
+<p>可以使用sklearn的回归函数功能进行回归分析，此时R方约为0.5，回归效果如下图所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression</span><br><span class="line"><span class="comment">#regr为回归过程，fit(x,y)进行回归  </span></span><br><span class="line">x=np.array(Regdata.LD).reshape(<span class="number">-1</span>, <span class="number">1</span>)</span><br><span class="line">y=np.array(Regdata.TimeInterval).reshape(<span class="number">-1</span>, <span class="number">1</span>)</span><br><span class="line">regr = LinearRegression().fit(x,y)   </span><br><span class="line">plt.plot(x,y,<span class="string">'.'</span>,color=<span class="string">'black'</span>,alpha=<span class="number">0.6</span>)  </span><br><span class="line"><span class="comment">#用predic预测，这里预测输入x对应的值，进行画线  </span></span><br><span class="line">plt.plot(x, regr.predict(x), color=<span class="string">'red'</span>, linewidth=<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/images/ML_project_part1/output_21_1.png" alt="png"></p>
+<p>此时我们可以，利用以上线性回归关系，预测出行时间，与starttime求和得到endtime，将缺失endtime的问题数据补全。之后将原本的正常数据（范围正常、无缺失）与补全后的问题数据合并得到新数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">errordata=Thurdata.loc[(Thurdata.judge==<span class="number">1</span>)&amp;(Thurdata.LD&lt;<span class="number">100000</span>)&amp;(Thurdata.LD&gt;<span class="number">10</span>)]</span><br><span class="line">errordata.loc[:,<span class="string">'TimeInterval'</span>]=regr.predict(np.array(errordata.LD).reshape(<span class="number">-1</span>, <span class="number">1</span>))<span class="comment">#注意使用sklearn需要reshape</span></span><br><span class="line">errordata.TimeInterval= errordata.TimeInterval.apply(np.round)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fillendtime</span><span class="params">(data1,interval)</span>:</span></span><br><span class="line">    d1 = datetime.datetime.strptime(data1,<span class="string">'%m/%d/%Y %H:%M'</span>)</span><br><span class="line">    delta = datetime.timedelta(seconds=interval)</span><br><span class="line">    d2 = d1 + delta</span><br><span class="line">    d2 = d2.strftime(<span class="string">'%m/%d/%Y %H:%M'</span>)</span><br><span class="line">    <span class="keyword">return</span> d2</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getendtime</span><span class="params">(arrLike)</span>:</span>  <span class="comment">#用来计算日期间隔天数的调用的函数</span></span><br><span class="line">    s_time = arrLike[<span class="string">'s_time'</span>]</span><br><span class="line">    interval = arrLike[<span class="string">'TimeInterval'</span>]</span><br><span class="line">    e_time = fillendtime(s_time.strip(),interval)  <span class="comment">#注意去掉两端空白</span></span><br><span class="line">    <span class="keyword">return</span> e_time</span><br><span class="line">errordata[<span class="string">'e_time'</span>] =errordata.apply(getendtime,axis=<span class="number">1</span>)<span class="comment">#结束时间</span></span><br><span class="line">Thursnewdata = pd.concat([Regdata,errordata])</span><br><span class="line"><span class="comment"># Thursnewdata.to_csv('ThursuseLD.csv')   #保存现状csv文件</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>（PS：由于路网规模较大 ，以下求算最短路过程大约需要4-5小时,因此可直接跳过以下回归步骤进入聚类部分)</strong></p>
+<hr>
+<h4 id="Step6-结合地理信息-路网-求算两点间的最短路网距离"><a href="#Step6-结合地理信息-路网-求算两点间的最短路网距离" class="headerlink" title="Step6 结合地理信息(路网)求算两点间的最短路网距离"></a>Step6 结合地理信息(路网)求算两点间的最短路网距离</h4><p>由于两点间的直线距离与两点间通过路网连通的实际距离存在差异，因此考虑结合实际的GIS信息数据，寻找起终点间的最短路网距离。并试图建立<strong>路网最短距离与通行时间</strong>之间的关系，从而填补异常数据。</p>
+<p>使用第三方模块osmnx可以帮助我们在线获取某一区域的底图。获取上海市路网，此过程大约用时20min，时间与路网规模有关。获取所得的网络如下图所示。可以保存为shp或SVG等格式的文件以便下次使用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">place = <span class="string">'Shanghai,China'</span></span><br><span class="line">Shanghai = ox.graph_from_place(place,which_result=<span class="number">2</span>)</span><br><span class="line">ox.plot_graph(Shanghai)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/ML_project_part1/output_31_0.png" alt="png"></p>
+<p>networkx第三方模块给了我们求算路网间两点最短路的工具，因此我们需要进行：</p>
+<p><strong>Step1</strong>：地图匹配：找到位于路网上的与起终点距离最近的点</p>
+<p><strong>Step2</strong>：计算最短距离：计算Step1中路网上两点间的距离</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">start_long = np.array(Thursnewdata.s_long).reshape(<span class="number">-1</span>,<span class="number">1</span>)</span><br><span class="line">start_la = np.array(Thursnewdata.s_la).reshape(<span class="number">-1</span>,<span class="number">1</span>)</span><br><span class="line">end_long = np.array(Thursnewdata.e_long).reshape(<span class="number">-1</span>,<span class="number">1</span>)</span><br><span class="line">end_la = np.array(Thursnewdata.e_la).reshape(<span class="number">-1</span>,<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> networkx <span class="keyword">as</span> nx</span><br><span class="line">shortestroutelength=[]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(start_long.shape[<span class="number">0</span>]):</span><br><span class="line">    origin_point = (start_la[i][<span class="number">0</span>], start_long[i][<span class="number">0</span>])</span><br><span class="line">    destination_point = (end_la[i][<span class="number">0</span>], end_long[i][<span class="number">0</span>])</span><br><span class="line">    origin_node = ox.get_nearest_node(Shanghai, origin_point)</span><br><span class="line">    destination_node = ox.get_nearest_node(Shanghai, destination_point)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        length = nx.shortest_path_length(Shanghai, origin_node, destination_node, weight=<span class="string">'length'</span>)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        shortestroutelength.append(<span class="number">-1</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        shortestroutelength.append(length)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Thursnewdata.SD = shortestroutelength</span><br><span class="line"><span class="comment">#Thursnewdata.to_csv('ThursSD.csv') #保存最短路计算结果文件</span></span><br></pre></td></tr></table></figure>
+<h4 id="Step7-回归分析路网最短距离与通行时间的关系并填充异常数据"><a href="#Step7-回归分析路网最短距离与通行时间的关系并填充异常数据" class="headerlink" title="Step7 回归分析路网最短距离与通行时间的关系并填充异常数据"></a>Step7 回归分析路网最短距离与通行时间的关系并填充异常数据</h4><p>以下回归过程与Step5同理。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Regdata2=Thursnewdata.loc[Thursnewdata.judge==<span class="number">0</span>]<span class="comment">#挑选正常数据用于回归</span></span><br><span class="line">x2=np.array(Regdata2.SD).reshape(<span class="number">-1</span>, <span class="number">1</span>)</span><br><span class="line">y2=np.array(Regdata2.TimeInterval).reshape(<span class="number">-1</span>, <span class="number">1</span>)</span><br><span class="line">regr2 = LinearRegression().fit(x2,y2)    </span><br><span class="line">plt.plot(x2,y2,<span class="string">'.'</span>,color=<span class="string">'black'</span>,alpha=<span class="number">0.6</span>)  </span><br><span class="line"><span class="comment">#用predic预测，这里预测输入x对应的值，进行画线  </span></span><br><span class="line">plt.plot(x2, regr2.predict(x2), color=<span class="string">'g'</span>, linewidth=<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/images/ML_project_part1/output_37_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">errordata2=Thursnewdata.loc[Thursnewdata.judge==<span class="number">1</span>]</span><br><span class="line">errordata2.loc[:,<span class="string">'TimeInterval'</span>]=regr2.predict(np.array(errordata2.SD).reshape(<span class="number">-1</span>, <span class="number">1</span>))<span class="comment">#注意使用sklearn需要reshape</span></span><br><span class="line">errordata2.TimeInterval= errordata2.TimeInterval.apply(np.round)</span><br><span class="line">errordata2[<span class="string">'e_time'</span>] =errordata2.apply(getendtime,axis=<span class="number">1</span>)<span class="comment">#结束时间</span></span><br><span class="line">ThursnewdataSD = pd.concat([Regdata2,errordata2])</span><br><span class="line"><span class="comment"># ThursnewdataSD.to_csv('ThursuseSD.csv')</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-聚类分析"><a href="#4-聚类分析" class="headerlink" title="4. 聚类分析"></a>4. 聚类分析</h2><h3 id="4-1-聚类方法选取"><a href="#4-1-聚类方法选取" class="headerlink" title="4.1 聚类方法选取"></a>4.1 聚类方法选取</h3><ul>
+<li><p>划分方法（如K均值与K中心点算法）：每个对象至少属于一个簇，需提前指定划分簇的数量，簇数量少时，不能准确反映热点区域位置；簇数量多时，效果可观。但不太适用于数据量大的数据集。且噪声数据在一定程度上影响结果。</p>
+</li>
+<li><p>层次方法：需指定如簇间距或簇数量等终止条件。据《交通地理信息系统技术与前沿发展》一书中所写道：</p>
+<blockquote>
+<p>分析出租车轨迹数据具有一定探索性，因此选用层次聚类分析方法比较合适，相似性度量方法有单连接方法、完全连接方法、平均连通方法、中心点连通方法等，单连接算法有“链条现象”的缺陷。但是对于分布在路网上的车辆而言，行驶在同一路段上的车辆应该具有相同或相似的目的地……使用单连接的度量方法更佳。</p>
+</blockquote>
+</li>
+<li><p>基于密度的方法：基本思想：对于簇内的每个数据点，一定半径范围ep内必须包含一定数量的点的个数min_samples。如DBSCAN可以用于发现任意形状的簇，并过滤噪声点。并非每个对象都属于一个簇。</p>
+</li>
+<li><p>基于网格的方法：划分网格结构，聚类在网格结构上进行。优点为速度快。</p>
+</li>
+<li><p>基于模型的方法：基于模型的方法主要有基于统计的方法与基于神经网络的方法。</p>
+</li>
+</ul>
+<h3 id="4-2-使用DBSCAN方法进行不同时段的OD点聚类"><a href="#4-2-使用DBSCAN方法进行不同时段的OD点聚类" class="headerlink" title="4.2 使用DBSCAN方法进行不同时段的OD点聚类"></a>4.2 使用DBSCAN方法进行不同时段的OD点聚类</h3><p>基于以上方法分析，本次聚类采用DBSCAN的基于密度的方法，该方法被认为较为适合地点数据的聚类。该算法过程如下图所示，来源周志华《机器学习》。该过程可自行编程实现，也可以借助scikit-learn第三方库实现。</p>
+<p><img src="/images/ML_project_part1/DBSCAN.png" alt="DBSCAN"></p>
+<p><strong>导入数据，转换时间类型为DateTime</strong></p>
+<p>由于数据导入时，默认为字符串格式，无法进行时间的运算，因此需通过strp函数转化为DateTime时间戳格式。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#为了方便，以下开了一个新的notebook</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> geopandas <span class="keyword">as</span> gpd</span><br><span class="line"><span class="keyword">import</span> osmnx <span class="keyword">as</span> ox</span><br><span class="line"><span class="keyword">import</span> networkx <span class="keyword">as</span> nx</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> geopandas.tools <span class="keyword">import</span> sjoin</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line">plt.style.use(<span class="string">'seaborn'</span>)</span><br><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> DBSCAN</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> metrics</span><br><span class="line"><span class="keyword">import</span> folium <span class="keyword">as</span> f</span><br><span class="line"><span class="keyword">from</span> geopy.distance <span class="keyword">import</span> great_circle</span><br><span class="line"><span class="keyword">from</span> shapely.geometry <span class="keyword">import</span> MultiPoint</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ThursnewdataSD=pd.read_csv(<span class="string">'ThursuseSD.csv'</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">changeDateTime</span><span class="params">(timestr)</span>:</span></span><br><span class="line">    datetime1 = datetime.datetime.strptime(timestr,<span class="string">'%m/%d/%Y %H:%M'</span>)</span><br><span class="line">    <span class="keyword">return</span> datetime1</span><br><span class="line">ThursnewdataSD[<span class="string">'s_time'</span>] = ThursnewdataSD.s_time.apply(changeDateTime)</span><br><span class="line">ThursnewdataSD[<span class="string">'e_time'</span>] = ThursnewdataSD.e_time.apply(changeDateTime)</span><br></pre></td></tr></table></figure>
+<p><strong>筛选出某一时段的数据</strong></p>
+<p>交通分析一般进行早高峰、晚高峰与平峰状态的分析，因此此处改动period参数即可改换随后的分析时段。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">period = <span class="string">'night'</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_period_time</span><span class="params">(period)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> period==<span class="string">'morning'</span>:</span><br><span class="line">        period_of_time=[<span class="string">'07:30'</span>,<span class="string">'09:30'</span>]</span><br><span class="line">    <span class="keyword">if</span> period==<span class="string">'afternoon'</span>:</span><br><span class="line">        period_of_time=[<span class="string">'14:30'</span>,<span class="string">'16:30'</span>]</span><br><span class="line">    <span class="keyword">if</span> period==<span class="string">'night'</span>:</span><br><span class="line">        period_of_time=[<span class="string">'15:30'</span>,<span class="string">'19:30'</span>]</span><br><span class="line">    <span class="keyword">return</span> period_of_time</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#判断某个时间段内的数据</span></span><br><span class="line">TMO=ThursnewdataSD.loc[(ThursnewdataSD.s_time&gt;(datetime.datetime.strptime(<span class="string">'12/22/2016 %s'</span>%(get_period_time(period)[<span class="number">0</span>]),<span class="string">'%m/%d/%Y %H:%M'</span>)))&amp;(ThursnewdataSD.s_time&lt;(datetime.datetime.strptime(<span class="string">'12/22/2016 %s'</span>%(get_period_time(period)[<span class="number">1</span>]),<span class="string">'%m/%d/%Y %H:%M'</span>)))]</span><br><span class="line">TMD=ThursnewdataSD.loc[(ThursnewdataSD.e_time&gt;datetime.datetime.strptime(<span class="string">'12/22/2016 %s'</span>%(get_period_time(period)[<span class="number">0</span>]),<span class="string">'%m/%d/%Y %H:%M'</span>))&amp;(ThursnewdataSD.e_time&lt;datetime.datetime.strptime(<span class="string">'12/22/2016 %s'</span>%(get_period_time(period)[<span class="number">1</span>]),<span class="string">'%m/%d/%Y %H:%M'</span>))]</span><br><span class="line">coords1 = TMO.as_matrix(columns=[<span class="string">'s_la'</span>, <span class="string">'s_long'</span>])</span><br><span class="line">coords2 = TMD.as_matrix(columns=[<span class="string">'e_la'</span>, <span class="string">'e_long'</span>])</span><br><span class="line"><span class="comment">#合并为coords</span></span><br><span class="line">coords=np.vstack((coords1,coords2))</span><br></pre></td></tr></table></figure>
+<p><strong>使用DBSCAN聚类</strong></p>
+<p>DBSCAN算法主要涉及eps（半径）与min_samples（最少样本个数）两个参数，eps越小、min_samples越大，聚集的类的密度更高。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">kms_per_radian = <span class="number">6371.0088</span></span><br><span class="line">epsilon = <span class="number">1.5</span> / kms_per_radian</span><br><span class="line">start_time = time.time()</span><br><span class="line">db = DBSCAN(eps=epsilon, min_samples=<span class="number">30</span>, algorithm=<span class="string">'ball_tree'</span>, metric=<span class="string">'haversine'</span>).fit(np.radians(coords))<span class="comment">#epsilon与min_samples参数可调</span></span><br><span class="line"><span class="comment">#获取每个点的标签</span></span><br><span class="line">cluster_labels = db.labels_</span><br><span class="line"><span class="comment"># 获取聚类簇的数目</span></span><br><span class="line">n_clusters_ = len(set(cluster_labels)) - (<span class="number">1</span> <span class="keyword">if</span> <span class="number">-1</span> <span class="keyword">in</span> cluster_labels <span class="keyword">else</span> <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 聚类效果评价输出</span></span><br><span class="line">message = <span class="string">'Clustered &#123;:,&#125; points down to &#123;:,&#125; clusters, for &#123;:.1f&#125;% compression in &#123;:,.2f&#125; seconds'</span></span><br><span class="line">print(message.format(coords.shape[<span class="number">0</span>], n_clusters_, <span class="number">100</span>*(<span class="number">1</span> - float(n_clusters_) / coords.shape[<span class="number">0</span>]), time.time()-start_time))</span><br><span class="line">print(<span class="string">'Silhouette coefficient: &#123;:0.03f&#125;'</span>.format(metrics.silhouette_score(coords, cluster_labels)))</span><br></pre></td></tr></table></figure>
+<pre><code>Clustered 9,504 points down to 19 clusters, for 99.8% compression in 1.04 seconds
+Silhouette coefficient: -0.060
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clusters = pd.Series([coords[cluster_labels==n] <span class="keyword">for</span> n <span class="keyword">in</span> range(n_clusters_)])<span class="comment">#将聚类结果保存下来</span></span><br></pre></td></tr></table></figure>
+<p><strong>确定聚类各个簇的中心</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_centermost_point</span><span class="params">(cluster)</span>:</span></span><br><span class="line">    centroid = (MultiPoint(cluster).centroid.x, MultiPoint(cluster).centroid.y)</span><br><span class="line">    centermost_point = min(cluster, key=<span class="keyword">lambda</span> point: great_circle(point, centroid).m)</span><br><span class="line">    <span class="keyword">return</span> tuple(centermost_point)</span><br><span class="line">centermost_points = clusters.map(get_centermost_point)</span><br></pre></td></tr></table></figure>
+<p><strong>绘制聚类结果</strong></p>
+<p>以下是采用eps = 1.5 / kms_per_radian；min_samples=30的条件下对当日晚高峰数据进行聚类得到的效果图。类中心标注了该类的样本个数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">colorbox=[<span class="string">'lightblue'</span>,<span class="string">'orange'</span>,<span class="string">'red'</span>,<span class="string">'blue'</span>,<span class="string">'lawngreen'</span>,<span class="string">'peru'</span>,<span class="string">'gray'</span>,<span class="string">'black'</span>,<span class="string">'yellow'</span>,<span class="string">'violet'</span>,<span class="string">'purple'</span>,<span class="string">'navy'</span>,<span class="string">'gold'</span>,<span class="string">'yellowgreen'</span>,<span class="string">'cadetblue'</span>,<span class="string">'midnightblue'</span>,<span class="string">'hotpink'</span>,<span class="string">'cyan'</span>,<span class="string">'m'</span>,<span class="string">'olive'</span>,<span class="string">'green'</span>,<span class="string">'grey'</span>,<span class="string">'k'</span>]</span><br><span class="line">plt.figure(figsize=(<span class="number">9</span>,<span class="number">10</span>))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n_clusters_):</span><br><span class="line">    X= coords</span><br><span class="line">    one_cluster = X[cluster_labels == i]</span><br><span class="line">    <span class="comment">#print(one_cluster.shape[0])打印每个簇点的个数</span></span><br><span class="line">    plt.text(centermost_points[i][<span class="number">1</span>]<span class="number">-0.01</span>,centermost_points[i][<span class="number">0</span>]<span class="number">-0.01</span>,<span class="string">'%s'</span>%one_cluster.shape[<span class="number">0</span>],fontdict=&#123;<span class="string">'size'</span>:<span class="number">10</span>, <span class="string">'color'</span>:<span class="string">'k'</span>&#125;)</span><br><span class="line">    plt.plot(one_cluster[:,<span class="number">1</span>],one_cluster[:,<span class="number">0</span>],<span class="string">'.'</span>,color=<span class="string">'%s'</span>%colorbox[i],label=<span class="string">'Cluster:%s'</span>%(i+<span class="number">1</span>))</span><br><span class="line">    plt.legend()</span><br><span class="line">plt.xlim(<span class="number">120.8</span>,<span class="number">122.0</span>)</span><br><span class="line">plt.ylim(<span class="number">30.6</span>,<span class="number">31.8</span>)</span><br><span class="line">plt.title(<span class="string">'Clusters In the %s'</span>%period)</span><br><span class="line">plt.xlabel(<span class="string">'longitude'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'latitude'</span>)</span><br><span class="line"><span class="comment">#plt.savefig('Clusters In the %s.jpg'%period);</span></span><br></pre></td></tr></table></figure>
+<p><img src="/images/ML_project_part1/output_22_0.png" alt="png"></p>
+<p>将如上图所示的聚类<strong>结果</strong>与聚类数据进行<strong>比对</strong>，可以对聚类的效果进行衡量。本次采用了<strong>“轮廓系数”</strong>这一参数进行衡量，它结合内聚度和分离度两种因素。可以用来在相同原始数据的基础上用来评价不同算法、或者算法不同运行方式对聚类结果所产生的影响。 该系数1为最佳，-1为最差，但个人认为用于衡量本问题不太合适。</p>
+<p>网络上有很多聚类的衡量方法，如有望继续讨论，可阅读scikit-learn的文档中有关<a href="http://scikit-learn.org/stable/modules/clustering.html#clustering-performance-evaluation" target="_blank" rel="noopener">聚类评价</a>的内容。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="number">9</span>,<span class="number">10</span>))</span><br><span class="line">plt.plot(coords[:,<span class="number">1</span>],coords[:,<span class="number">0</span>],<span class="string">'.'</span>)</span><br><span class="line">plt.xlim(<span class="number">120.8</span>,<span class="number">122.0</span>)</span><br><span class="line">plt.ylim(<span class="number">30.6</span>,<span class="number">31.8</span>)</span><br><span class="line">plt.title(<span class="string">'All records In the %s'</span>%period)</span><br><span class="line">plt.xlabel(<span class="string">'longitude'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'latitude'</span>)</span><br><span class="line"><span class="comment">#plt.savefig('All records In the %s.jpg'%period);</span></span><br></pre></td></tr></table></figure>
+<p><img src="/images/ML_project_part1/output_23_0.png" alt="png"></p>
+<p><strong>利用在线地图绘制聚类结果</strong></p>
+<p>仅用上述绘图方法不易与实际地理位置对应，因此采用folium库制作在线地图的方式显示结果。（但亲测数据量太大时会报错）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">oneUserMap = f.Map(location=[<span class="number">30.917758</span>, <span class="number">121.806093</span>])</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n_clusters_):</span><br><span class="line">    X= coords</span><br><span class="line">    one_cluster = X[cluster_labels == i]</span><br><span class="line">    <span class="comment">#print(one_cluster.shape[0])</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(one_cluster.shape[<span class="number">0</span>]):</span><br><span class="line">        color1=colorbox[i]</span><br><span class="line">f.RegularPolygonMarker([one_cluster[j,<span class="number">0</span>],one_cluster[j,<span class="number">1</span>]],color=<span class="string">'%s'</span>%color1,fill_color=<span class="string">'%s'</span>%color1,radius=<span class="number">3</span>,number_of_sides=<span class="number">8</span>).add_to(oneUserMap)</span><br><span class="line">oneUserMap</span><br></pre></td></tr></table></figure>
+<p>以下是除了除上海市城区无法绘制外其余的簇在早高峰时段的效果图。</p>
+<p><img src="/images/ML_project_part1/foliumDBSCAN.jpg" alt=""></p>
+<h3 id="5-利用MarkerCluster进行聚类与可视化"><a href="#5-利用MarkerCluster进行聚类与可视化" class="headerlink" title="5. 利用MarkerCluster进行聚类与可视化"></a>5. 利用MarkerCluster进行聚类与可视化</h3><p><a href="https://leafletjs.com/2012/08/20/guest-post-markerclusterer-0-1-released.html" target="_blank" rel="noopener">MarkerCluster</a>是folium库下的插件之一，具有聚类与可视化的效果。其聚类与open street map在线地图结合，且随着地图尺度的变化可以动态显示聚类的效果与边界，同时对于大规模数据的运算速度较快，几乎没有卡顿现象（未查到准确、官方资料，猜测算法是利用基于<strong>网格</strong>的聚类方法完成）。且有众多可调节参数，可以依照需求进行调整。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> folium.plugins <span class="keyword">import</span> MarkerCluster</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">location1=[]</span><br><span class="line">location2=[]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(coords1.shape[<span class="number">0</span>]):</span><br><span class="line">    location1.append([float(<span class="string">'%.6f'</span>%(coords1[i,<span class="number">0</span>])),float(<span class="string">'%.6f'</span>%(coords1[i,<span class="number">1</span>]))])</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(coords2.shape[<span class="number">0</span>]):</span><br><span class="line">    location2.append([float(<span class="string">'%.6f'</span>%(coords2[i,<span class="number">0</span>])),float(<span class="string">'%.6f'</span>%(coords2[i,<span class="number">1</span>]))])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">m = f.Map(location=[<span class="number">30.917758</span>, <span class="number">121.806093</span>])</span><br><span class="line">marker_cluster = MarkerCluster(name=<span class="string">'%s'</span>%period)</span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> range(len(location1)):</span><br><span class="line">    location = location1[k][<span class="number">0</span>], location1[k][<span class="number">1</span>]</span><br><span class="line">    marker = f.Marker(location=location,icon=f.Icon(color=<span class="string">'red'</span>))</span><br><span class="line">    popup = <span class="string">'lon:&#123;&#125;&lt;br&gt;lat:&#123;&#125;'</span>.format(location[<span class="number">1</span>], location[<span class="number">0</span>])</span><br><span class="line">    f.Popup(popup).add_to(marker)</span><br><span class="line">    marker_cluster.add_child(marker)</span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> range(len(location2)):</span><br><span class="line">    location = location2[k][<span class="number">0</span>], location2[k][<span class="number">1</span>]</span><br><span class="line">    marker = f.Marker(location=location,icon=f.Icon(color=<span class="string">'blue'</span>))</span><br><span class="line">    popup = <span class="string">'lon:&#123;&#125;&lt;br&gt;lat:&#123;&#125;'</span>.format(location[<span class="number">1</span>], location[<span class="number">0</span>])</span><br><span class="line">    f.Popup(popup).add_to(marker)</span><br><span class="line">    marker_cluster.add_child(marker)</span><br><span class="line">marker_cluster.add_to(m)</span><br><span class="line">m.save(<span class="string">'OD_%s.html'</span>%period)</span><br></pre></td></tr></table></figure>
+<p>使用MarkerCluster对于早高峰时段的聚类结果为：</p>
+<p><img src="/images/ML_project_part1/OD_morning.png" alt="OD_morning"></p>
+<p><a href="/MLdownload/OD_morning.html">点击查看动态效果</a></p>
+<p>对于晚高峰的聚类结果为：</p>
+<p><img src="/images/ML_project_part1/OD_night.png" alt="OD_night"></p>
+<p><a href="/MLdownload/OD_night.html">点击查看动态效果</a></p>
+<h3 id="6-总结与分享"><a href="#6-总结与分享" class="headerlink" title="6.总结与分享"></a>6.总结与分享</h3><p>本次大作业与GIS的应用关系密切，虽然没有使用什么高级算法，但通过阅读各类博客、文献、网站，也使我对于回归、聚类算法有了新的认识，与此同时，我也掌握了很多利用Python进行gis分析的方法。</p>
+<p>目前，我使用过的模块主要有<a href="http://geopandas.org/" target="_blank" rel="noopener">geopandas</a>、<a href="http://geoffboeing.com/2016/11/osmnx-python-street-networks/" target="_blank" rel="noopener">osmnx</a>、<a href="http://networkx.github.io/" target="_blank" rel="noopener">networkx</a>、<a href="http://folium.readthedocs.io/en/latest/" target="_blank" rel="noopener">folium</a>，这些模块之间也有相互依赖与包含的关系。使用感受来看geopandas的功能十分强大，囊括了很多GIS分析方法；osmnx由伯克利大神Geoff boeing编写，对于路网十分友好，且在线获取地图的功能非常给力；networkx主要针对各类网络分析，理想化的网络也能处理，内置了我们常用的dijkstra,A*等算法；folium库主要与在线地图有着密切的联系，是绘制在线地图的良好方式。</p>
+<p>回归补全数据、聚类还是进行交通分析的前期的步骤，接下来仍需结合数据显示的结果进行分析，因为是机器学习课程，涉及到的分析这里就不再详细叙述了，本篇也是在完成作业的基础上，记录一下整个数据处理流程，对于交通这类应用类学科，学会“掉包”、调效果好的“包”还是很重要的。很多事真正操作后才发现难度之所在，之前为本次作业设想的种种“宏图大志”到此也因为时间原因必须结束了，一路遇到各类想不到的bug，但感谢各种前辈的分享与大佬的解答，让我通过各种途径解决了问题。感谢！</p>
+<p>最后，期末加油！</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/21/exerciseofregressionandKF/" rel="next" title="一道应用回归与卡尔曼滤波进行预测的小题目">
+                <i class="fa fa-chevron-left"></i> 一道应用回归与卡尔曼滤波进行预测的小题目
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjY5NC8xMzIyOQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/portrait.jpg"
+                alt="Wang Qianni" />
+            
+              <p class="site-author-name" itemprop="name">Wang Qianni</p>
+              <p class="site-description motion-element" itemprop="description">It is a place for Qianni to record and learn.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用机器学习分析出租车订单数据"><span class="nav-number">1.</span> <span class="nav-text">使用机器学习分析出租车订单数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-问题背景"><span class="nav-number">1.1.</span> <span class="nav-text">1. 问题背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-出租车轨迹与订单数据"><span class="nav-number">1.2.</span> <span class="nav-text">2. 出租车轨迹与订单数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-订单数据"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 订单数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-轨迹数据"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 轨迹数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-数据预处理"><span class="nav-number">1.3.</span> <span class="nav-text">3. 数据预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-导入模块、数据、查看异常数据"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 导入模块、数据、查看异常数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-异常数据的筛选与结束时间的回归补全"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 异常数据的筛选与结束时间的回归补全</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Step1-计算通行时间"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">Step1 计算通行时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step2-查看通行时间特点，删除异常数据"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">Step2 查看通行时间特点，删除异常数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step3-直线距离计算"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">Step3 直线距离计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step4-查看直线距离特点，删除异常数据"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">Step4 查看直线距离特点，删除异常数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step5-回归分析直线距离与通行时间之间的关系"><span class="nav-number">1.3.2.5.</span> <span class="nav-text">Step5 回归分析直线距离与通行时间之间的关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step6-结合地理信息-路网-求算两点间的最短路网距离"><span class="nav-number">1.3.2.6.</span> <span class="nav-text">Step6 结合地理信息(路网)求算两点间的最短路网距离</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step7-回归分析路网最短距离与通行时间的关系并填充异常数据"><span class="nav-number">1.3.2.7.</span> <span class="nav-text">Step7 回归分析路网最短距离与通行时间的关系并填充异常数据</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-聚类分析"><span class="nav-number">1.4.</span> <span class="nav-text">4. 聚类分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-聚类方法选取"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 聚类方法选取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-使用DBSCAN方法进行不同时段的OD点聚类"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 使用DBSCAN方法进行不同时段的OD点聚类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-利用MarkerCluster进行聚类与可视化"><span class="nav-number">1.4.3.</span> <span class="nav-text">5. 利用MarkerCluster进行聚类与可视化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-总结与分享"><span class="nav-number">1.4.4.</span> <span class="nav-text">6.总结与分享</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wang Qianni</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
