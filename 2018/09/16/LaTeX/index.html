@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="LaTeX," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Windows下LaTeX安装配置(xia zhe teng)周三去找谢老师询问大四阶段的安排，老师为了让我早日适应研究生生活，建议我学习以下内容：  Yossi Sheffi《Urban Transportation Network》静态交通网络 结合交通网络学习C++ 学习论文编辑LaTeX  对于LaTeX在大一建模时就有耳闻，只是由于大一对代码充满恐惧和Word的方便性而果断放弃。现写此文">
+<meta name="keywords" content="LaTeX">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows下LaTeX安装配置(xia zhe teng)">
+<meta property="og:url" content="http://yoursite.com/2018/09/16/LaTeX/index.html">
+<meta property="og:site_name" content="Find Qianni">
+<meta property="og:description" content="Windows下LaTeX安装配置(xia zhe teng)周三去找谢老师询问大四阶段的安排，老师为了让我早日适应研究生生活，建议我学习以下内容：  Yossi Sheffi《Urban Transportation Network》静态交通网络 结合交通网络学习C++ 学习论文编辑LaTeX  对于LaTeX在大一建模时就有耳闻，只是由于大一对代码充满恐惧和Word的方便性而果断放弃。现写此文">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/LaTeXintro/1.png">
+<meta property="og:image" content="http://yoursite.com/images/LaTeXintro/2.png">
+<meta property="og:updated_time" content="2018-09-16T04:31:08.557Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows下LaTeX安装配置(xia zhe teng)">
+<meta name="twitter:description" content="Windows下LaTeX安装配置(xia zhe teng)周三去找谢老师询问大四阶段的安排，老师为了让我早日适应研究生生活，建议我学习以下内容：  Yossi Sheffi《Urban Transportation Network》静态交通网络 结合交通网络学习C++ 学习论文编辑LaTeX  对于LaTeX在大一建模时就有耳闻，只是由于大一对代码充满恐惧和Word的方便性而果断放弃。现写此文">
+<meta name="twitter:image" content="http://yoursite.com/images/LaTeXintro/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/16/LaTeX/"/>
+
+
+
+
+
+  <title>Windows下LaTeX安装配置(xia zhe teng) | Find Qianni</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Find Qianni</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Always be Brave and Enthusiastic</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/16/LaTeX/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang Qianni">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/portrait.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Find Qianni">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Windows下LaTeX安装配置(xia zhe teng)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-16T12:20:10+08:00">
+                2018-09-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Research/" itemprop="url" rel="index">
+                    <span itemprop="name">Research</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Windows下LaTeX安装配置-xia-zhe-teng"><a href="#Windows下LaTeX安装配置-xia-zhe-teng" class="headerlink" title="Windows下LaTeX安装配置(xia zhe teng)"></a>Windows下LaTeX安装配置(xia zhe teng)</h1><p>周三去找谢老师询问大四阶段的安排，老师为了让我早日适应研究生生活，建议我学习以下内容：</p>
+<ul>
+<li>Yossi Sheffi《Urban Transportation Network》静态交通网络</li>
+<li>结合交通网络学习C++</li>
+<li>学习论文编辑LaTeX</li>
+</ul>
+<p>对于LaTeX在大一建模时就有耳闻，只是由于大一对代码充满恐惧和Word的方便性而果断放弃。现写此文介绍LaTeX的安装与配置。</p>
+<a id="more"></a> 
+<h2 id="1-TeX-Live的下载与安装"><a href="#1-TeX-Live的下载与安装" class="headerlink" title="1.TeX Live的下载与安装"></a>1.TeX Live的下载与安装</h2><h3 id="1-1下载"><a href="#1-1下载" class="headerlink" title="1.1下载"></a>1.1下载</h3><p>个人理解LaTeX是一种格式，需要通过各类编辑平台实现，特选择<a href="http://tug.org/texlive/" target="_blank" rel="noopener">Tex Live</a>。</p>
+<ol>
+<li>打开官网点击：<strong>How to acquire TeX Live:</strong> <a href="http://tug.org/texlive/acquire-netinstall.html" target="_blank" rel="noopener">download</a>, <a href="http://tug.org/texlive/acquire-dvd.html" target="_blank" rel="noopener">on DVD</a>, <a href="http://tug.org/texlive/acquire.html" target="_blank" rel="noopener">other methods</a>.一行中的“<strong>on DVD</strong>”</li>
+<li>在靠下的地方有一行：Information about <a href="http://tug.org/texlive/acquire-iso.html" target="_blank" rel="noopener">downloading the TeX Live ISO image and burning your own DVD</a> is available separately, as well as <a href="http://tug.org/texlive/acquire.html" target="_blank" rel="noopener">other ways to acquire TeX Live</a>. 点击“<strong>download XX</strong>”那一串字</li>
+<li>在上部三个小圆点（序号），点击第一个：<a href="http://mirror.ctan.org/systems/texlive/Images/" target="_blank" rel="noopener">download from a nearby CTAN mirror</a>; or</li>
+<li>来到镜像站，选择“texlive2018.iso”下载</li>
+</ol>
+<p>文件有3G+，速度极慢，最终实在无法忍受，下载了别人网盘里的<a href="https://pan.baidu.com/s/1-ReOhohQdVoh-fW69x5sVA" target="_blank" rel="noopener">TeX live2017</a></p>
+<h3 id="1-2安装"><a href="#1-2安装" class="headerlink" title="1.2安装"></a>1.2安装</h3><ol>
+<li>右键解压iso文件</li>
+<li>Windows用户双击‘install-tl-advanced.bat’安装</li>
+<li>安装需要40分钟+，其中可以去掉一些不需要安装的语言、改换安装路径，不想改就一路安装。</li>
+</ol>
+<p>更具体的图文操作可参考：<a href="https://blog.csdn.net/qq_38386316/article/details/80272396" target="_blank" rel="noopener">https://blog.csdn.net/qq_38386316/article/details/80272396</a></p>
+<h2 id="2-TeXworks的启用与中英混编"><a href="#2-TeXworks的启用与中英混编" class="headerlink" title="2.TeXworks的启用与中英混编"></a>2.TeXworks的启用与中英混编</h2><h3 id="2-1TeXworks启用"><a href="#2-1TeXworks启用" class="headerlink" title="2.1TeXworks启用"></a>2.1TeXworks启用</h3><p>下载安装好Tex Live后，会发现程序列表里多了一大串程序。使用时启动<strong>TeXworks</strong></p>
+<ol>
+<li><p>新建文件</p>
+</li>
+<li><p>打开后上部的下拉菜单调整为‘XeLaTeX’</p>
+</li>
+<li><p>在空白处编写内容</p>
+</li>
+<li><p>点击下拉菜单旁边的‘绿色播放’按键即可运行生成。</p>
+</li>
+</ol>
+<h3 id="2-2TeXworks中英混编"><a href="#2-2TeXworks中英混编" class="headerlink" title="2.2TeXworks中英混编"></a>2.2TeXworks中英混编</h3><p>一般情况下，第一行代码为<code>\documentclass{article}</code>但若出现中英混编文件，则将第一行改为<code>\documentclass[UTF8]{ctexart}</code></p>
+<p>以下代码为例，运行后你就可以得到一个最基础的中英混编pdf文件啦！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\documentclass[UTF8]&#123;ctexart&#125;</span><br><span class="line">\usepackage&#123;xeCJK&#125;</span><br><span class="line">\begin&#123;document&#125;</span><br><span class="line">你好,world！</span><br><span class="line">\end&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-VS-code-LaTeX-workshop-Tex-Live配置更优雅的编写环境"><a href="#3-VS-code-LaTeX-workshop-Tex-Live配置更优雅的编写环境" class="headerlink" title="3.VS code+LaTeX workshop+Tex Live配置更优雅的编写环境"></a>3.VS code+LaTeX workshop+Tex Live配置更优雅的编写环境</h2><h3 id="3-1下载Tex-Live"><a href="#3-1下载Tex-Live" class="headerlink" title="3.1下载Tex Live"></a>3.1下载Tex Live</h3><p>以上部分已完成。</p>
+<p>检查在计算机系统‘环境变量’Path中是否已有F:\texlive\2015\bin\win32 （每个人安装路径不同，请对照自己的路径查看，若没有需要自行手动添加）</p>
+<h3 id="3-2下载VS-code"><a href="#3-2下载VS-code" class="headerlink" title="3.2下载VS code"></a>3.2下载VS code</h3><p>VS code是微软发布的代码编辑器，比较轻量级。<a href="https://code.visualstudio.com/" target="_blank" rel="noopener">官网</a>即可免费下载安装。</p>
+<h3 id="3-3添加LaTex-workshop"><a href="#3-3添加LaTex-workshop" class="headerlink" title="3.3添加LaTex workshop"></a>3.3添加LaTex workshop</h3><ol>
+<li>启动VS code</li>
+<li>左侧五个图标，最下面的方形图标“扩展”，快捷键<code>Ctrl+Shift+X</code></li>
+<li>搜索LaTeX即可找到LaTeX workshop，点击安装，等待安装完成（时间在5分钟以内）</li>
+</ol>
+<h3 id="3-4添加用户设置替代默认设置"><a href="#3-4添加用户设置替代默认设置" class="headerlink" title="3.4添加用户设置替代默认设置"></a>3.4添加用户设置替代默认设置</h3><p>在VScode中左下角点击齿轮按钮后，点击“设置”，在右侧“用户设置”的大括号内，承接已有代码，复制以上代码。这时你的这段设置代码就会替代默认设置中的一段。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  "latex-workshop.latex.toolchain": [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">"command"</span>: <span class="string">"xelatex"</span>,</span><br><span class="line">        <span class="attr">"args"</span>: [</span><br><span class="line">            <span class="string">"-synctex=1"</span>,</span><br><span class="line">            <span class="string">"-interaction=nonstopmode"</span>,</span><br><span class="line">            <span class="string">"-file-line-error"</span>,</span><br><span class="line">            <span class="string">"-pdf"</span>,</span><br><span class="line">            <span class="string">"%DOC%"</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>效果如下图所示：</p>
+<p><img src="/images/LaTeXintro/1.png" alt="setting"></p>
+<p>保存后，建立XX.tex文件，编写LaTeX代码后，使用<code>Ctrl+Alt+B</code>进行编译，这时所在文件夹内即可生成PDF文件。</p>
+<p>PS：在网上看到了各种代码json代码，简直是令人头大，亲测这段不报错。如果你看到<code>“command”：“pdflatex”</code>的json代码就不要复制了，不适于我们目前的情况，会报错：LATEX toolchain terminated with error。</p>
+<h3 id="3-5同时查看代码和PDF"><a href="#3-5同时查看代码和PDF" class="headerlink" title="3.5同时查看代码和PDF"></a>3.5同时查看代码和PDF</h3><p>在编写代码编译后，右上角有一个<strong>View LaTeX PDF file in new tab</strong>的图标（纸+放大镜），或使用快捷键<code>Ctrl+ALt+T</code></p>
+<p>得到的效果就像下图所示的了：</p>
+<p><img src="/images/LaTeXintro/2.png" alt="over"></p>
+<h2 id="4-未完待续的高级配置"><a href="#4-未完待续的高级配置" class="headerlink" title="4.未完待续的高级配置"></a>4.未完待续的高级配置</h2><p>在网上还看到了类似“反向定位跳转”之类的功能，看起来非常的棒，留坑等待以后试好了更新。</p>
+<h2 id="5-Next-Step：LaTeX学习参考资料"><a href="#5-Next-Step：LaTeX学习参考资料" class="headerlink" title="5.Next Step：LaTeX学习参考资料"></a>5.Next Step：LaTeX学习参考资料</h2><p>安装配置好后，就要学习以下如何使用和编写了，以下是房泽龙哥哥推荐的资料，感谢资料编写者和哥哥的推荐~</p>
+<ul>
+<li><a href="/otherPDF/lnotes.pdf">lnote by Alpha Huang</a></li>
+<li><a href="/otherPDF/lnotes2.pdf">lnote2 by 包太雷</a></li>
+<li><a href="/otherPDF/lshort.pdf">lshort (这个是英文的)</a></li>
+<li><a href="/otherPDF/lshort-zh-cn.pdf">lshort (这个是中文翻译版本)</a></li>
+</ul>
+<p>在探索以上的过程中真的遇到了各种欲哭无泪的错误，如果你遇到了错误：</p>
+<ul>
+<li>建议首先看一下官方文件，和问答部分。</li>
+<li>百度搜索，若感觉结果不满意，换乘谷歌，结果虽然是英文但更有帮助。不要马上轻信某个博主，对比几份攻略后，再确定跟随谁的建议开始行动。</li>
+<li>编译后，文件夹中会有.log文件，如果出错可以查看这个文件，在vscode中会使用红色高亮显示错误。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LaTeX/" rel="tag"># LaTeX</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/07/Transportation Engineering learning/" rel="next" title="成长进行时——Qianni的专业成长">
+                <i class="fa fa-chevron-left"></i> 成长进行时——Qianni的专业成长
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjY5NC8xMzIyOQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/portrait.jpg"
+                alt="Wang Qianni" />
+            
+              <p class="site-author-name" itemprop="name">Wang Qianni</p>
+              <p class="site-description motion-element" itemprop="description">It is a place for Qianni to record and learn.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Windows下LaTeX安装配置-xia-zhe-teng"><span class="nav-number">1.</span> <span class="nav-text">Windows下LaTeX安装配置(xia zhe teng)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-TeX-Live的下载与安装"><span class="nav-number">1.1.</span> <span class="nav-text">1.TeX Live的下载与安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1下载"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2安装"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-TeXworks的启用与中英混编"><span class="nav-number">1.2.</span> <span class="nav-text">2.TeXworks的启用与中英混编</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1TeXworks启用"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1TeXworks启用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2TeXworks中英混编"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2TeXworks中英混编</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-VS-code-LaTeX-workshop-Tex-Live配置更优雅的编写环境"><span class="nav-number">1.3.</span> <span class="nav-text">3.VS code+LaTeX workshop+Tex Live配置更优雅的编写环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1下载Tex-Live"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1下载Tex Live</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2下载VS-code"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2下载VS code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3添加LaTex-workshop"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.3添加LaTex workshop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4添加用户设置替代默认设置"><span class="nav-number">1.3.4.</span> <span class="nav-text">3.4添加用户设置替代默认设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5同时查看代码和PDF"><span class="nav-number">1.3.5.</span> <span class="nav-text">3.5同时查看代码和PDF</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-未完待续的高级配置"><span class="nav-number">1.4.</span> <span class="nav-text">4.未完待续的高级配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Next-Step：LaTeX学习参考资料"><span class="nav-number">1.5.</span> <span class="nav-text">5.Next Step：LaTeX学习参考资料</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wang Qianni</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
