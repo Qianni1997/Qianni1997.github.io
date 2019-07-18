@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="标准SQL语句核心9词 数据查询：SELECT 数据定义：CREATE, DROP, ALTER 数据操纵：INSERT, UPDATE, DELETE 数据控制：GRANT, REVOKE 外模式（视图与部分基本表）、模式（基本表）、内模式（存储文件）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="标准SQL语句笔记">
+<meta property="og:url" content="http://yoursite.com/2019/07/18/SQL/index.html">
+<meta property="og:site_name" content="Find Qianni">
+<meta property="og:description" content="标准SQL语句核心9词 数据查询：SELECT 数据定义：CREATE, DROP, ALTER 数据操纵：INSERT, UPDATE, DELETE 数据控制：GRANT, REVOKE 外模式（视图与部分基本表）、模式（基本表）、内模式（存储文件）">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-18T15:26:58.805Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="标准SQL语句笔记">
+<meta name="twitter:description" content="标准SQL语句核心9词 数据查询：SELECT 数据定义：CREATE, DROP, ALTER 数据操纵：INSERT, UPDATE, DELETE 数据控制：GRANT, REVOKE 外模式（视图与部分基本表）、模式（基本表）、内模式（存储文件）">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/18/SQL/"/>
+
+
+
+
+
+  <title>标准SQL语句笔记 | Find Qianni</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Find Qianni</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Always be Brave and Enthusiastic</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/18/SQL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang Qianni">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/portrait.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Find Qianni">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">标准SQL语句笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-18T23:25:00+08:00">
+                2019-07-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="标准SQL语句"><a href="#标准SQL语句" class="headerlink" title="标准SQL语句"></a>标准SQL语句</h1><p>核心9词</p>
+<p>数据查询：SELECT</p>
+<p>数据定义：CREATE, DROP, ALTER</p>
+<p>数据操纵：INSERT, UPDATE, DELETE</p>
+<p>数据控制：GRANT, REVOKE</p>
+<p>外模式（视图与部分基本表）、模式（基本表）、内模式（存储文件）</p>
+<a id="more"></a> 
+<h2 id="一、数据定义"><a href="#一、数据定义" class="headerlink" title="一、数据定义"></a>一、数据定义</h2><p>操作表：    CREATE TABLE, DROP TABLE, ALTER TABLE</p>
+<p>操作视图：CREATE VIEW, DROP VIEW</p>
+<p>操作索引：CREATE INDEX, DROP INDEX</p>
+<h3 id="定义基本表"><a href="#定义基本表" class="headerlink" title="定义基本表"></a>定义基本表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> &lt;表名&gt;</span><br><span class="line">          (&lt;列名&gt;&lt;数据类型&gt; [列级完整性约束条件]</span><br><span class="line">           [，&lt;列名&gt; &lt;数据类型&gt; [列级完整性约束条件]...)</span><br><span class="line">           [,&lt;表级完整性约束条件&gt;];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Character 字符串：</li>
+</ul>
+<p>char(n), varchar(n), varchar(max), text</p>
+<ul>
+<li>Binary 类型：</li>
+</ul>
+<p>bit, binary(n), varbinary(n), varbinary(max), image</p>
+<p>Number类型：</p>
+<p>tinyint, smallint, int, bigint, decimal(p, s), numeric(p, s), smallmoney, money, float(n), real</p>
+<ul>
+<li>Date类型：</li>
+</ul>
+<p>datetime, datetime2, smalldatetime, date, time, datetimeoffset, timestamp</p>
+<ul>
+<li>其他数据类型：</li>
+</ul>
+<p>sql_variant, uniquedentifier, xml, cursor(存储用于对数据库操作的指针应用), table</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Student  </span><br><span class="line">	       (  Sno <span class="built_in">CHAR</span>(<span class="number">5</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">UNIQUE</span>,</span><br><span class="line">	         Sname <span class="built_in">CHAR</span>(<span class="number">20</span>), </span><br><span class="line">            Ssex <span class="built_in">CHAR</span>(<span class="number">1</span>), </span><br><span class="line">            Sage <span class="built_in">INT</span>, </span><br><span class="line">            Sdept <span class="built_in">CHAR</span>(<span class="number">15</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="修改基本表"><a href="#修改基本表" class="headerlink" title="修改基本表"></a>修改基本表</h3><p> ADD子句用于<strong>增加新列和新的完整性约束条件</strong>，DROP子句用于<strong>删除指定的完整性约束条件</strong>，MODIFY子句用于<strong>修改原有的列定义</strong>。 </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;表名&gt;</span><br><span class="line">	  [<span class="keyword">ADD</span> &lt;新列名&gt;&lt;数据类型&gt;[完整性约束]]</span><br><span class="line">	  [<span class="keyword">DROP</span>&lt;完整性约束名&gt;&lt;完整性约束名&gt;]</span><br><span class="line">	  [<span class="keyword">MODIFY</span>&lt;列名&gt; &lt;数据类型&gt;&lt;数据类型&gt;];</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Student <span class="keyword">ADD</span> Scome <span class="built_in">DATE</span>;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student <span class="keyword">MODIFY</span> Sage <span class="built_in">SMALLINT</span>;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Student <span class="keyword">Drop</span> <span class="keyword">UNIQUE</span>(Sname);</span><br></pre></td></tr></table></figure>
+<h3 id="删除基本表"><a href="#删除基本表" class="headerlink" title="删除基本表"></a>删除基本表</h3><p>基本表定义一旦删除，表中的数据、在此表上建立的索引都将自动被删除掉，而建立在此表上的视图虽仍然保留，但已无法引用。 </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span>&lt;表名&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="建立索引"><a href="#建立索引" class="headerlink" title="建立索引"></a>建立索引</h3><p>目的：加快查询，在最常查询的列上建立聚簇索引以提高查询效率。</p>
+<p>可以在基本表上建立1-多个索引。在一个基本表上最多只能建立一个聚簇索引。 对于经常更新的列不宜建立聚簇索引 。</p>
+<p>索引可以建在表的<strong>一列或多列</strong>上。可在每个&lt;列名&gt;后面<strong>指定索引值的排列次序</strong>。ASC表示升序，DESC表示降序，缺省值为ASC。</p>
+<p>UNIQUE表明<strong>建唯一性索引</strong>。表明此索引的每一个索引值只对应唯一的数据记录。</p>
+<p>CLUSTER表示<strong>建聚簇索引</strong>。所谓聚簇索引是指索引项的顺序与表中记录的物理顺序一致的索引。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span>  [<span class="keyword">UNIQUE</span>]  [CLUSTER] <span class="keyword">INDEX</span>  &lt;索引名&gt;   </span><br><span class="line">       <span class="keyword">ON</span> &lt;表名&gt; (&lt;列名&gt;[&lt;次序&gt;] [,&lt;列名&gt;[&lt;次序&gt;]]...);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> CLUSTER <span class="keyword">INDEX</span>  Stusname <span class="keyword">ON</span>  Student(sname)；</span><br><span class="line">为学生．课程数据库中的Student，Couse，Sc三个表建立索引中Student表按学号升序建唯一索引，Couse按课程号升序建唯一索引，SC表按学号升序和课程号降序建唯一索引。</span><br><span class="line"><span class="keyword">CREATE</span>  <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span>  Stusno <span class="keyword">ON</span> student(Sno);</span><br><span class="line"><span class="keyword">CREATE</span>  <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span>  Coucno <span class="keyword">ON</span> Couse(Cno);</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> SCno <span class="keyword">ON</span> SC(Sno <span class="keyword">ASC</span>,Cno <span class="keyword">DESC</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">INDEX</span>&lt;索引名&gt;;</span><br></pre></td></tr></table></figure>
+<h2 id="二、数据查询"><a href="#二、数据查询" class="headerlink" title="二、数据查询"></a>二、数据查询</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> [ALL|<span class="keyword">DISTINCT</span>]&lt;目标列表达式&gt;[,&lt;目标列表达式&gt;]…</span><br><span class="line">         <span class="keyword">FROM</span> &lt;表名或视图名&gt;[,&lt;表名或视图名&gt;] ... </span><br><span class="line">         [<span class="keyword">WHERE</span> &lt;条件表达式&gt;] </span><br><span class="line">         [<span class="keyword">GROUP</span> <span class="keyword">BY</span> &lt;列名<span class="number">1</span>&gt;[<span class="keyword">HAVING</span> &lt;条件表达式&gt;]]</span><br><span class="line">         [<span class="keyword">ORDER</span> <span class="keyword">BY</span> &lt;列名<span class="number">2</span>&gt; [<span class="keyword">ASC</span>|<span class="keyword">DESC</span>]];</span><br></pre></td></tr></table></figure>
+<p>含义：根据WHERE子句的条件表达式，从FROM子句指定的基本表或视图中找出满足条件的元组，再按SELECT子句中的目标列表达式，选出元组中的属性值形成结果表。 </p>
+<p>如果有GROUP子句，则将结果按&lt;列名1&gt;的值进行分组，该属性列值相等的元组为一个组，每个组产生结果表中的一条记录。</p>
+<p>如果GROUP子句带HAVING短语，则只有满足指定条件的组才予输出。</p>
+<h3 id="单表查询"><a href="#单表查询" class="headerlink" title="单表查询"></a>单表查询</h3><h4 id="1-查询指定列"><a href="#1-查询指定列" class="headerlink" title="1.查询指定列"></a>1.查询指定列</h4><h4 id="2-查询全部列"><a href="#2-查询全部列" class="headerlink" title="2.查询全部列"></a>2.查询全部列</h4><h4 id="3-消除取值重复的行（DISTINCT）"><a href="#3-消除取值重复的行（DISTINCT）" class="headerlink" title="3.消除取值重复的行（DISTINCT）"></a>3.消除取值重复的行（DISTINCT）</h4><h4 id="4-查询满足条件的元组"><a href="#4-查询满足条件的元组" class="headerlink" title="4.查询满足条件的元组"></a>4.查询满足条件的元组</h4><p>比较= &gt; &lt;  &gt;=  &lt;=  !=  &lt;&gt;  !&gt;  !&lt;<br>确定范围 BETWEEN AND, NOT BETWEEN AND<br>确定集合IN, NOT IN<br>字符匹配LIKE, NOT LIKE<br>空值IS NULL, IS NOT NULL<br>多重条件AND, OR</p>
+<ul>
+<li>LIKE的问题</li>
+</ul>
+<p>谓词LIKE可用来进行字符串的匹配。其语法格式如下：<br>[NOT] LIKE ‘&lt;匹配串&gt;’ [ESCAPE ‘&lt;换码字符&gt;’]<br>其含义是查找指定的属性列值与&lt;匹配串&gt;相匹配的元组。&lt;匹配串&gt;可以是一个完整的字符串，也可以含有通配符%和_。<br>%(百分号) 代表任意长度（长度可以为0）的字符串。<br>_(下横线) 代表任意单个字符。 </p>
+<p>如果用户要查询的匹配字符串本身就含有  %  或  _ ，这时就要使用 ESCAPE ‘&lt;换码字符&gt;’ 短语对通配符进行转义了。 </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Cno, Ccredit </span><br><span class="line">    	<span class="keyword">FROM</span> Course </span><br><span class="line">	     <span class="keyword">WHERE</span> Cname <span class="keyword">LIKE</span> ’DB\_Design’  ESCAPE ’\’</span><br></pre></td></tr></table></figure>
+<h4 id="5-对查询的结果进行排序"><a href="#5-对查询的结果进行排序" class="headerlink" title="5.对查询的结果进行排序"></a>5.对查询的结果进行排序</h4><h4 id="6-使用集函数"><a href="#6-使用集函数" class="headerlink" title="6.使用集函数"></a>6.使用集函数</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">COUNT([DISTINCT|ALL] *)   统计元组个数 </span><br><span class="line">COUNT([DISTINCT|ALL] &lt;列名&gt;)   统计一列中值的个数 </span><br><span class="line">SUM([DISTINCT|ALL] &lt;列名&gt;)  计算一列值的总和 </span><br><span class="line">AVG([DISTINCT|ALL] &lt;列名&gt;)  计算一列值的平均值</span><br><span class="line">MAX([DISTINCT|ALL] &lt;列名&gt;)  求一列值中的最大值 </span><br><span class="line">MIN([DISTINCT|ALL] &lt;列名&gt;)   求一列值中的最小值</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">MAX</span>(Grade)</span><br><span class="line"><span class="keyword">FROM</span> SC <span class="keyword">WHERE</span> Cno=<span class="string">'1'</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="7-对查询结果进行分组"><a href="#7-对查询结果进行分组" class="headerlink" title="7.对查询结果进行分组"></a>7.对查询结果进行分组</h4><p>GROUP BY子句可以将查询结果表的各行按一列或多列,将值相等的作为一组。 如果分组后还要求按一定的条件对这些组进行筛选条，最终只输出满足指定的组，则可以使用HAVING短语指定筛选条件。 </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Sno</span><br><span class="line"><span class="keyword">FROM</span> SC</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> Sno  <span class="keyword">HAVING</span> <span class="keyword">COUNT</span>(*)＞<span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h3><p>涉及<strong>两个以上的表</strong> ，包括等值连接、非等值连接查询、自身连接查询（自身连接）、外连接查询（外连接）和复合条件连接查询（复合条件连接）。</p>
+<h4 id="1-等值连接与非等值连接"><a href="#1-等值连接与非等值连接" class="headerlink" title="1.等值连接与非等值连接"></a>1.等值连接与非等值连接</h4><p>比较运算符主要有：=、&gt;、&lt;、&gt;=、&lt;=、!=&lt;=、!=  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[&lt;表名1&gt;.]&lt;列名1&gt; &lt;比较运算符&gt; [&lt;表名2&gt;.]&lt;列名2&gt; </span><br><span class="line">[&lt;表名1&gt;.]&lt;列名1&gt; </span><br><span class="line">BETWEEN [&lt;表名2&gt;.]&lt;列名2&gt; AND [&lt;表名2&gt;.]&lt;列名3&gt; </span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> Student.*, SC.* </span><br><span class="line"><span class="keyword">FROM</span> Student, SC </span><br><span class="line"><span class="keyword">WHERE</span> Student.Sno=SC.Sno;</span><br></pre></td></tr></table></figure>
+<h4 id="2-自身连接"><a href="#2-自身连接" class="headerlink" title="2.自身连接"></a>2.自身连接</h4><p>连接操作不仅可以在两个表之间进行，也可以是<strong>一个表与其自己进行连接</strong>。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> FIRST.Cno,  SECOND. Pcno </span><br><span class="line"><span class="keyword">FROM</span>  Course   <span class="keyword">FIRST</span>,  Course   <span class="keyword">SECOND</span> </span><br><span class="line"><span class="keyword">WHERE</span>   FIRST.Pcno=SECOND.Cno;</span><br></pre></td></tr></table></figure>
+<h4 id="3-外连接"><a href="#3-外连接" class="headerlink" title="3.外连接"></a>3.外连接</h4><p>通常的连接操作中，只有满足连接条件的元组才能作为结果输出。有时我们想以 Student 表为主体列出每个学生的基本情况及其选课情况，若某个学生没有选课，则只输出其基本情况信息，其选课信息为空值即可，这时就需要使用<strong>外连接</strong>（Outer Join）。外连接的运算符通常为 *。有的关系数据库中也用+。  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Student.Sno, Sname, Ssex, Sage, Sdept, Cno, Grade </span><br><span class="line"><span class="keyword">FROM</span> Student, SC </span><br><span class="line"><span class="keyword">WHERE</span> Student.Sno=SC.Sno(*);</span><br></pre></td></tr></table></figure>
+<h3 id="嵌套查询"><a href="#嵌套查询" class="headerlink" title="嵌套查询"></a>嵌套查询</h3><p>一个SELECT  FROM  WHERE语句称为—个查询块。将<strong>一个查询块嵌套在另一个查询块的WHERE子句或HAVING短语条件中</strong>的查询称为嵌套查询。 </p>
+<p><strong>子查询的SELECT语句中不能使用ORDER BY于句</strong>，ORDER BY子句只能对最终查询结果排序。 </p>
+<p>嵌套查询一般由里向外处理。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Sname </span><br><span class="line"><span class="keyword">FROM</span> Student</span><br><span class="line"><span class="keyword">WHERE</span> Sno <span class="keyword">IN</span>  </span><br><span class="line"><span class="keyword">SELECT</span>  Sno  <span class="keyword">FROM</span>  SC <span class="keyword">WHERE</span> Cno＝’<span class="number">2</span>’;</span><br></pre></td></tr></table></figure>
+<h4 id="1-带有IN谓词的子查询"><a href="#1-带有IN谓词的子查询" class="headerlink" title="1.带有IN谓词的子查询"></a>1.带有IN谓词的子查询</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">查询与刘晨在同一个系学习的学生</span><br><span class="line"><span class="keyword">SELECT</span> Sno, Sname, Sdept</span><br><span class="line"><span class="keyword">FROM</span> Student</span><br><span class="line"><span class="keyword">WHERE</span> Sdept <span class="keyword">IN</span></span><br><span class="line">    (<span class="keyword">SELECT</span> Sdept</span><br><span class="line">    <span class="keyword">FROM</span> Student</span><br><span class="line">    <span class="keyword">WHERE</span> Sname=<span class="string">'刘晨'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">查询选修了课程名为“信息系统”的学生学号和姓名</span><br><span class="line"><span class="keyword">SELECT</span> Sno, Sname</span><br><span class="line"><span class="keyword">FROM</span> Student</span><br><span class="line"><span class="keyword">WHERE</span> Sno <span class="keyword">IN</span></span><br><span class="line">    (<span class="keyword">SELECT</span> Sno</span><br><span class="line">    <span class="keyword">FROM</span> SC</span><br><span class="line">    <span class="keyword">WHERE</span> Cno <span class="keyword">IN</span></span><br><span class="line">        (<span class="keyword">SELECT</span> Cno</span><br><span class="line">        <span class="keyword">FROM</span> Course</span><br><span class="line">        <span class="keyword">WHERE</span> Cname=<span class="string">'信息系统'</span>))</span><br></pre></td></tr></table></figure>
+<h4 id="2-带有比较运算符的子查询"><a href="#2-带有比较运算符的子查询" class="headerlink" title="2.带有比较运算符的子查询"></a>2.带有比较运算符的子查询</h4><p>当用户能确切知道内层查询返回的是单值时，可以用&gt;,&lt;,=,&gt;=,&lt;=,&lt;&gt;等比较运算符。 </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">查询与刘晨在同一个系学习的学生</span><br><span class="line"><span class="keyword">SELECT</span> Sno, Sname, Sdept</span><br><span class="line"><span class="keyword">FROM</span> Student</span><br><span class="line"><span class="keyword">WHERE</span> Sdept =</span><br><span class="line">    (<span class="keyword">SELECT</span> Sdept</span><br><span class="line">    <span class="keyword">FROM</span> Student</span><br><span class="line">    <span class="keyword">WHERE</span> Sname=<span class="string">'刘晨'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="3-带有ANY或ALL谓词的子查询"><a href="#3-带有ANY或ALL谓词的子查询" class="headerlink" title="3.带有ANY或ALL谓词的子查询"></a>3.带有ANY或ALL谓词的子查询</h4><p>使用ANY或ALL谓词时则必须同时使用比较运算符。&gt;=ANY  &gt;=ALL  &lt;=ANY  &lt;=ALL  =ANY  =ALL  !=(&lt;&gt;)ANY  !=(&lt;&gt;)ALL</p>
+<p>可以<strong>与集函数进行对应</strong>。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">查询其他系中比信息系某一学生年龄小的学生姓名和年龄</span><br><span class="line"><span class="keyword">SELECT</span> Sname, Sage</span><br><span class="line"><span class="keyword">From</span> Student</span><br><span class="line"><span class="keyword">WHERE</span> Sage&lt;<span class="keyword">ANY</span>(<span class="keyword">SELECT</span> Sage</span><br><span class="line">            <span class="keyword">FROM</span> Student</span><br><span class="line">            <span class="keyword">WHERE</span> Sdept=<span class="string">'IS'</span>)</span><br><span class="line">		<span class="keyword">AND</span> Sdept&lt;&gt;<span class="string">'IS'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> Sname, Sage</span><br><span class="line"><span class="keyword">From</span> Student</span><br><span class="line"><span class="keyword">WHERE</span> Sage&lt;(<span class="keyword">SELECT</span> <span class="keyword">MAX</span>(Sage)</span><br><span class="line">            <span class="keyword">FROM</span> Student</span><br><span class="line">            <span class="keyword">WHERE</span> Sdept=<span class="string">'IS'</span>)</span><br><span class="line">		<span class="keyword">AND</span> Sdept&lt;&gt;<span class="string">'IS'</span></span><br></pre></td></tr></table></figure>
+<h2 id="三、数据操纵"><a href="#三、数据操纵" class="headerlink" title="三、数据操纵"></a>三、数据操纵</h2><h3 id="插入语句"><a href="#插入语句" class="headerlink" title="插入语句"></a>插入语句</h3><p>SQL的数据插入语句Insert通常有两种形式。一种是插入一个元组，另一种是插入子查询结果。后者可以一次插入多个元组。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span></span><br><span class="line"><span class="keyword">INTO</span> 表名[（列名<span class="number">1</span> [,列名<span class="number">2</span>,…]）]</span><br><span class="line"><span class="keyword">VALUES</span> (常量<span class="number">1</span>[,常量<span class="number">2</span>,])；</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span></span><br><span class="line"><span class="keyword">INTO</span> 表名 (列<span class="number">1</span>,[列<span class="number">2</span>,…])</span><br><span class="line">       子查询;</span><br></pre></td></tr></table></figure>
+<p> nInto子句中没有出现的属性列，新记录在这些列上将取空值。在表定义时说明了NOT NULL的属性列不能取空值。如果INTO子句没有指明任何列名，则新插入的记录必须在每个属性列上均有值。</p>
+<h3 id="修改语句"><a href="#修改语句" class="headerlink" title="修改语句"></a>修改语句</h3><p>功能：修改指定表中满足WHERE子句条件的元组。 其中SET子句给出表达式的值用于取代相应的属性列值。如果省略WHERE子句，则表示要修改表中的所有元组。 </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> 表名，</span><br><span class="line"><span class="keyword">SET</span> 列名＝表达式[，列名＝表达式]</span><br><span class="line">         [<span class="keyword">WHERE</span>&lt;条件&gt;];</span><br></pre></td></tr></table></figure>
+<h4 id="1-修改某个元素的值"><a href="#1-修改某个元素的值" class="headerlink" title="1.修改某个元素的值"></a>1.修改某个元素的值</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span>  Student <span class="keyword">SET</span> Sage=<span class="number">22</span> <span class="keyword">WHERE</span> Sno=<span class="string">'95001'</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="2-修改多个元素的值"><a href="#2-修改多个元素的值" class="headerlink" title="2.修改多个元素的值"></a>2.修改多个元素的值</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span>  Student <span class="keyword">SET</span> Sage=Sage+<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="3-带子查询的修改语句"><a href="#3-带子查询的修改语句" class="headerlink" title="3.带子查询的修改语句"></a>3.带子查询的修改语句</h4><p>使用IN条件来构造子句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Update</span> sc</span><br><span class="line"><span class="keyword">Set</span> grade=<span class="number">0</span></span><br><span class="line"><span class="keyword">Where</span> <span class="keyword">exists</span> (<span class="keyword">select</span> * <span class="keyword">from</span> student <span class="keyword">where</span> student.sno=sc.sno <span class="keyword">and</span> dept=<span class="string">'CS'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> SC</span><br><span class="line"><span class="keyword">SET</span> GRADE=<span class="number">0</span></span><br><span class="line"><span class="keyword">WHERE</span> <span class="string">'CS'</span>=</span><br><span class="line">        (<span class="keyword">SELECT</span> Sdept </span><br><span class="line">        <span class="keyword">FROM</span> Student</span><br><span class="line">        <span class="keyword">WHERE</span> Student.Sno=SC.Sno)</span><br></pre></td></tr></table></figure>
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><p>从指定表中删除满足WHERE子句条件的所有元组，如果省略WHERE子句，表示删除表中全部元组，但表的定义仍在字典。也就是说，DELETE语句删除的是表中的数据，而不是关于表的定义。 </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span>  <span class="keyword">FROM</span> &lt;表名&gt;</span><br><span class="line">[<span class="keyword">WHERE</span>&lt;条件&gt;];</span><br></pre></td></tr></table></figure>
+<h4 id="1-删除某一个元组的值"><a href="#1-删除某一个元组的值" class="headerlink" title="1.删除某一个元组的值"></a>1.删除某一个元组的值</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span></span><br><span class="line"><span class="keyword">FROM</span> Student</span><br><span class="line"><span class="keyword">WHERE</span> Sno=<span class="string">'95019'</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="2-删除多个元组的值"><a href="#2-删除多个元组的值" class="headerlink" title="2.删除多个元组的值"></a>2.删除多个元组的值</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span></span><br><span class="line">FRDM SC;</span><br></pre></td></tr></table></figure>
+<h4 id="3-带子查询的删除语句"><a href="#3-带子查询的删除语句" class="headerlink" title="3.带子查询的删除语句"></a>3.带子查询的删除语句</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span></span><br><span class="line"><span class="keyword">FROM</span> SC</span><br><span class="line"><span class="keyword">WHERE</span> <span class="string">'CS'</span>=</span><br><span class="line">        (<span class="keyword">SELECT</span> Sdept</span><br><span class="line">        <span class="keyword">From</span> Student</span><br><span class="line">        <span class="keyword">WHERE</span> Student.Sno=SC.Sno)</span><br></pre></td></tr></table></figure>
+<h3 id="更新操作与数据库的一致性"><a href="#更新操作与数据库的一致性" class="headerlink" title="更新操作与数据库的一致性"></a>更新操作与数据库的一致性</h3><p>利用<strong>事务(Transaction)</strong>的功能实现。</p>
+<h2 id="四、视图"><a href="#四、视图" class="headerlink" title="四、视图"></a>四、视图</h2><p>视图是关系数据库系统提供给用户<strong>以多种角度观察数据库中数据</strong>的重要机制。</p>
+<p>视图是从一个或几个基本表(或视图)导出的表，它与基本表不同，是一个<strong>虚表</strong>。数据库中只存放视图的定义，而不存放视图对应的数据，这些数据仍存放在原来的基本表中。所以<strong>基本表中的数据发生变化，从视图中查询出的数据也就随之改变了</strong>。从这个意义上讲，视图就像一个<strong>窗口</strong>，透过它可以看到数据库中自己感兴趣的数据及其变化。  </p>
+<p>视图一经定义，就可以和基本表一样被<strong>查询</strong>、被<strong>删除</strong>，我们也可以<strong>在一个视图之上再定义新的视图</strong>，但对视图的更新(增加、删除、修改)操作则有一定的<strong>限制</strong>。</p>
+<h3 id="定义视图"><a href="#定义视图" class="headerlink" title="定义视图"></a>定义视图</h3><h4 id="1-建立视图"><a href="#1-建立视图" class="headerlink" title="1.建立视图"></a>1.建立视图</h4><p>其中子查询可以是任意复杂的SELECT语句，但通常不允许含有ORDER BY子句和DISTINCT短语。</p>
+<p><strong>WITH CHECK OPTION</strong>表示对视图进行UPDATE，INSERT和DELETE操作时要<strong>保证更新、插入或删除的行满足视图定义中的谓词条件</strong>(即子查询中的条件表达式)。 </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span>  <span class="keyword">VIEW</span>  &lt;视图名&gt;[（&lt;列名&gt;,[&lt;列名&gt;,]…）</span><br><span class="line"><span class="keyword">AS</span>  &lt;子查询&gt;,</span><br><span class="line">[<span class="keyword">WITH</span>  <span class="keyword">CHECK</span>  <span class="keyword">OPTION</span>]；</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">建立信息系学生的视图</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> IS_Student</span><br><span class="line">    <span class="keyword">AS</span></span><br><span class="line">    <span class="keyword">SELECT</span> Sno, Sname, Sage</span><br><span class="line">    <span class="keyword">FROM</span> Student</span><br><span class="line">    <span class="keyword">WHERE</span> Sdept=<span class="string">'IS'</span>;</span><br><span class="line">建立信息系学生的视图，并要求进修改和插入操作时仍需保证该视图只有信息系学生</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> IS_Student</span><br><span class="line">    <span class="keyword">AS</span></span><br><span class="line">    <span class="keyword">SELECT</span> Sno, Sname, Sage</span><br><span class="line">    <span class="keyword">FROM</span> Student</span><br><span class="line">    <span class="keyword">WHERE</span> Sdept=<span class="string">'IS'</span></span><br><span class="line">    <span class="keyword">WITH</span> <span class="keyword">CHECK</span> <span class="keyword">OPTION</span>;</span><br></pre></td></tr></table></figure>
+<p>DBMS执行<strong>CREATE VIEW</strong>语句的结果只是<strong>把视图的定义存入数据字典</strong>，并<strong>不执行其中的SELECT语句</strong>。只是在对视图查询时，才按照视图的定义从基本表中将数据查出。 </p>
+<h4 id="2-删除视图"><a href="#2-删除视图" class="headerlink" title="2.删除视图"></a>2.删除视图</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span>  <span class="keyword">VIEW</span>  &lt;视图名&gt;;</span><br></pre></td></tr></table></figure>
+<p>视图删除后视图的定义将从数据字典中删除。但是由该视图导出的其他视图定义仍在数据字典中，不过该视图已失效。 </p>
+<h3 id="查询视图"><a href="#查询视图" class="headerlink" title="查询视图"></a>查询视图</h3><p>与查询表一致</p>
+<h3 id="更新视图"><a href="#更新视图" class="headerlink" title="更新视图"></a>更新视图</h3><p>由于视图是不实际存储数据的虚表，因此<strong>对视图的更新，最终要转换为对基本表的更新</strong>。</p>
+<p>为防止用户通过视图对数据进行增加、删除、修改时，有意无意地对不属于视图范围内的基本表数据进行操作，可在<strong>定义视图时加上WITH CHECK OPTION子句</strong>。这样在视图上增删改数据时，DbMS会检查视图定义中的条件，若不满足条件，则拒绝执行该操作。</p>
+<h2 id="五、数据控制"><a href="#五、数据控制" class="headerlink" title="五、数据控制"></a>五、数据控制</h2><p>SQL中数据控制功能包括<strong>事务管理功能</strong>和<strong>数据保护功能</strong>，即数据库的<strong>恢复</strong>、<strong>并发控制</strong>；数据库的<strong>安全性</strong>和<strong>完整性控制</strong>。 重点说明安全性控制功能。</p>
+<p>DBMS必须具有以下功能：</p>
+<p> (1) 把授权的决定告知系统，这是由SQL的GRANT和REVOKE语句来完成的。<br> (2) 把授权的结果存入数据字典。<br> (3) 当用户提出操作请求时，根据授权情况进行检查，以决定是否执行操作请求。</p>
+<h3 id="授权"><a href="#授权" class="headerlink" title="授权"></a>授权</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">将对指定操作对象的指定操作权限授予指定的用户。</span><br><span class="line"><span class="keyword">GRANT</span>&lt;权限&gt;，[&lt;权限&gt;…</span><br><span class="line">        [<span class="keyword">ON</span>&lt;对象类型&gt;&lt;对象名&gt;]</span><br><span class="line">        <span class="keyword">TO</span> &lt;用户&gt;[,&lt;用户&gt;]…</span><br><span class="line">        [<span class="keyword">WITH</span> <span class="keyword">GRANT</span> <span class="keyword">OPTION</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="收回权限"><a href="#收回权限" class="headerlink" title="收回权限"></a>收回权限</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span>&lt;权限&gt;[,&lt;权限&gt;]…</span><br><span class="line">         [<span class="keyword">ON</span>&lt;对象类型&gt;&lt;对象名&gt;]</span><br><span class="line">         <span class="keyword">FROM</span>＜用户＞[,＜用户&gt;＝;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/16/LaTeX/" rel="next" title="Windows下LaTeX安装配置(xia zhe teng)">
+                <i class="fa fa-chevron-left"></i> Windows下LaTeX安装配置(xia zhe teng)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjY5NC8xMzIyOQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/portrait.jpg"
+                alt="Wang Qianni" />
+            
+              <p class="site-author-name" itemprop="name">Wang Qianni</p>
+              <p class="site-description motion-element" itemprop="description">It is a place for Qianni to record and learn.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#标准SQL语句"><span class="nav-number">1.</span> <span class="nav-text">标准SQL语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、数据定义"><span class="nav-number">1.1.</span> <span class="nav-text">一、数据定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义基本表"><span class="nav-number">1.1.1.</span> <span class="nav-text">定义基本表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改基本表"><span class="nav-number">1.1.2.</span> <span class="nav-text">修改基本表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除基本表"><span class="nav-number">1.1.3.</span> <span class="nav-text">删除基本表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建立索引"><span class="nav-number">1.1.4.</span> <span class="nav-text">建立索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除索引"><span class="nav-number">1.1.5.</span> <span class="nav-text">删除索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、数据查询"><span class="nav-number">1.2.</span> <span class="nav-text">二、数据查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单表查询"><span class="nav-number">1.2.1.</span> <span class="nav-text">单表查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-查询指定列"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">1.查询指定列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-查询全部列"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">2.查询全部列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-消除取值重复的行（DISTINCT）"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">3.消除取值重复的行（DISTINCT）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-查询满足条件的元组"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">4.查询满足条件的元组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-对查询的结果进行排序"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">5.对查询的结果进行排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-使用集函数"><span class="nav-number">1.2.1.6.</span> <span class="nav-text">6.使用集函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-对查询结果进行分组"><span class="nav-number">1.2.1.7.</span> <span class="nav-text">7.对查询结果进行分组</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接查询"><span class="nav-number">1.2.2.</span> <span class="nav-text">连接查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-等值连接与非等值连接"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">1.等值连接与非等值连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-自身连接"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">2.自身连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-外连接"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">3.外连接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌套查询"><span class="nav-number">1.2.3.</span> <span class="nav-text">嵌套查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-带有IN谓词的子查询"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">1.带有IN谓词的子查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-带有比较运算符的子查询"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">2.带有比较运算符的子查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-带有ANY或ALL谓词的子查询"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">3.带有ANY或ALL谓词的子查询</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、数据操纵"><span class="nav-number">1.3.</span> <span class="nav-text">三、数据操纵</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#插入语句"><span class="nav-number">1.3.1.</span> <span class="nav-text">插入语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改语句"><span class="nav-number">1.3.2.</span> <span class="nav-text">修改语句</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-修改某个元素的值"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">1.修改某个元素的值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-修改多个元素的值"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">2.修改多个元素的值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-带子查询的修改语句"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">3.带子查询的修改语句</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除数据"><span class="nav-number">1.3.3.</span> <span class="nav-text">删除数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-删除某一个元组的值"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">1.删除某一个元组的值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-删除多个元组的值"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">2.删除多个元组的值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-带子查询的删除语句"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">3.带子查询的删除语句</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新操作与数据库的一致性"><span class="nav-number">1.3.4.</span> <span class="nav-text">更新操作与数据库的一致性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、视图"><span class="nav-number">1.4.</span> <span class="nav-text">四、视图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义视图"><span class="nav-number">1.4.1.</span> <span class="nav-text">定义视图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-建立视图"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">1.建立视图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-删除视图"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">2.删除视图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询视图"><span class="nav-number">1.4.2.</span> <span class="nav-text">查询视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新视图"><span class="nav-number">1.4.3.</span> <span class="nav-text">更新视图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、数据控制"><span class="nav-number">1.5.</span> <span class="nav-text">五、数据控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#授权"><span class="nav-number">1.5.1.</span> <span class="nav-text">授权</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#收回权限"><span class="nav-number">1.5.2.</span> <span class="nav-text">收回权限</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wang Qianni</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
