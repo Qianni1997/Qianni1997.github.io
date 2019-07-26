@@ -337,9 +337,9 @@
 <h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><ul>
 <li><p>Step1：【尝试直接在线安装】启动cmd，若通过conda install geopandas或pip install geopandas命令能够安装成功。打开Python运行输入import geopandas无报错，则恭喜你，可直接关闭本帖！</p>
 </li>
-<li><p>Step2：【下载难以安装的几个模块】进入网站：<a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/" target="_blank" rel="noopener">https://www.lfd.uci.edu/~gohlke/pythonlibs/</a> 按照Python版本与电脑32/64位选择对应模块版本，下载<strong>Shapely, GDAL, Fiona</strong>三个模块的.whl文件。<strong>注意其中GDAL要求只能下载2.X.X的版本，请勿下载3.0.1及之后的版本</strong></p>
+<li><p>Step2：【下载难以安装的几个模块】进入网站：<a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/" target="_blank" rel="noopener">https://www.lfd.uci.edu/~gohlke/pythonlibs/</a> 按照Python版本与电脑32/64位选择对应模块版本，下载<strong>Shapely, GDAL, Fiona，Rtree</strong>四个模块的.whl文件。<strong>注意其中GDAL要求只能下载2.X.X的版本，请勿下载3.0.1及之后的版本</strong></p>
 </li>
-<li><p>Step3：【安装本地文件】进入cmd，利用pip或conda手动利用已下载的本地文件安装三个模块，安装顺序为：Shapely, GDAL, Fiona。以利用pip安装Shapely为例，使用命令为：pip install C:\Users\Administrator\Downloads\Shapely-1.6.4.post2-cp36-cp36m-win_amd64.whl 。（其中’C:bulabula’替换为你下载的whl文件的路径。）</p>
+<li><p>Step3：【安装本地文件】进入cmd，利用pip或conda手动利用已下载的本地文件安装四个模块，安装顺序为：Shapely, GDAL, Fiona, Rtree。以利用pip安装Shapely为例，使用命令为：pip install C:\Users\Administrator\Downloads\Shapely-1.6.4.post2-cp36-cp36m-win_amd64.whl 。（其中’C:bulabula’替换为你下载的whl文件的路径。）</p>
 </li>
 <li><p>Step4：【再次在线安装】此时几个难安装的模块都已安装完毕，这时再使用pip install geopandas或conda install geopandas安装好geopandas库与geopandas依赖的其他库。<br>此时若安装不成功，则手动下载pyproj库，按照Step3中所述进行安装。</p>
 </li>
