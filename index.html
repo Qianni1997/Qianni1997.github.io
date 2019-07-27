@@ -252,6 +252,130 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/27/toolandweb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang Qianni">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/portrait.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Find Qianni">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/27/toolandweb/" itemprop="url">分享实用工具与网站</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-27T11:22:10+08:00">
+                2019-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="分享实用工具与网站"><a href="#分享实用工具与网站" class="headerlink" title="分享实用工具与网站"></a>分享实用工具与网站</h1><p>善于寻找工具，善于使用工具。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/27/toolandweb/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/26/geopandas-install/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -322,41 +446,14 @@
 
       
         
-          
-            <h1 id="geopandas安装攻略"><a href="#geopandas安装攻略" class="headerlink" title="geopandas安装攻略"></a>geopandas安装攻略</h1><p>geopandas库是类似pandas的可以用于处理地理信息的Python模块，可以方便的使用常见的GIS功能。此文记录安装geopandas库遇到的问题与解决方案。此经验适用于使用Python3.x的Windows用户。</p>
-<h2 id="安装过程中遇到的问题"><a href="#安装过程中遇到的问题" class="headerlink" title="安装过程中遇到的问题"></a>安装过程中遇到的问题</h2><p>安装中主要遇到以下问题：</p>
-<ol>
-<li><p>在使用pip install geopandas命令后，首先下载一系列模块，而后报错：<strong>error: invalid command ‘egg_info’</strong></p>
-</li>
-<li><p>在使用conda install geopandas命令后，首先下载一系列模块，而后报错：<strong>CondaError: Cannot link a source that does not exist. C:\Users...\Anaconda3\Scripts\conda.exe</strong></p>
-</li>
-<li><p>geopandas显示安装完成，进入python后，输入import geopandas后会报如下错误：<strong>Fiona ImportError：DLL load failed</strong></p>
-<p>【原因：geopandas依赖的GDAL库版本不能过高。如果现有GDAL是3.0.1版本，则需要替换成为2.X.X版本】</p>
-</li>
-</ol>
-<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><ul>
-<li><p>Step1：【尝试直接在线安装】启动cmd，若通过conda install geopandas或pip install geopandas命令能够安装成功。打开Python运行输入import geopandas无报错，则恭喜你，可直接关闭本帖！</p>
-</li>
-<li><p>Step2：【下载难以安装的几个模块】进入网站：<a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/" target="_blank" rel="noopener">https://www.lfd.uci.edu/~gohlke/pythonlibs/</a> 按照Python版本与电脑32/64位选择对应模块版本，下载<strong>Shapely, GDAL, Fiona，Rtree</strong>四个模块的.whl文件。<strong>注意其中GDAL要求只能下载2.X.X的版本，请勿下载3.0.1及之后的版本</strong></p>
-</li>
-<li><p>Step3：【安装本地文件】进入cmd，利用pip或conda手动利用已下载的本地文件安装四个模块，安装顺序为：Shapely, GDAL, Fiona, Rtree。以利用pip安装Shapely为例，使用命令为：pip install C:\Users\Administrator\Downloads\Shapely-1.6.4.post2-cp36-cp36m-win_amd64.whl 。（其中’C:bulabula’替换为你下载的whl文件的路径。）</p>
-</li>
-<li><p>Step4：【再次在线安装】此时几个难安装的模块都已安装完毕，这时再使用pip install geopandas或conda install geopandas安装好geopandas库与geopandas依赖的其他库。<br>此时若安装不成功，则手动下载pyproj库，按照Step3中所述进行安装。</p>
-</li>
-<li><p>Step5：【检查安装结果】运行Python，输入import geopandas，此时成功运行，不再有报错，则说明已成功安装geopandas。</p>
-</li>
-</ul>
-<h2 id="其他参考"><a href="#其他参考" class="headerlink" title="其他参考"></a>其他参考</h2><ol>
-<li><p>Geopandas官方文档 <a href="http://geopandas.org/" target="_blank" rel="noopener">http://geopandas.org/</a> </p>
-</li>
-<li><p>Using geopandas on Windows from Geoff Boeing  <a href="https://geoffboeing.com/2014/09/using-geopandas-windows/" target="_blank" rel="noopener">https://geoffboeing.com/2014/09/using-geopandas-windows/</a></p>
-<p>（这个帖子是模块作者写的，非常具有参考价值，只可惜折腾完了才发现！）</p>
-</li>
-<li><p>FYI: Installing geopandas with conda <a href="https://github.com/geopandas/geopandas/issues/237" target="_blank" rel="noopener">https://github.com/geopandas/geopandas/issues/237</a></p>
-</li>
-</ol>
-
-          
+          <h1 id="geopandas安装攻略"><a href="#geopandas安装攻略" class="headerlink" title="geopandas安装攻略"></a>geopandas安装攻略</h1><p>geopandas库是类似pandas的可以用于处理地理信息的Python模块，可以方便的使用常见的GIS功能。此文记录安装geopandas库遇到的问题与解决方案。此经验适用于使用Python3.x的Windows用户。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/26/geopandas-install/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1567,153 +1664,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/29/ML-1to6task/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang Qianni">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/portrait.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Find Qianni">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/29/ML-1to6task/" itemprop="url">机器学习报告补齐（包括KNN、决策树、朴素贝叶斯、logistic回归、TensorFlow、SVM）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-29T15:39:48+08:00">
-                2018-05-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Machine Learning</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="机器学习课程报告发布（分类部分）"><a href="#机器学习课程报告发布（分类部分）" class="headerlink" title="机器学习课程报告发布（分类部分）"></a>机器学习课程报告发布（分类部分）</h1><p>学期初，在自己的“对于知识的向往”和高中校友茅信的杜铭枢同学的鼓动下，报名了学校为茅院辅修大数据专业同学们开设的课程——机器学习与模式识别。课程鼓励对成果进行分享，因此在初期阶段我们进行了多次报告、课堂展示，而在课程中期，这一展示形式推广到了博客的方式。作为一个初学者，对于一些概念的掌握还十分浅显，再加之初期的doc格式报告不易转换成markdown文件，因此，此处选择转为pdf文件的形式对课程的前6次报告进行上传。过程中还有很多需要改进的地方，我也找到了进一步努力的方向。愿通过这门“戏很多”的课程，能够在数据分析、算法理解、报告撰写、课堂展示等方面有所收获。</p>
-<p>下面按照课程要求，发布学习报告。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/29/ML-1to6task/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1768,7 +1718,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="分享实用工具与网站善于寻找工具，善于使用工具。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分享实用工具与网站">
+<meta property="og:url" content="http://yoursite.com/2019/07/27/toolandweb/index.html">
+<meta property="og:site_name" content="Find Qianni">
+<meta property="og:description" content="分享实用工具与网站善于寻找工具，善于使用工具。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-27T03:45:00.523Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分享实用工具与网站">
+<meta name="twitter:description" content="分享实用工具与网站善于寻找工具，善于使用工具。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/27/toolandweb/"/>
+
+
+
+
+
+  <title>分享实用工具与网站 | Find Qianni</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Find Qianni</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Always be Brave and Enthusiastic</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/27/toolandweb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang Qianni">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/portrait.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Find Qianni">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">分享实用工具与网站</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-27T11:22:10+08:00">
+                2019-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="分享实用工具与网站"><a href="#分享实用工具与网站" class="headerlink" title="分享实用工具与网站"></a>分享实用工具与网站</h1><p>善于寻找工具，善于使用工具。</p>
+<a id="more"></a> 
+<h2 id="电子书籍"><a href="#电子书籍" class="headerlink" title="电子书籍"></a>电子书籍</h2><ul>
+<li>英文书籍下载</li>
+</ul>
+<p>Library Genesis <a href="http://gen.lib.rus.ec/" target="_blank" rel="noopener">http://gen.lib.rus.ec/</a> </p>
+<p>Manybooks <a href="https://manybooks.net/" target="_blank" rel="noopener">https://manybooks.net/</a> </p>
+<ul>
+<li>中文电子书下载</li>
+</ul>
+<p>鸠摩搜书 <a href="https://www.jiumodiary.com/" target="_blank" rel="noopener">https://www.jiumodiary.com/</a>  </p>
+<p>我的小书屋 <a href="http://mebook.cc/" target="_blank" rel="noopener">http://mebook.cc/</a> </p>
+<ul>
+<li>计算机类书籍下载</li>
+</ul>
+<p>love2 <a href="https://love2.io/" target="_blank" rel="noopener">https://love2.io/</a> </p>
+<p>计算机书籍控 <a href="http://www.bestcbooks.com/" target="_blank" rel="noopener">http://www.bestcbooks.com/</a>  </p>
+<ul>
+<li>交通、城市规划类书单</li>
+</ul>
+<p>偏交通与城市规划的交叉 <a href="https://www.douban.com/doulist/1687039/?start=25&amp;sort=seq&amp;playable=0&amp;sub_type=" target="_blank" rel="noopener">https://www.douban.com/doulist/1687039/?start=25&amp;sort=seq&amp;playable=0&amp;sub_type=</a> </p>
+<p>交通书单 <a href="https://www.douban.com/people/wlxiong/" target="_blank" rel="noopener">https://www.douban.com/people/wlxiong/</a> </p>
+<h2 id="LaTeX文档"><a href="#LaTeX文档" class="headerlink" title="LaTeX文档"></a>LaTeX文档</h2><ul>
+<li>公式识别</li>
+</ul>
+<p>公式截图/手写识别转换为LaTeX公式软件：<strong>Mathpix Snipping Tool</strong> <a href="https://mathpix.com/" target="_blank" rel="noopener">https://mathpix.com/</a> </p>
+<p>在线手写识别LaTeX公式网站 <a href="http://detexify.kirelabs.org/classify.html" target="_blank" rel="noopener">http://detexify.kirelabs.org/classify.html</a> </p>
+<ul>
+<li>参考命令</li>
+</ul>
+<p>LaTeX参考命令大全 <a href="https://blog.csdn.net/garfielder007/article/details/51646604" target="_blank" rel="noopener">https://blog.csdn.net/garfielder007/article/details/51646604</a> </p>
+<ul>
+<li>模板类</li>
+</ul>
+<p>TRB模板 <a href="https://github.com/chiehrosswang/TRB_LaTeX_tex" target="_blank" rel="noopener">https://github.com/chiehrosswang/TRB_LaTeX_tex</a> </p>
+<p>LaTeX制作PPT模板beamer库 <a href="http://deic.uab.es/~iblanes/beamer_gallery/" target="_blank" rel="noopener">http://deic.uab.es/~iblanes/beamer_gallery/</a></p>
+<p>LaTeX制作PPT模板Overleaf &lt;<a href="https://www.overleaf.com/gallery/tagged/presentation/" target="_blank" rel="noopener">https://www.overleaf.com/gallery/tagged/presentation/</a></p>
+<ul>
+<li>学习书籍</li>
+</ul>
+<p>可参考博文尾部链接下载书籍与cheatsheet <a href="https://qianni1997.github.io/2018/09/16/LaTeX/" target="_blank" rel="noopener">https://qianni1997.github.io/2018/09/16/LaTeX/</a> </p>
+<ul>
+<li>在线编辑</li>
+</ul>
+<p>Overleaf <a href="https://www.overleaf.com/" target="_blank" rel="noopener">https://www.overleaf.com/</a> </p>
+<h2 id="论文检索与管理"><a href="#论文检索与管理" class="headerlink" title="论文检索与管理"></a>论文检索与管理</h2><ul>
+<li>论文检索</li>
+</ul>
+<p>SCI-HUB学术论文免费下载 <a href="http://sci-hub.tech/" target="_blank" rel="noopener">http://sci-hub.tech/</a> </p>
+<p>GoogleScholar <a href="https://scholar.google.com/" target="_blank" rel="noopener">https://scholar.google.com/</a> 【配合‘谷歌学术搜索按钮’插件保存Bibtex】</p>
+<p>Web of Science <a href="https://www.webofknowledge.com/" target="_blank" rel="noopener">https://www.webofknowledge.com/</a> </p>
+<p>ScienceDirect <a href="https://www.sciencedirect.com/" target="_blank" rel="noopener">https://www.sciencedirect.com/</a> </p>
+<p>ResearchGate <a href="https://www.researchgate.net/" target="_blank" rel="noopener">https://www.researchgate.net/</a> </p>
+<p>西南交大图书馆（各类资源网站入口） <a href="http://www.lib.swjtu.edu.cn/" target="_blank" rel="noopener">http://www.lib.swjtu.edu.cn/</a> </p>
+<p>中文期刊：知网 维普 百度学术等</p>
+<p>期刊排行查询SJR <a href="https://www.scimagojr.com/" target="_blank" rel="noopener">https://www.scimagojr.com/</a> </p>
+<ul>
+<li>论文管理（软件）</li>
+</ul>
+<p>JabRef 与LaTeX配合使用添加引文 <a href="http://www.jabref.org/" target="_blank" rel="noopener">http://www.jabref.org/</a> </p>
+<p>Mendeley 可直接对电脑内文献文件夹进行管理，自动识别文章信息 <a href="https://www.mendeley.com/newsfeed" target="_blank" rel="noopener">https://www.mendeley.com/newsfeed</a> </p>
+<h2 id="PPT制作"><a href="#PPT制作" class="headerlink" title="PPT制作"></a>PPT制作</h2><ul>
+<li>强烈安利<strong>islide Power Point插件</strong>，内含图片库、插图库、图标库等等 <a href="https://www.islide.cc/" target="_blank" rel="noopener">https://www.islide.cc/</a> 资源也可以用于Visio绘图</li>
+<li>配色类</li>
+</ul>
+<p>配色方案 <a href="https://flatuicolors.com/" target="_blank" rel="noopener">https://flatuicolors.com/</a> </p>
+<p>配色方案2 <a href="https://colorhunt.co/" target="_blank" rel="noopener">https://colorhunt.co/</a> </p>
+<p>渐变色搭配 <a href="https://webgradients.com/" target="_blank" rel="noopener">https://webgradients.com/</a> </p>
+<p>日本传统配色（淡雅风） <a href="http://nipponcolors.com/" target="_blank" rel="noopener">http://nipponcolors.com/</a> </p>
+<ul>
+<li>图库资源类</li>
+</ul>
+<p>高清大图免费下载Unsplash <a href="https://unsplash.com/" target="_blank" rel="noopener">https://unsplash.com/</a> </p>
+<p>高清大图免费下载检索库聚集 <a href="http://stocksnap.com/index.html" target="_blank" rel="noopener">http://stocksnap.com/index.html</a> </p>
+<p>高清大图免费下载lifeofpix  <a href="https://www.lifeofpix.com/" target="_blank" rel="noopener">https://www.lifeofpix.com/</a> </p>
+<p>高清大图免费下载foter  <a href="https://foter.com/" target="_blank" rel="noopener">https://foter.com/</a> </p>
+<p>图标库Iconfont <a href="https://www.iconfont.cn/" target="_blank" rel="noopener">https://www.iconfont.cn/</a> </p>
+<ul>
+<li>模板类</li>
+</ul>
+<p>优品PPT免费模板 <a href="http://www.ypppt.com/" target="_blank" rel="noopener">http://www.ypppt.com/</a> </p>
+<p>免费字体库下载 <a href="http://ziti.sozi.cn/search.php?keyword=%C2%C0%BD%A8%B5%C2%D0%D0%BF%AC%BC%F2%CC%E5" target="_blank" rel="noopener">http://ziti.sozi.cn/search.php?keyword=%C2%C0%BD%A8%B5%C2%D0%D0%BF%AC%BC%F2%CC%E5</a> </p>
+<h2 id="专业相关"><a href="#专业相关" class="headerlink" title="专业相关"></a>专业相关</h2><ul>
+<li>交通分配</li>
+</ul>
+<p>交通分配常用网络下载 <a href="http://www.bgu.ac.il/~bargera/tntp/" target="_blank" rel="noopener">http://www.bgu.ac.il/~bargera/tntp/</a> </p>
+<ul>
+<li>交通数据</li>
+</ul>
+<p>出租车网约车数据分析网站 <a href="https://toddwschneider.com/posts/analyzing-1-1-billion-nyc-taxi-and-uber-trips-with-a-vengeance/" target="_blank" rel="noopener">https://toddwschneider.com/posts/analyzing-1-1-billion-nyc-taxi-and-uber-trips-with-a-vengeance/</a> </p>
+<p>加州高速流量数据下载PEMS <a href="http://pems.dot.ca.gov/" target="_blank" rel="noopener">http://pems.dot.ca.gov/</a> </p>
+<ul>
+<li>GIS相关</li>
+</ul>
+<p>世界各地用于GIS的Shapefile下载 <a href="http://www.diva-gis.org/gdata" target="_blank" rel="noopener">http://www.diva-gis.org/gdata</a> </p>
+<p>地理坐标搜索 <a href="http://epsg.io/" target="_blank" rel="noopener">http://epsg.io/</a> </p>
+<h2 id="英语写作"><a href="#英语写作" class="headerlink" title="英语写作"></a>英语写作</h2><p>词语搭配模糊查询linggle <a href="https://www.linggle.com/" target="_blank" rel="noopener">https://www.linggle.com/</a> 使用指南 <a href="https://www.jianshu.com/p/f0705d09094f" target="_blank" rel="noopener">https://www.jianshu.com/p/f0705d09094f</a> </p>
+<p>词语搭配模糊查询Netspeak <a href="http://www.netspeak.org/" target="_blank" rel="noopener">http://www.netspeak.org/</a> </p>
+<p>其余写作网站可参考 <a href="https://www.jianshu.com/p/2a596454d2e0" target="_blank" rel="noopener">https://www.jianshu.com/p/2a596454d2e0</a> </p>
+<h2 id="其他小工具"><a href="#其他小工具" class="headerlink" title="其他小工具"></a>其他小工具</h2><ul>
+<li><p><strong>Apowersoft</strong>在线录屏 <a href="https://www.apowersoft.cn/free-online-screen-recorder" target="_blank" rel="noopener">https://www.apowersoft.cn/free-online-screen-recorder</a> </p>
+</li>
+<li><p>电脑文件快速检索软件 <strong>Everything</strong> <a href="https://www.voidtools.com/zh-cn/" target="_blank" rel="noopener">https://www.voidtools.com/zh-cn/</a> </p>
+</li>
+<li><p>复制即翻译，避免断行尴尬的翻译软件 <strong>copytranslator</strong> <a href="https://copytranslator.github.io/" target="_blank" rel="noopener">https://copytranslator.github.io/</a> </p>
+</li>
+<li><p>远程电脑操控软件<strong>Teamviewer</strong> <a href="https://www.teamviewer.com/en-us/" target="_blank" rel="noopener">https://www.teamviewer.com/en-us/</a> </p>
+</li>
+<li><p>文件云存储管理 <strong>坚果云</strong> <a href="https://www.jianguoyun.com/" target="_blank" rel="noopener">https://www.jianguoyun.com/</a> </p>
+</li>
+<li><p>PDF文件阅读、编辑等软件 <strong>Adobe Acrobat DC</strong></p>
+</li>
+<li><p>软件安装包下载：公众号—软件安装管家 </p>
+</li>
+<li><p>更学术的英语词典 <strong>欧路词典</strong> <a href="https://www.eudic.net/v4/en/app/eudic" target="_blank" rel="noopener">https://www.eudic.net/v4/en/app/eudic</a> </p>
+</li>
+<li><p><strong>WikiHow</strong>做事指南 <a href="https://www.wikihow.com/Main-Page" target="_blank" rel="noopener">https://www.wikihow.com/Main-Page</a> </p>
+<p>中文版本<a href="https://zh.wikihow.com/%E9%A6%96%E9%A1%B5" target="_blank" rel="noopener">https://zh.wikihow.com/%E9%A6%96%E9%A1%B5</a> </p>
+</li>
+</ul>
+<h2 id="必备软件"><a href="#必备软件" class="headerlink" title="必备软件"></a>必备软件</h2><p>Visual Studio 2012</p>
+<p>SQL Server 2012</p>
+<p>Texstudio</p>
+<p>JabRef</p>
+<p>Office套件含Visio</p>
+<p>Notepad++</p>
+<p>MATLAB</p>
+<p>Python/Anaconda（Pycharm，Vscode等编辑器）</p>
+<p>Qgis</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/26/geopandas-install/" rel="next" title="geopandas安装攻略">
+                <i class="fa fa-chevron-left"></i> geopandas安装攻略
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjY5NC8xMzIyOQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/portrait.jpg"
+                alt="Wang Qianni" />
+            
+              <p class="site-author-name" itemprop="name">Wang Qianni</p>
+              <p class="site-description motion-element" itemprop="description">It is a place for Qianni to record and learn.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分享实用工具与网站"><span class="nav-number">1.</span> <span class="nav-text">分享实用工具与网站</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#电子书籍"><span class="nav-number">1.1.</span> <span class="nav-text">电子书籍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LaTeX文档"><span class="nav-number">1.2.</span> <span class="nav-text">LaTeX文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#论文检索与管理"><span class="nav-number">1.3.</span> <span class="nav-text">论文检索与管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PPT制作"><span class="nav-number">1.4.</span> <span class="nav-text">PPT制作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#专业相关"><span class="nav-number">1.5.</span> <span class="nav-text">专业相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#英语写作"><span class="nav-number">1.6.</span> <span class="nav-text">英语写作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他小工具"><span class="nav-number">1.7.</span> <span class="nav-text">其他小工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#必备软件"><span class="nav-number">1.8.</span> <span class="nav-text">必备软件</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wang Qianni</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
