@@ -322,8 +322,7 @@
 
       
         
-          
-            <h1 id="Fundamental-relationship-of-the-traffic-flow交通流流密速关系阐述"><a href="#Fundamental-relationship-of-the-traffic-flow交通流流密速关系阐述" class="headerlink" title="Fundamental relationship of the traffic flow交通流流密速关系阐述"></a>Fundamental relationship of the traffic flow交通流流密速关系阐述</h1><blockquote>
+          <h1 id="Fundamental-relationship-of-the-traffic-flow交通流流密速关系阐述"><a href="#Fundamental-relationship-of-the-traffic-flow交通流流密速关系阐述" class="headerlink" title="Fundamental relationship of the traffic flow交通流流密速关系阐述"></a>Fundamental relationship of the traffic flow交通流流密速关系阐述</h1><blockquote>
 <p>Resource: Northwestern University, Yu(Marco) Nie, CIV-ENG 376 Lecture Notes</p>
 </blockquote>
 <h2 id="Notations-符号"><a href="#Notations-符号" class="headerlink" title="Notations 符号"></a>Notations 符号</h2><div class="table-container">
@@ -382,196 +381,13 @@
 </tbody>
 </table>
 </div>
-<h2 id="General-Relationship-流密速通用关系"><a href="#General-Relationship-流密速通用关系" class="headerlink" title="General Relationship 流密速通用关系"></a>General Relationship 流密速通用关系</h2><div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Formulation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>basic relationship</td>
-<td>$q=ku$</td>
-</tr>
-<tr>
-<td>General definition</td>
-<td>$q=\frac{\text{Total travel distance}}{\text{Shaded area}}$</td>
-</tr>
-<tr>
-<td></td>
-<td>$k=\frac{\text{Total travel time}}{\text{Shaded area}}$</td>
-</tr>
-<tr>
-<td></td>
-<td>$u=\frac{\text{Total travel distance}}{\text{Total travel time}}$</td>
-</tr>
-<tr>
-<td>time mean speed is a flow-weighted speed</td>
-<td>$\bar{v}=\sum_{i}\frac{q_i}{q}v_i$, $q=\sum_{i}q_i$</td>
-</tr>
-<tr>
-<td>space mean speed is a density-weighted speed</td>
-<td>$u=\sum_{i}\frac{k_i}{k}v_i$, $k=\sum_{i}k_i$</td>
-</tr>
-<tr>
-<td>numerical relationship</td>
-<td>$u\leq \bar{v}$</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="Two-different-observation-methods-for-speed-观测速度的两类方法"><a href="#Two-different-observation-methods-for-speed-观测速度的两类方法" class="headerlink" title="Two different observation methods for speed 观测速度的两类方法"></a>Two different observation methods for speed 观测速度的两类方法</h2><p>There are two kinds of speed in traffic: the <strong>time mean speed</strong> and the <strong>space mean speed</strong> which have different definition. There are two ways to collect the speed and each method can collect both speed. The two methods have the following differences.</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Method 1</th>
-<th>Method 2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Observation method</td>
-<td>Stand at roadside with a watch</td>
-<td>Took photos on a helicopter</td>
-</tr>
-<tr>
-<td></td>
-<td><strong>Single-x</strong> at $x_1$</td>
-<td><strong>Single-t</strong> at $t_1$</td>
-</tr>
-<tr>
-<td>info</td>
-<td><em> $i$th vehicle arrival time $\tau_i$        </em> headway $h=\tau_{i+1}-\tau_i$       * total vehicle passing $N$ within $T$ time</td>
-<td><em> $i$th vehicle location $x_i$     </em>spacing $s_i=x_{i-1}-x_i$     * total vehicles within $L$</td>
-</tr>
-<tr>
-<td>Cumulative count curve</td>
-<td>$N - t$ diagram</td>
-<td>$x- N$ diagram</td>
-</tr>
-<tr>
-<td>Micro-macro relationship</td>
-<td>$q$ with $\bar{h}$</td>
-<td>$k$ with $\bar{s}$</td>
-</tr>
-<tr>
-<td></td>
-<td>$q=\frac{N}{T}=\frac{N}{\sum_{i}h_i}=\frac{1}{\sum_{i}h_i/N}=\frac{1}{\bar{h}}$</td>
-<td>$k=\frac{N}{L}=\frac{N}{\sum_{i}s_i}=\frac{1}{\sum_{i}s_i/N}=\frac{1}{\bar{s}}$</td>
-</tr>
-<tr>
-<td></td>
-<td><strong>double-x</strong></td>
-<td><strong>double-t</strong></td>
-</tr>
-<tr>
-<td>supplement info</td>
-<td>* $i$th travel time between $x_1, x_2$, which induce the travel speed $v_i=dx/dt_i=(x_2-x_1)/(\tau_i^\prime-\tau_i)$</td>
-<td>* Distance traveled y $i$th vehicle between $t_1$, $t_2$, which induce the travel speed $v_i=dx_i/dt=(x_i^\prime-x_i)/(t_2-t_1)$</td>
-</tr>
-<tr>
-<td>Time mean speed</td>
-<td>$\bar{v}=\frac{1}{N}\sum_{i}v_i$</td>
-<td>$\bar{v}=\frac{\sum_{i}v_i^2}{\sum_{i}v_i}$</td>
-</tr>
-<tr>
-<td>Space mean speed</td>
-<td>$u=\frac{N}{\sum_{i}1/v_i}$</td>
-<td>$u=\frac{1}{N}\sum_{i}v_i$</td>
-</tr>
-<tr>
-<td>Cumulative count curve meaning</td>
-<td><em>horizontal</em>:  travel time  of a particular vehicle between $x_1$ and $x_2$</td>
-<td><em>horizontal</em>: # vehicles passing a location between $t_1$ and $t_2$</td>
-</tr>
-<tr>
-<td></td>
-<td><em>vertical</em>: at a time # vehicles between $x_1$ and $x_2$</td>
-<td><em>vertical</em>: travel distance of a particular vehicle between $t_1$ and $t_2$</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><strong>Proof of the numerical relationship $u\leq \bar{v}$:</strong></p>
-<ul>
-<li>In <strong>double-x</strong> method, From the Cauchy-Schwarz inequality, we have: $||\langle x,y\rangle||^2\leq \langle x,x\rangle\cdot\langle y,y\rangle$;</li>
-</ul>
-<p>By setting $x=[\sqrt{v_1},\cdots, \sqrt{v_n}]^\intercal$ and $y=[1/\sqrt{v_1},\cdots, 1/\sqrt{v_n}]^\intercal$, we get $N^2\leq \sum_i v_i\cdot \sum_i \frac{1}{v_i}$, and then $\frac{N}{\sum_i \frac{1}{v_i}}\leq \frac{\sum_i v_i}{N} $ which indicates $u\leq \bar{v}$.</p>
-<ul>
-<li>In <strong>double-t</strong> method, similarly by setting $x=[v_1,\cdots, v_n]^\intercal$, $y=[1,\cdots, 1]^\intercal$, we get $(\sum_i v_i)^2\leq N(\sum_i v_i^2)$, and then $\frac{\sum_i v_i}{N}\leq \frac{\sum_i v_i^2}{\sum_i v_i}$, which indicates $u\leq \bar{v}$.</li>
-</ul>
-<p><strong>The derivation of the time mean speed and space mean speed in each method：</strong></p>
-<ul>
-<li><p>In double-x method: assuming $q_i=1$ because we view each vehicle as a flow stream of its own</p>
-<ul>
-<li>Time mean speed: $\bar{v}=\sum_{i}\frac{q_i}{q}v_i=\frac{1}{N}\sum_{i}v_i$</li>
-<li>Space mean speed: $u=\sum_{i}\frac{k_i}{\sum_{i}k_i}v_i=\sum_{i}\frac{q_i/v_i}{\sum_{i}q_i/v_i}v_i=\sum_{i}\frac{1/v_i}{\sum_{i}1/v_i}v_i=\frac{N}{\sum_{i}1/v_i}$, further we could have $u=\frac{N}{\sum_{i}1/v_i}=\frac{NL}{L\sum_{i}1/v_i}=\frac{NL}{\sum_{i}t_i}=\frac{L}{\frac{1}{N}\sum_{i}t_i}$</li>
-</ul>
-</li>
-<li><p>In double-t method: assuming $k_i=1$ because we view each vehicle as a flow stream of its own</p>
-<ul>
-<li>Time mean speed: $\bar{v}=\sum_{i}\frac{q_i}{\sum_i q_i}v_i=\sum_{i}\frac{k_iv_i}{\sum_i k_iv_i}v_i=\sum_i\frac{v_i}{\sum_{i}v_i}v_i=\frac{\sum_{i}v_i^2}{\sum_{i}v_i}$</li>
-<li>Space mean speed: $u=\sum_{i}\frac{k_i}{k}v_i=\sum_i\frac{1/L}{N/L}v_i=\frac{1}{N}\sum_{i}v_i$</li>
-</ul>
-</li>
-</ul>
-<p><strong>How to get the general definition</strong></p>
-<p>Imagine a shaded area on the x-t diagram:</p>
-<p><img src="C:\Users\lenovo\Qianni1997.github.io\source\images\1635219816607.png" alt="1635219816607"></p>
-<script type="math/tex; mode=display">q=\frac{\int_{x_0}^{x_1}q(x)T(x)dx}{\int_{x_0}^{x_1}T(x)dx}=\frac{\int_{x_0}^{x_1}N(x)dx}{\int_{x_0}^{x_1}T(x)dx}=\frac{\text{Total travel distance}}{\text{Shaded area}}</script><script type="math/tex; mode=display">k=\frac{\int_{t_0}^{t_1}k(t)L(t)dt}{\int_{t_0}^{t_1}L(t)dt}=\frac{\int_{t_0}^{t_1}N(t)dt}{\int_{t_0}^{t_1}L(t)dt}=\frac{\text{Total travel time}}{\text{Shaded area}}</script><p><strong>How to apply General definition into two observation method</strong></p>
-<p>Note that the area is shaded area in x-t diagram</p>
-<ul>
-<li>In <strong>double-x</strong> method: <ul>
-<li>$\text{total travel distance}=N\times dx$, $\text{total travel time}=\sum_i dt_i$, $\text{The area}=dx\times T$</li>
-<li>$q=\frac{Ndx}{Tdx}=\frac{N}{T}$</li>
-<li>$k=\frac{\sum_i dt_i}{Tdx}$</li>
-<li>$u=\frac{Ndx}{\sum_i dt_i}=\frac{N}{\sum_i dt_i/dx}=\frac{N}{\sum_i 1/v_i}$</li>
-</ul>
-</li>
-<li>In <strong>double-t</strong> method: <ul>
-<li>$\text{total travel distance}=\sum_i dx_i$, $\text{total travel time}=N\times dt$, $\text{The area}=dt\times L$</li>
-<li>$q=\frac{\sum_i dx_i}{Ldt}$</li>
-<li>$k=\frac{N\times dt}{Ldt}=\frac{N}{L}$</li>
-<li>$u=\frac{\sum_i dx_i}{N\times dt}=\frac{1}{N}{\sum_i \frac{dx_i}{dt}}=\frac{1}{N}{\sum_i v_i}$</li>
-</ul>
-</li>
-</ul>
-<h2 id="Greenshield’s-model-交通流基本图关系之格林希尔治模型"><a href="#Greenshield’s-model-交通流基本图关系之格林希尔治模型" class="headerlink" title="Greenshield’s model 交通流基本图关系之格林希尔治模型"></a>Greenshield’s model 交通流基本图关系之格林希尔治模型</h2><p><img src="C:\Users\lenovo\Qianni1997.github.io\source\images\maxresdefault.jpg" alt="1635217391623"></p>
-<p>The Greenshield’s model is a </p>
-<ul>
-<li><script type="math/tex; mode=display">u=u_f\left(1-\frac{k}{k_j}\right)</script></li>
-<li><script type="math/tex; mode=display">q=ku=u_f\left(k-\frac{k^2}{k_j}\right)</script></li>
-<li><script type="math/tex; mode=display">q=ku=k_j\left(u-\frac{u^2}{u_f}\right)</script></li>
-</ul>
-<p>The critical properties:</p>
-<ul>
-<li><p>$k_{cap}=\frac{k_j}{2}$</p>
-</li>
-<li><p>$q_{cap}=\frac{u_fk_j}{4}$</p>
-</li>
-<li><p>$u_{cap}=\frac{u_f}{2}$</p>
-</li>
-</ul>
-<h2 id="Inductive-loop-detector-traffic-measurement-线圈检测器数据估计交通流状态"><a href="#Inductive-loop-detector-traffic-measurement-线圈检测器数据估计交通流状态" class="headerlink" title="Inductive loop detector traffic measurement 线圈检测器数据估计交通流状态"></a>Inductive loop detector traffic measurement 线圈检测器数据估计交通流状态</h2><p><img src="C:\Users\lenovo\Qianni1997.github.io\source\images\1635220136892.png" alt="1635220136892"></p>
-<ul>
-<li>$v_i=\frac{li+D}{dt_i}$, where $l_i $is the vehicle length and $D$ is loop detector width.</li>
-<li>$q=N/T$, where $T=30\text{ sec or } 5\text{ min}$.</li>
-<li>$u=\frac{\text{Total travel distance}}{\text{Total travel time}}=\frac{\sum_i(l_i+D)}{\sum_i dt_i}$</li>
-</ul>
-<p>Occupancy $\rho$ is defined as the percentage of time when it is occupied. It is used to denoted density:</p>
-<ul>
-<li>$\rho=\frac{\sum_i dt_i}{T}\times 100=\frac{q\sum_i dt_i}{N}\times 100=\frac{q}{N}\frac{\sum_i (l_i+D)}{u}\times 100=\frac{k\sum_i (l_i+D)}{N}\times 100=k(D+\bar{l})\times 100\equiv  kg_D$</li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/10/25/Fundamental_relationship_of_the_traffic_flow/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
