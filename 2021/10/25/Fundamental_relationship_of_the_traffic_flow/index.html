@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Transportation Engineering," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Fundamental relationship of the traffic flow交通流流密速关系阐述 Resource: Northwestern University, Yu(Marco) Nie, CIV-ENG 376 Lecture Notes  Notations 符号    Symbols Meaning     $q$ Flow rate(pcu/h, vph) 流量 (Ho">
+<meta name="keywords" content="Transportation Engineering">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fundamental relationship of the traffic flow交通流流密速关系阐述">
+<meta property="og:url" content="http://yoursite.com/2021/10/25/Fundamental_relationship_of_the_traffic_flow/index.html">
+<meta property="og:site_name" content="Find Qianni">
+<meta property="og:description" content="Fundamental relationship of the traffic flow交通流流密速关系阐述 Resource: Northwestern University, Yu(Marco) Nie, CIV-ENG 376 Lecture Notes  Notations 符号    Symbols Meaning     $q$ Flow rate(pcu/h, vph) 流量 (Ho">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="c:/Users/lenovo/Qianni1997.github.io/source/images/1635219816607.png">
+<meta property="og:image" content="c:/Users/lenovo/Qianni1997.github.io/source/images/maxresdefault.jpg">
+<meta property="og:image" content="c:/Users/lenovo/Qianni1997.github.io/source/images/1635220136892.png">
+<meta property="og:updated_time" content="2021-10-26T04:08:50.680Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fundamental relationship of the traffic flow交通流流密速关系阐述">
+<meta name="twitter:description" content="Fundamental relationship of the traffic flow交通流流密速关系阐述 Resource: Northwestern University, Yu(Marco) Nie, CIV-ENG 376 Lecture Notes  Notations 符号    Symbols Meaning     $q$ Flow rate(pcu/h, vph) 流量 (Ho">
+<meta name="twitter:image" content="c:/Users/lenovo/Qianni1997.github.io/source/images/1635219816607.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/10/25/Fundamental_relationship_of_the_traffic_flow/"/>
+
+
+
+
+
+  <title>Fundamental relationship of the traffic flow交通流流密速关系阐述 | Find Qianni</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Find Qianni</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Always be Brave and Enthusiastic</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/10/25/Fundamental_relationship_of_the_traffic_flow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang Qianni">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/portrait.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Find Qianni">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Fundamental relationship of the traffic flow交通流流密速关系阐述</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-10-25T23:06:10-05:00">
+                2021-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Fundamental-relationship-of-the-traffic-flow交通流流密速关系阐述"><a href="#Fundamental-relationship-of-the-traffic-flow交通流流密速关系阐述" class="headerlink" title="Fundamental relationship of the traffic flow交通流流密速关系阐述"></a>Fundamental relationship of the traffic flow交通流流密速关系阐述</h1><blockquote>
+<p>Resource: Northwestern University, Yu(Marco) Nie, CIV-ENG 376 Lecture Notes</p>
+</blockquote>
+<h2 id="Notations-符号"><a href="#Notations-符号" class="headerlink" title="Notations 符号"></a>Notations 符号</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Symbols</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$q$</td>
+<td>Flow rate(pcu/h, vph) 流量 (How much the traffic flows)</td>
+</tr>
+<tr>
+<td>$k$</td>
+<td>Density(pcu/km, vpm) 密度 (How crowd the road is)</td>
+</tr>
+<tr>
+<td>$u$</td>
+<td>Space mean speed(km/h, mph) 空间平均速度 (how fast the traffic moves)</td>
+</tr>
+<tr>
+<td>$\bar{v}$</td>
+<td>Time mean speed(km/h, mph) 时间平均速度</td>
+</tr>
+<tr>
+<td>$T$</td>
+<td>A period of time(h, min, s) 时间</td>
+</tr>
+<tr>
+<td>$N$</td>
+<td>Numbers of vehicles 车辆数量</td>
+</tr>
+<tr>
+<td>$x$</td>
+<td>Location 位置</td>
+</tr>
+<tr>
+<td>$t$</td>
+<td>A moment 时刻</td>
+</tr>
+<tr>
+<td>$h$</td>
+<td>Headway(s) 车头时距</td>
+</tr>
+<tr>
+<td>$s$</td>
+<td>Spacing (m, ft) 车头间距</td>
+</tr>
+<tr>
+<td>$i$</td>
+<td>index of vehicle 车辆编号</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="General-Relationship-流密速通用关系"><a href="#General-Relationship-流密速通用关系" class="headerlink" title="General Relationship 流密速通用关系"></a>General Relationship 流密速通用关系</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Formulation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic relationship</td>
+<td>$q=ku$</td>
+</tr>
+<tr>
+<td>General definition</td>
+<td>$q=\frac{\text{Total travel distance}}{\text{Shaded area}}$</td>
+</tr>
+<tr>
+<td></td>
+<td>$k=\frac{\text{Total travel time}}{\text{Shaded area}}$</td>
+</tr>
+<tr>
+<td></td>
+<td>$u=\frac{\text{Total travel distance}}{\text{Total travel time}}$</td>
+</tr>
+<tr>
+<td>time mean speed is a flow-weighted speed</td>
+<td>$\bar{v}=\sum_{i}\frac{q_i}{q}v_i$, $q=\sum_{i}q_i$</td>
+</tr>
+<tr>
+<td>space mean speed is a density-weighted speed</td>
+<td>$u=\sum_{i}\frac{k_i}{k}v_i$, $k=\sum_{i}k_i$</td>
+</tr>
+<tr>
+<td>numerical relationship</td>
+<td>$u\leq \bar{v}$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Two-different-observation-methods-for-speed-观测速度的两类方法"><a href="#Two-different-observation-methods-for-speed-观测速度的两类方法" class="headerlink" title="Two different observation methods for speed 观测速度的两类方法"></a>Two different observation methods for speed 观测速度的两类方法</h2><p>There are two kinds of speed in traffic: the <strong>time mean speed</strong> and the <strong>space mean speed</strong> which have different definition. There are two ways to collect the speed and each method can collect both speed. The two methods have the following differences.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Method 1</th>
+<th>Method 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Observation method</td>
+<td>Stand at roadside with a watch</td>
+<td>Took photos on a helicopter</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Single-x</strong> at $x_1$</td>
+<td><strong>Single-t</strong> at $t_1$</td>
+</tr>
+<tr>
+<td>info</td>
+<td><em> $i$th vehicle arrival time $\tau_i$        </em> headway $h=\tau_{i+1}-\tau_i$       * total vehicle passing $N$ within $T$ time</td>
+<td><em> $i$th vehicle location $x_i$     </em>spacing $s_i=x_{i-1}-x_i$     * total vehicles within $L$</td>
+</tr>
+<tr>
+<td>Cumulative count curve</td>
+<td>$N - t$ diagram</td>
+<td>$x- N$ diagram</td>
+</tr>
+<tr>
+<td>Micro-macro relationship</td>
+<td>$q$ with $\bar{h}$</td>
+<td>$k$ with $\bar{s}$</td>
+</tr>
+<tr>
+<td></td>
+<td>$q=\frac{N}{T}=\frac{N}{\sum_{i}h_i}=\frac{1}{\sum_{i}h_i/N}=\frac{1}{\bar{h}}$</td>
+<td>$k=\frac{N}{L}=\frac{N}{\sum_{i}s_i}=\frac{1}{\sum_{i}s_i/N}=\frac{1}{\bar{s}}$</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>double-x</strong></td>
+<td><strong>double-t</strong></td>
+</tr>
+<tr>
+<td>supplement info</td>
+<td>* $i$th travel time between $x_1, x_2$, which induce the travel speed $v_i=dx/dt_i=(x_2-x_1)/(\tau_i^\prime-\tau_i)$</td>
+<td>* Distance traveled y $i$th vehicle between $t_1$, $t_2$, which induce the travel speed $v_i=dx_i/dt=(x_i^\prime-x_i)/(t_2-t_1)$</td>
+</tr>
+<tr>
+<td>Time mean speed</td>
+<td>$\bar{v}=\frac{1}{N}\sum_{i}v_i$</td>
+<td>$\bar{v}=\frac{\sum_{i}v_i^2}{\sum_{i}v_i}$</td>
+</tr>
+<tr>
+<td>Space mean speed</td>
+<td>$u=\frac{N}{\sum_{i}1/v_i}$</td>
+<td>$u=\frac{1}{N}\sum_{i}v_i$</td>
+</tr>
+<tr>
+<td>Cumulative count curve meaning</td>
+<td><em>horizontal</em>:  travel time  of a particular vehicle between $x_1$ and $x_2$</td>
+<td><em>horizontal</em>: # vehicles passing a location between $t_1$ and $t_2$</td>
+</tr>
+<tr>
+<td></td>
+<td><em>vertical</em>: at a time # vehicles between $x_1$ and $x_2$</td>
+<td><em>vertical</em>: travel distance of a particular vehicle between $t_1$ and $t_2$</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Proof of the numerical relationship $u\leq \bar{v}$:</strong></p>
+<ul>
+<li>In <strong>double-x</strong> method, From the Cauchy-Schwarz inequality, we have: $||\langle x,y\rangle||^2\leq \langle x,x\rangle\cdot\langle y,y\rangle$;</li>
+</ul>
+<p>By setting $x=[\sqrt{v_1},\cdots, \sqrt{v_n}]^\intercal$ and $y=[1/\sqrt{v_1},\cdots, 1/\sqrt{v_n}]^\intercal$, we get $N^2\leq \sum_i v_i\cdot \sum_i \frac{1}{v_i}$, and then $\frac{N}{\sum_i \frac{1}{v_i}}\leq \frac{\sum_i v_i}{N} $ which indicates $u\leq \bar{v}$.</p>
+<ul>
+<li>In <strong>double-t</strong> method, similarly by setting $x=[v_1,\cdots, v_n]^\intercal$, $y=[1,\cdots, 1]^\intercal$, we get $(\sum_i v_i)^2\leq N(\sum_i v_i^2)$, and then $\frac{\sum_i v_i}{N}\leq \frac{\sum_i v_i^2}{\sum_i v_i}$, which indicates $u\leq \bar{v}$.</li>
+</ul>
+<p><strong>The derivation of the time mean speed and space mean speed in each method：</strong></p>
+<ul>
+<li><p>In double-x method: assuming $q_i=1$ because we view each vehicle as a flow stream of its own</p>
+<ul>
+<li>Time mean speed: $\bar{v}=\sum_{i}\frac{q_i}{q}v_i=\frac{1}{N}\sum_{i}v_i$</li>
+<li>Space mean speed: $u=\sum_{i}\frac{k_i}{\sum_{i}k_i}v_i=\sum_{i}\frac{q_i/v_i}{\sum_{i}q_i/v_i}v_i=\sum_{i}\frac{1/v_i}{\sum_{i}1/v_i}v_i=\frac{N}{\sum_{i}1/v_i}$, further we could have $u=\frac{N}{\sum_{i}1/v_i}=\frac{NL}{L\sum_{i}1/v_i}=\frac{NL}{\sum_{i}t_i}=\frac{L}{\frac{1}{N}\sum_{i}t_i}$</li>
+</ul>
+</li>
+<li><p>In double-t method: assuming $k_i=1$ because we view each vehicle as a flow stream of its own</p>
+<ul>
+<li>Time mean speed: $\bar{v}=\sum_{i}\frac{q_i}{\sum_i q_i}v_i=\sum_{i}\frac{k_iv_i}{\sum_i k_iv_i}v_i=\sum_i\frac{v_i}{\sum_{i}v_i}v_i=\frac{\sum_{i}v_i^2}{\sum_{i}v_i}$</li>
+<li>Space mean speed: $u=\sum_{i}\frac{k_i}{k}v_i=\sum_i\frac{1/L}{N/L}v_i=\frac{1}{N}\sum_{i}v_i$</li>
+</ul>
+</li>
+</ul>
+<p><strong>How to get the general definition</strong></p>
+<p>Imagine a shaded area on the x-t diagram:</p>
+<p><img src="C:\Users\lenovo\Qianni1997.github.io\source\images\1635219816607.png" alt="1635219816607"></p>
+<script type="math/tex; mode=display">q=\frac{\int_{x_0}^{x_1}q(x)T(x)dx}{\int_{x_0}^{x_1}T(x)dx}=\frac{\int_{x_0}^{x_1}N(x)dx}{\int_{x_0}^{x_1}T(x)dx}=\frac{\text{Total travel distance}}{\text{Shaded area}}</script><script type="math/tex; mode=display">k=\frac{\int_{t_0}^{t_1}k(t)L(t)dt}{\int_{t_0}^{t_1}L(t)dt}=\frac{\int_{t_0}^{t_1}N(t)dt}{\int_{t_0}^{t_1}L(t)dt}=\frac{\text{Total travel time}}{\text{Shaded area}}</script><p><strong>How to apply General definition into two observation method</strong></p>
+<p>Note that the area is shaded area in x-t diagram</p>
+<ul>
+<li>In <strong>double-x</strong> method: <ul>
+<li>$\text{total travel distance}=N\times dx$, $\text{total travel time}=\sum_i dt_i$, $\text{The area}=dx\times T$</li>
+<li>$q=\frac{Ndx}{Tdx}=\frac{N}{T}$</li>
+<li>$k=\frac{\sum_i dt_i}{Tdx}$</li>
+<li>$u=\frac{Ndx}{\sum_i dt_i}=\frac{N}{\sum_i dt_i/dx}=\frac{N}{\sum_i 1/v_i}$</li>
+</ul>
+</li>
+<li>In <strong>double-t</strong> method: <ul>
+<li>$\text{total travel distance}=\sum_i dx_i$, $\text{total travel time}=N\times dt$, $\text{The area}=dt\times L$</li>
+<li>$q=\frac{\sum_i dx_i}{Ldt}$</li>
+<li>$k=\frac{N\times dt}{Ldt}=\frac{N}{L}$</li>
+<li>$u=\frac{\sum_i dx_i}{N\times dt}=\frac{1}{N}{\sum_i \frac{dx_i}{dt}}=\frac{1}{N}{\sum_i v_i}$</li>
+</ul>
+</li>
+</ul>
+<h2 id="Greenshield’s-model-交通流基本图关系之格林希尔治模型"><a href="#Greenshield’s-model-交通流基本图关系之格林希尔治模型" class="headerlink" title="Greenshield’s model 交通流基本图关系之格林希尔治模型"></a>Greenshield’s model 交通流基本图关系之格林希尔治模型</h2><p><img src="C:\Users\lenovo\Qianni1997.github.io\source\images\maxresdefault.jpg" alt="1635217391623"></p>
+<p>The Greenshield’s model is a </p>
+<ul>
+<li><script type="math/tex; mode=display">u=u_f\left(1-\frac{k}{k_j}\right)</script></li>
+<li><script type="math/tex; mode=display">q=ku=u_f\left(k-\frac{k^2}{k_j}\right)</script></li>
+<li><script type="math/tex; mode=display">q=ku=k_j\left(u-\frac{u^2}{u_f}\right)</script></li>
+</ul>
+<p>The critical properties:</p>
+<ul>
+<li><p>$k_{cap}=\frac{k_j}{2}$</p>
+</li>
+<li><p>$q_{cap}=\frac{u_fk_j}{4}$</p>
+</li>
+<li><p>$u_{cap}=\frac{u_f}{2}$</p>
+</li>
+</ul>
+<h2 id="Inductive-loop-detector-traffic-measurement-线圈检测器数据估计交通流状态"><a href="#Inductive-loop-detector-traffic-measurement-线圈检测器数据估计交通流状态" class="headerlink" title="Inductive loop detector traffic measurement 线圈检测器数据估计交通流状态"></a>Inductive loop detector traffic measurement 线圈检测器数据估计交通流状态</h2><p><img src="C:\Users\lenovo\Qianni1997.github.io\source\images\1635220136892.png" alt="1635220136892"></p>
+<ul>
+<li>$v_i=\frac{li+D}{dt_i}$, where $l_i $is the vehicle length and $D$ is loop detector width.</li>
+<li>$q=N/T$, where $T=30\text{ sec or } 5\text{ min}$.</li>
+<li>$u=\frac{\text{Total travel distance}}{\text{Total travel time}}=\frac{\sum_i(l_i+D)}{\sum_i dt_i}$</li>
+</ul>
+<p>Occupancy $\rho$ is defined as the percentage of time when it is occupied. It is used to denoted density:</p>
+<ul>
+<li>$\rho=\frac{\sum_i dt_i}{T}\times 100=\frac{q\sum_i dt_i}{N}\times 100=\frac{q}{N}\frac{\sum_i (l_i+D)}{u}\times 100=\frac{k\sum_i (l_i+D)}{N}\times 100=k(D+\bar{l})\times 100\equiv  kg_D$</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Transportation-Engineering/" rel="tag"># Transportation Engineering</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/27/toolandweb/" rel="next" title="分享实用工具与网站">
+                <i class="fa fa-chevron-left"></i> 分享实用工具与网站
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjY5NC8xMzIyOQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/portrait.jpg"
+                alt="Wang Qianni" />
+            
+              <p class="site-author-name" itemprop="name">Wang Qianni</p>
+              <p class="site-description motion-element" itemprop="description">It is a place for Qianni to record and learn.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Fundamental-relationship-of-the-traffic-flow交通流流密速关系阐述"><span class="nav-number">1.</span> <span class="nav-text">Fundamental relationship of the traffic flow交通流流密速关系阐述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Notations-符号"><span class="nav-number">1.1.</span> <span class="nav-text">Notations 符号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#General-Relationship-流密速通用关系"><span class="nav-number">1.2.</span> <span class="nav-text">General Relationship 流密速通用关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Two-different-observation-methods-for-speed-观测速度的两类方法"><span class="nav-number">1.3.</span> <span class="nav-text">Two different observation methods for speed 观测速度的两类方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Greenshield’s-model-交通流基本图关系之格林希尔治模型"><span class="nav-number">1.4.</span> <span class="nav-text">Greenshield’s model 交通流基本图关系之格林希尔治模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inductive-loop-detector-traffic-measurement-线圈检测器数据估计交通流状态"><span class="nav-number">1.5.</span> <span class="nav-text">Inductive loop detector traffic measurement 线圈检测器数据估计交通流状态</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wang Qianni</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

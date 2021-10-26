@@ -252,6 +252,372 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/10/25/Fundamental_relationship_of_the_traffic_flow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang Qianni">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/portrait.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Find Qianni">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/10/25/Fundamental_relationship_of_the_traffic_flow/" itemprop="url">Fundamental relationship of the traffic flow交通流流密速关系阐述</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-10-25T23:06:10-05:00">
+                2021-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Fundamental-relationship-of-the-traffic-flow交通流流密速关系阐述"><a href="#Fundamental-relationship-of-the-traffic-flow交通流流密速关系阐述" class="headerlink" title="Fundamental relationship of the traffic flow交通流流密速关系阐述"></a>Fundamental relationship of the traffic flow交通流流密速关系阐述</h1><blockquote>
+<p>Resource: Northwestern University, Yu(Marco) Nie, CIV-ENG 376 Lecture Notes</p>
+</blockquote>
+<h2 id="Notations-符号"><a href="#Notations-符号" class="headerlink" title="Notations 符号"></a>Notations 符号</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Symbols</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$q$</td>
+<td>Flow rate(pcu/h, vph) 流量 (How much the traffic flows)</td>
+</tr>
+<tr>
+<td>$k$</td>
+<td>Density(pcu/km, vpm) 密度 (How crowd the road is)</td>
+</tr>
+<tr>
+<td>$u$</td>
+<td>Space mean speed(km/h, mph) 空间平均速度 (how fast the traffic moves)</td>
+</tr>
+<tr>
+<td>$\bar{v}$</td>
+<td>Time mean speed(km/h, mph) 时间平均速度</td>
+</tr>
+<tr>
+<td>$T$</td>
+<td>A period of time(h, min, s) 时间</td>
+</tr>
+<tr>
+<td>$N$</td>
+<td>Numbers of vehicles 车辆数量</td>
+</tr>
+<tr>
+<td>$x$</td>
+<td>Location 位置</td>
+</tr>
+<tr>
+<td>$t$</td>
+<td>A moment 时刻</td>
+</tr>
+<tr>
+<td>$h$</td>
+<td>Headway(s) 车头时距</td>
+</tr>
+<tr>
+<td>$s$</td>
+<td>Spacing (m, ft) 车头间距</td>
+</tr>
+<tr>
+<td>$i$</td>
+<td>index of vehicle 车辆编号</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="General-Relationship-流密速通用关系"><a href="#General-Relationship-流密速通用关系" class="headerlink" title="General Relationship 流密速通用关系"></a>General Relationship 流密速通用关系</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Formulation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic relationship</td>
+<td>$q=ku$</td>
+</tr>
+<tr>
+<td>General definition</td>
+<td>$q=\frac{\text{Total travel distance}}{\text{Shaded area}}$</td>
+</tr>
+<tr>
+<td></td>
+<td>$k=\frac{\text{Total travel time}}{\text{Shaded area}}$</td>
+</tr>
+<tr>
+<td></td>
+<td>$u=\frac{\text{Total travel distance}}{\text{Total travel time}}$</td>
+</tr>
+<tr>
+<td>time mean speed is a flow-weighted speed</td>
+<td>$\bar{v}=\sum_{i}\frac{q_i}{q}v_i$, $q=\sum_{i}q_i$</td>
+</tr>
+<tr>
+<td>space mean speed is a density-weighted speed</td>
+<td>$u=\sum_{i}\frac{k_i}{k}v_i$, $k=\sum_{i}k_i$</td>
+</tr>
+<tr>
+<td>numerical relationship</td>
+<td>$u\leq \bar{v}$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Two-different-observation-methods-for-speed-观测速度的两类方法"><a href="#Two-different-observation-methods-for-speed-观测速度的两类方法" class="headerlink" title="Two different observation methods for speed 观测速度的两类方法"></a>Two different observation methods for speed 观测速度的两类方法</h2><p>There are two kinds of speed in traffic: the <strong>time mean speed</strong> and the <strong>space mean speed</strong> which have different definition. There are two ways to collect the speed and each method can collect both speed. The two methods have the following differences.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Method 1</th>
+<th>Method 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Observation method</td>
+<td>Stand at roadside with a watch</td>
+<td>Took photos on a helicopter</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Single-x</strong> at $x_1$</td>
+<td><strong>Single-t</strong> at $t_1$</td>
+</tr>
+<tr>
+<td>info</td>
+<td><em> $i$th vehicle arrival time $\tau_i$        </em> headway $h=\tau_{i+1}-\tau_i$       * total vehicle passing $N$ within $T$ time</td>
+<td><em> $i$th vehicle location $x_i$     </em>spacing $s_i=x_{i-1}-x_i$     * total vehicles within $L$</td>
+</tr>
+<tr>
+<td>Cumulative count curve</td>
+<td>$N - t$ diagram</td>
+<td>$x- N$ diagram</td>
+</tr>
+<tr>
+<td>Micro-macro relationship</td>
+<td>$q$ with $\bar{h}$</td>
+<td>$k$ with $\bar{s}$</td>
+</tr>
+<tr>
+<td></td>
+<td>$q=\frac{N}{T}=\frac{N}{\sum_{i}h_i}=\frac{1}{\sum_{i}h_i/N}=\frac{1}{\bar{h}}$</td>
+<td>$k=\frac{N}{L}=\frac{N}{\sum_{i}s_i}=\frac{1}{\sum_{i}s_i/N}=\frac{1}{\bar{s}}$</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>double-x</strong></td>
+<td><strong>double-t</strong></td>
+</tr>
+<tr>
+<td>supplement info</td>
+<td>* $i$th travel time between $x_1, x_2$, which induce the travel speed $v_i=dx/dt_i=(x_2-x_1)/(\tau_i^\prime-\tau_i)$</td>
+<td>* Distance traveled y $i$th vehicle between $t_1$, $t_2$, which induce the travel speed $v_i=dx_i/dt=(x_i^\prime-x_i)/(t_2-t_1)$</td>
+</tr>
+<tr>
+<td>Time mean speed</td>
+<td>$\bar{v}=\frac{1}{N}\sum_{i}v_i$</td>
+<td>$\bar{v}=\frac{\sum_{i}v_i^2}{\sum_{i}v_i}$</td>
+</tr>
+<tr>
+<td>Space mean speed</td>
+<td>$u=\frac{N}{\sum_{i}1/v_i}$</td>
+<td>$u=\frac{1}{N}\sum_{i}v_i$</td>
+</tr>
+<tr>
+<td>Cumulative count curve meaning</td>
+<td><em>horizontal</em>:  travel time  of a particular vehicle between $x_1$ and $x_2$</td>
+<td><em>horizontal</em>: # vehicles passing a location between $t_1$ and $t_2$</td>
+</tr>
+<tr>
+<td></td>
+<td><em>vertical</em>: at a time # vehicles between $x_1$ and $x_2$</td>
+<td><em>vertical</em>: travel distance of a particular vehicle between $t_1$ and $t_2$</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Proof of the numerical relationship $u\leq \bar{v}$:</strong></p>
+<ul>
+<li>In <strong>double-x</strong> method, From the Cauchy-Schwarz inequality, we have: $||\langle x,y\rangle||^2\leq \langle x,x\rangle\cdot\langle y,y\rangle$;</li>
+</ul>
+<p>By setting $x=[\sqrt{v_1},\cdots, \sqrt{v_n}]^\intercal$ and $y=[1/\sqrt{v_1},\cdots, 1/\sqrt{v_n}]^\intercal$, we get $N^2\leq \sum_i v_i\cdot \sum_i \frac{1}{v_i}$, and then $\frac{N}{\sum_i \frac{1}{v_i}}\leq \frac{\sum_i v_i}{N} $ which indicates $u\leq \bar{v}$.</p>
+<ul>
+<li>In <strong>double-t</strong> method, similarly by setting $x=[v_1,\cdots, v_n]^\intercal$, $y=[1,\cdots, 1]^\intercal$, we get $(\sum_i v_i)^2\leq N(\sum_i v_i^2)$, and then $\frac{\sum_i v_i}{N}\leq \frac{\sum_i v_i^2}{\sum_i v_i}$, which indicates $u\leq \bar{v}$.</li>
+</ul>
+<p><strong>The derivation of the time mean speed and space mean speed in each method：</strong></p>
+<ul>
+<li><p>In double-x method: assuming $q_i=1$ because we view each vehicle as a flow stream of its own</p>
+<ul>
+<li>Time mean speed: $\bar{v}=\sum_{i}\frac{q_i}{q}v_i=\frac{1}{N}\sum_{i}v_i$</li>
+<li>Space mean speed: $u=\sum_{i}\frac{k_i}{\sum_{i}k_i}v_i=\sum_{i}\frac{q_i/v_i}{\sum_{i}q_i/v_i}v_i=\sum_{i}\frac{1/v_i}{\sum_{i}1/v_i}v_i=\frac{N}{\sum_{i}1/v_i}$, further we could have $u=\frac{N}{\sum_{i}1/v_i}=\frac{NL}{L\sum_{i}1/v_i}=\frac{NL}{\sum_{i}t_i}=\frac{L}{\frac{1}{N}\sum_{i}t_i}$</li>
+</ul>
+</li>
+<li><p>In double-t method: assuming $k_i=1$ because we view each vehicle as a flow stream of its own</p>
+<ul>
+<li>Time mean speed: $\bar{v}=\sum_{i}\frac{q_i}{\sum_i q_i}v_i=\sum_{i}\frac{k_iv_i}{\sum_i k_iv_i}v_i=\sum_i\frac{v_i}{\sum_{i}v_i}v_i=\frac{\sum_{i}v_i^2}{\sum_{i}v_i}$</li>
+<li>Space mean speed: $u=\sum_{i}\frac{k_i}{k}v_i=\sum_i\frac{1/L}{N/L}v_i=\frac{1}{N}\sum_{i}v_i$</li>
+</ul>
+</li>
+</ul>
+<p><strong>How to get the general definition</strong></p>
+<p>Imagine a shaded area on the x-t diagram:</p>
+<p><img src="C:\Users\lenovo\Qianni1997.github.io\source\images\1635219816607.png" alt="1635219816607"></p>
+<script type="math/tex; mode=display">q=\frac{\int_{x_0}^{x_1}q(x)T(x)dx}{\int_{x_0}^{x_1}T(x)dx}=\frac{\int_{x_0}^{x_1}N(x)dx}{\int_{x_0}^{x_1}T(x)dx}=\frac{\text{Total travel distance}}{\text{Shaded area}}</script><script type="math/tex; mode=display">k=\frac{\int_{t_0}^{t_1}k(t)L(t)dt}{\int_{t_0}^{t_1}L(t)dt}=\frac{\int_{t_0}^{t_1}N(t)dt}{\int_{t_0}^{t_1}L(t)dt}=\frac{\text{Total travel time}}{\text{Shaded area}}</script><p><strong>How to apply General definition into two observation method</strong></p>
+<p>Note that the area is shaded area in x-t diagram</p>
+<ul>
+<li>In <strong>double-x</strong> method: <ul>
+<li>$\text{total travel distance}=N\times dx$, $\text{total travel time}=\sum_i dt_i$, $\text{The area}=dx\times T$</li>
+<li>$q=\frac{Ndx}{Tdx}=\frac{N}{T}$</li>
+<li>$k=\frac{\sum_i dt_i}{Tdx}$</li>
+<li>$u=\frac{Ndx}{\sum_i dt_i}=\frac{N}{\sum_i dt_i/dx}=\frac{N}{\sum_i 1/v_i}$</li>
+</ul>
+</li>
+<li>In <strong>double-t</strong> method: <ul>
+<li>$\text{total travel distance}=\sum_i dx_i$, $\text{total travel time}=N\times dt$, $\text{The area}=dt\times L$</li>
+<li>$q=\frac{\sum_i dx_i}{Ldt}$</li>
+<li>$k=\frac{N\times dt}{Ldt}=\frac{N}{L}$</li>
+<li>$u=\frac{\sum_i dx_i}{N\times dt}=\frac{1}{N}{\sum_i \frac{dx_i}{dt}}=\frac{1}{N}{\sum_i v_i}$</li>
+</ul>
+</li>
+</ul>
+<h2 id="Greenshield’s-model-交通流基本图关系之格林希尔治模型"><a href="#Greenshield’s-model-交通流基本图关系之格林希尔治模型" class="headerlink" title="Greenshield’s model 交通流基本图关系之格林希尔治模型"></a>Greenshield’s model 交通流基本图关系之格林希尔治模型</h2><p><img src="C:\Users\lenovo\Qianni1997.github.io\source\images\maxresdefault.jpg" alt="1635217391623"></p>
+<p>The Greenshield’s model is a </p>
+<ul>
+<li><script type="math/tex; mode=display">u=u_f\left(1-\frac{k}{k_j}\right)</script></li>
+<li><script type="math/tex; mode=display">q=ku=u_f\left(k-\frac{k^2}{k_j}\right)</script></li>
+<li><script type="math/tex; mode=display">q=ku=k_j\left(u-\frac{u^2}{u_f}\right)</script></li>
+</ul>
+<p>The critical properties:</p>
+<ul>
+<li><p>$k_{cap}=\frac{k_j}{2}$</p>
+</li>
+<li><p>$q_{cap}=\frac{u_fk_j}{4}$</p>
+</li>
+<li><p>$u_{cap}=\frac{u_f}{2}$</p>
+</li>
+</ul>
+<h2 id="Inductive-loop-detector-traffic-measurement-线圈检测器数据估计交通流状态"><a href="#Inductive-loop-detector-traffic-measurement-线圈检测器数据估计交通流状态" class="headerlink" title="Inductive loop detector traffic measurement 线圈检测器数据估计交通流状态"></a>Inductive loop detector traffic measurement 线圈检测器数据估计交通流状态</h2><p><img src="C:\Users\lenovo\Qianni1997.github.io\source\images\1635220136892.png" alt="1635220136892"></p>
+<ul>
+<li>$v_i=\frac{li+D}{dt_i}$, where $l_i $is the vehicle length and $D$ is loop detector width.</li>
+<li>$q=N/T$, where $T=30\text{ sec or } 5\text{ min}$.</li>
+<li>$u=\frac{\text{Total travel distance}}{\text{Total travel time}}=\frac{\sum_i(l_i+D)}{\sum_i dt_i}$</li>
+</ul>
+<p>Occupancy $\rho$ is defined as the percentage of time when it is occupied. It is used to denoted density:</p>
+<ul>
+<li>$\rho=\frac{\sum_i dt_i}{T}\times 100=\frac{q\sum_i dt_i}{N}\times 100=\frac{q}{N}\frac{\sum_i (l_i+D)}{u}\times 100=\frac{k\sum_i (l_i+D)}{N}\times 100=k(D+\bar{l})\times 100\equiv  kg_D$</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/27/toolandweb/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -283,7 +649,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-27T11:22:10+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-27T11:22:10-05:00">
                 2019-07-27
               </time>
             
@@ -407,7 +773,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-26T19:53:10+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-26T19:53:10-05:00">
                 2019-07-26
               </time>
             
@@ -531,7 +897,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-18T23:25:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-18T23:25:00-05:00">
                 2019-07-18
               </time>
             
@@ -660,7 +1026,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-16T12:20:10+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-16T12:20:10-05:00">
                 2018-09-16
               </time>
             
@@ -812,7 +1178,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-07T14:07:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-07T14:07:00-05:00">
                 2018-08-07
               </time>
             
@@ -958,7 +1324,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-04T22:06:47+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-04T22:06:47-05:00">
                 2018-08-04
               </time>
             
@@ -1104,7 +1470,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-24T22:35:02+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-24T22:35:02-05:00">
                 2018-06-24
               </time>
             
@@ -1262,7 +1628,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-21T19:52:47+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-21T19:52:47-05:00">
                 2018-06-21
               </time>
             
@@ -1408,7 +1774,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-19T11:55:48+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-19T11:55:48-05:00">
                 2018-06-19
               </time>
             
@@ -1518,152 +1884,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/05/ML-Cluster/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang Qianni">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/portrait.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Find Qianni">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/05/ML-Cluster/" itemprop="url">机器学习之聚类算法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-05T17:26:02+08:00">
-                2018-06-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Machine Learning</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="机器学习之聚类算法-1"><a href="#机器学习之聚类算法-1" class="headerlink" title="机器学习之聚类算法(1)"></a>机器学习之聚类算法(1)</h1><h2 id="1-聚类的概念-Clustering"><a href="#1-聚类的概念-Clustering" class="headerlink" title="1. 聚类的概念(Clustering)"></a>1. 聚类的概念(Clustering)</h2><h3 id="1-1-聚类的概念"><a href="#1-1-聚类的概念" class="headerlink" title="1.1 聚类的概念"></a>1.1 聚类的概念</h3><p>机器学习按照学习形式可以分为“监督学习”与“无监督学习”，在无监督学习中，训练样本的标记信息未知，即<strong>没有“标签”</strong>，需要通过对无标记训练样本的学习来揭示数据的内在性质与规律，无监督学习任务中研究最多、应用最广的是聚类。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/05/ML-Cluster/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1718,7 +1938,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1740,7 +1960,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1777,7 +1997,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
